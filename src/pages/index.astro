@@ -170,16 +170,16 @@ const experiences = [
         </div>
         <div class="grid grid-cols-2 gap-4 md:pt-16">
           {[
-            { value: '18+', label: 'Années d\'expérience' },
-            { value: '45+', label: 'ETP managés' },
-            { value: '7+', label: 'Années d\'expérience sur AWS' },
-            { value: '2', label: 'Certifications' },
-            { value: '50+', label: 'Projets livrés' },
-            { value: '100%', label: 'Passionné par mon métier' },
-          ].map(({ value, label }) => (
+            { value: '18+', emoji: '🗓️', label: 'Années d\'expérience' },
+            { value: '45+', emoji: '👥', label: 'ETP managés' },
+            { value: '7+',  emoji: '☁️', label: 'Années d\'expérience sur AWS' },
+            { value: '2',   emoji: '🏆', label: 'Certifications' },
+            { value: '50+', emoji: '🚀', label: 'Projets livrés' },
+            { value: '100%',emoji: '🔥', label: 'Passionné' },
+          ].map(({ value, emoji, label }) => (
             <div class="bg-white/[0.03] border border-white/5 rounded-2xl p-6 text-center hover:border-indigo-500/20 transition-colors">
               <div class="text-2xl font-bold text-gradient mb-1">{value}</div>
-              <div class="text-sm text-gray-300">{label}</div>
+              <div class="text-sm text-gray-300">{label} {emoji}</div>
             </div>
           ))}
         </div>
