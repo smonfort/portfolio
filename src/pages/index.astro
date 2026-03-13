@@ -296,11 +296,11 @@ const experiences = [
                       <p class="text-sm text-indigo-400">{exp.company}</p>
                     </div>
                   </div>
-                  <span class="text-xs text-gray-500 whitespace-nowrap">{exp.period}</span>
+                  <span class="text-xs text-gray-400 whitespace-nowrap">{exp.period}</span>
                 </div>
                 <ul class="space-y-1.5 mb-4">
                   {exp.bullets.map((bullet) => (
-                    <li class="flex items-start gap-2 text-sm text-gray-400 leading-relaxed">
+                    <li class="flex items-start gap-2 text-sm text-gray-300 leading-relaxed">
                       <span class="w-1 h-1 rounded-full bg-indigo-500 flex-shrink-0 mt-2"></span>
                       {bullet}
                     </li>
@@ -308,7 +308,7 @@ const experiences = [
                 </ul>
                 <div class="flex flex-wrap gap-2">
                   {exp.tags.map((tag) => (
-                    <span class="text-xs px-2.5 py-1 rounded-lg bg-white/5 text-gray-400 border border-white/5">{tag}</span>
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-white/5 text-gray-300 border border-white/5">{tag}</span>
                   ))}
                 </div>
               </article>
@@ -344,8 +344,8 @@ const experiences = [
               <h3 class="text-base font-semibold text-white mb-2 group-hover:text-indigo-300 transition-colors line-clamp-2">
                 {post.data.title}
               </h3>
-              <p class="text-sm text-gray-500 line-clamp-3 flex-1">{post.data.description}</p>
-              <time class="text-xs text-gray-600 mt-4 pt-4 border-t border-white/5 block">
+              <p class="text-sm text-gray-300 line-clamp-3 flex-1">{post.data.description}</p>
+              <time class="text-xs text-gray-400 mt-4 pt-4 border-t border-white/5 block">
                 {post.data.date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
             </a>
