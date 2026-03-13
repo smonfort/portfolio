@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-accent: #6366f1;
+    --color-accent-hover: #818cf8;
+  }
+
+  html {
+    background-color: #0a0a0a;
+    color: #e5e5e5;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .prose-custom {
+    color: #d1d5db;
+    line-height: 1.75;
+  }
+
+  .prose-custom h1,
+  .prose-custom h2,
+  .prose-custom h3 {
+    color: #f9fafb;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-custom a {
+    color: #6366f1;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .prose-custom a:hover {
+    text-decoration-color: #6366f1;
+  }
+
+  .prose-custom code {
+    background: #1f2937;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .prose-custom pre {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose-custom pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .prose-custom blockquote {
+    border-left: 3px solid #6366f1;
+    padding-left: 1rem;
+    color: #9ca3af;
+    font-style: italic;
+  }
+}
