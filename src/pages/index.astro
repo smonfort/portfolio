@@ -117,7 +117,8 @@ const experiences = [
         Disponible pour de nouvelles missions 👋
       </div>
       <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-4">
-        Stéphane Monfort
+        <span id="typewriter"></span><span id="cursor" class="inline-block w-[3px] h-[0.85em] bg-white align-middle ml-1"></span>
+        <style>@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } } .blink { animation: blink 1s step-end infinite; }</style>
       </h1>
       <p class="text-2xl sm:text-3xl font-semibold mb-6">
         <span class="text-gradient">CTO & Architecte Cloud Senior freelance</span>
@@ -392,4 +393,23 @@ const experiences = [
       </div>
     </div>
   </section>
+
+<script>
+  const text = 'Stéphane Monfort';
+  const el = document.getElementById('typewriter');
+  const cursor = document.getElementById('cursor');
+  let i = 0;
+
+  function type() {
+    if (!el) return;
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(type, 80);
+    } else {
+      cursor?.classList.add('blink');
+    }
+  }
+
+  type();
+</script>
 </Layout>
