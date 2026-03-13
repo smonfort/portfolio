@@ -110,10 +110,10 @@ const experiences = [
     <div class="max-w-3xl text-center">
       <div class="inline-flex items-center gap-2 text-sm text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-8">
         <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-400 transition-colors duration-1000"></span>
         </span>
-        Disponible pour de nouvelles missions
+        Disponible pour de nouvelles missions 👋
       </div>
       <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-4">
         Stéphane Monfort
@@ -169,9 +169,11 @@ const experiences = [
         <div class="grid grid-cols-2 gap-4 md:pt-16">
           {[
             { value: '18+', label: 'Années d\'expérience' },
-            { value: '45', label: 'ETP managés chez CACD2' },
-            { value: '7+', label: 'Années d\'experience sur AWS' },
+            { value: '45+', label: 'ETP managés' },
+            { value: '7+', label: 'Années d\'expérience sur AWS' },
             { value: '2', label: 'Certifications' },
+            { value: '50+', label: 'Projets livrés' },
+            { value: '100%', label: 'Passionné par mon métier' },
           ].map(({ value, label }) => (
             <div class="bg-white/[0.03] border border-white/5 rounded-2xl p-6 text-center hover:border-indigo-500/20 transition-colors">
               <div class="text-2xl font-bold text-gradient mb-1">{value}</div>
