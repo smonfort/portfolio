@@ -93,6 +93,22 @@ const expertises = [
       { name: 'Claude Code', icon: 'anthropic' },
     ],
   },
+  {
+    category: 'Tooling',
+    items: [
+      { name: 'Git', icon: 'git' },
+      { name: 'Lazygit', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />' },
+      { name: 'GitHub', icon: 'github' },
+      { name: 'GitLab', icon: 'gitlab' },
+      { name: 'Jira', icon: 'jira' },
+      { name: 'Confluence', icon: 'confluence' },
+      { name: 'Notion', icon: 'notion' },
+      { name: 'Neovim', icon: 'neovim' },
+      { name: 'Tmux', icon: 'tmux' },
+      { name: 'k9s', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />' },
+      { name: 'Bruno', icon: 'bruno' },
+    ],
+  },
 ];
 
 const certifications = [
@@ -212,12 +228,12 @@ const experiences = [
         </div>
         <div class="grid grid-cols-2 gap-4 md:pt-16">
           {[
-            { value: '18+', emoji: '🗓️', label: 'Années d\'expérience' },
+            { value: '18+', emoji: '🗓️', label: 'années d\'expérience' },
             { value: '45+', emoji: '👥', label: 'ETP managés' },
-            { value: '7+',  emoji: '☁️', label: 'Années d\'expérience sur AWS' },
-            { value: '2',   emoji: '🏆', label: 'Certifications' },
-            { value: '50+', emoji: '🚀', label: 'Projets livrés' },
-            { value: '100%',emoji: '🔥', label: 'Passionné' },
+            { value: '8+',  emoji: '☁️', label: 'années d\'expérience sur AWS' },
+            { value: '2',   emoji: '🏆', label: 'certifications' },
+            { value: '50+', emoji: '🚀', label: 'projets livrés' },
+            { value: '100%',emoji: '🔥', label: 'passionné' },
           ].map(({ value, emoji, label }) => (
             <div class="bg-white/[0.03] border border-white/5 rounded-2xl p-6 text-center hover:border-indigo-500/20 transition-colors">
               <div class="text-2xl font-bold text-gradient mb-1">{value}</div>
