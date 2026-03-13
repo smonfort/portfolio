@@ -60,7 +60,8 @@ const certifications = [
 const experiences = [
   {
     title: 'Chief Technical Officer',
-    company: 'CACD2 — Crédit Agricole',
+    company: 'Crédit Agricole Conseil et Développement Digital',
+    logo: { type: 'icon', url: '/logos/cacd2.png' },
     period: '2018 – 2026',
     bullets: [
       'Membre fondateur du comité de direction de la digital factory du Groupe Crédit Agricole S.A.',
@@ -74,6 +75,7 @@ const experiences = [
   {
     title: 'Architecte SI — Manager',
     company: 'Sopra-Stéria',
+    logo: { type: 'icon', url: '/logos/sopra-steria.png' },
     period: '2014 – 2018',
     bullets: [
       'Manager au sein de la Business Unit Secteur Public.',
@@ -86,6 +88,7 @@ const experiences = [
   {
     title: 'Architecte SI',
     company: 'IBM Global Business Services',
+    logo: { type: 'icon', url: '/logos/ibm.png' },
     period: '2008 – 2014',
     bullets: [
       'Développeur fullstack puis architecte logiciel au sein de la Division Application Innovation Services d\'IBM GBS France.',
@@ -147,7 +150,7 @@ const experiences = [
         <div>
           <p class="text-xs font-semibold tracking-widest text-indigo-400 uppercase mb-4">À propos</p>
           <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8 leading-tight">
-            Une vision 360°, de la stratègie à l'implémentation
+            Une vision 360° de la stratégie à l'implémentation
           </h2>
           <div class="space-y-5 text-gray-400 leading-relaxed">
             <p>
@@ -168,7 +171,7 @@ const experiences = [
             { value: '18+', label: 'Années d\'expérience' },
             { value: '45', label: 'ETP managés chez CACD2' },
             { value: '7+', label: 'Années d\'experience sur AWS' },
-            { value: '2', label: 'Certifications (AWS + TOGAF)' },
+            { value: '2', label: 'Certifications' },
           ].map(({ value, label }) => (
             <div class="bg-white/[0.03] border border-white/5 rounded-2xl p-6 text-center hover:border-indigo-500/20 transition-colors">
               <div class="text-2xl font-bold text-gradient mb-1">{value}</div>
@@ -275,9 +278,21 @@ const experiences = [
 
               <article class:list={['bg-white/[0.03] border border-white/5 rounded-2xl p-6 hover:border-indigo-500/30 transition-colors', i % 2 !== 0 ? 'md:col-start-2' : '']}>
                 <div class="flex items-start justify-between gap-4 mb-3">
-                  <div>
-                    <h3 class="text-base font-semibold text-white">{exp.title}</h3>
-                    <p class="text-sm text-indigo-400">{exp.company}</p>
+                  <div class="flex items-center gap-3">
+                    {exp.logo.type === 'initials' && (
+                      <div class:list={['w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold text-white', exp.logo.bg]}>
+                        {exp.logo.text}
+                      </div>
+                    )}
+                    {exp.logo.type === 'icon' && (
+                      <div class="w-9 h-9 flex items-center justify-center flex-shrink-0">
+                        <img src={exp.logo.url} alt={exp.company} class="w-8 h-8 object-contain" loading="lazy" />
+                      </div>
+                    )}
+                    <div>
+                      <h3 class="text-base font-semibold text-white">{exp.title}</h3>
+                      <p class="text-sm text-indigo-400">{exp.company}</p>
+                    </div>
                   </div>
                   <span class="text-xs text-gray-500 whitespace-nowrap">{exp.period}</span>
                 </div>
