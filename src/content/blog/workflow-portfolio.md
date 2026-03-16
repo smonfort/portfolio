@@ -17,14 +17,14 @@ Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), q
 - **Zéro JavaScript par défaut** : le HTML est pré-rendu, le JS n'est chargé que là où c'est strictement nécessaire, ce qui assure une performance optimale.
 - **Content Collections** : gestion du contenu en Markdown avec validation de schéma via Zod.
 - **DX agréable** : routing basé sur les fichiers, intégration Tailwind sans friction, live reload performant.
-- **Extensibilité** : intégration fine avec des librairies plus riches comme React ou Vue pour des cas d'usage plus avancés, catalogue de plugins relativement riche, etc.
-- **Static first** : un déploiement facile à mettre en place, une surface d'attaque réduite au maximum
+- **Extensibilité** : intégration fine avec des bibliothèques plus riches comme React ou Vue pour des cas d'usage plus avancés, catalogue de plugins relativement riche, etc.
+- **Static first** : un déploiement facile à mettre en place, une surface d'attaque réduite au maximum.
 
 ## L'environnement de travail : le terminal !
 
 Je travaille sur un MacBook avec une utilisation intensive et quasi exclusive du terminal depuis de nombreuses années maintenant.
 
-Assez naturellement, [Neovim](https://neovim.io/) est progressivement devenu mon éditeur principal, en remplacement de VSCode et IntelliJ. Même si la courbe d'apprentissage est assez rude, c'est un investissement que je ne regrette en rien aujourd'hui. Plus précisément, une bonne maitrise des [VIM motions](https://vim.rtorr.com/) offre un gain de productivité significatif. L'utilisation exclusive du clavier permet également de limiter les sources de friction dans mon workflow, ce qui limite la fatigue.
+Assez naturellement, [Neovim](https://neovim.io/) est progressivement devenu mon éditeur principal, en remplacement de VSCode et IntelliJ. Même si la courbe d'apprentissage est assez rude, c'est un investissement que je ne regrette en rien aujourd'hui. Plus précisément, une bonne maîtrise des [VIM motions](https://vim.rtorr.com/) offre un gain de productivité significatif. L'utilisation exclusive du clavier permet également de limiter les sources de friction dans mon workflow, ce qui limite la fatigue.
 
 Certains disposent d'une configuration Neovim très avancée, je préfère garder une approche assez minimaliste. Les curieux pourront le vérifier en consultant mes [dotfiles](https://github.com/smonfort/dotfiles). Plutôt que de complexifier ma configuration Neovim, je préfère m'appuyer sur [Tmux](https://github.com/tmux/tmux/wiki) pour gérer plusieurs fenêtres dans une même session : serveur en mode développement, éditeur de texte, terminal libre pour les commandes ponctuelles, fenêtre dédiée pour Claude Code, etc. La navigation au clavier entre les panneaux et les fenêtres est particulièrement rapide et agréable, une fois la gymnastique mentale bien assimilée.
 
@@ -51,7 +51,7 @@ Une popup me permet facilement de switcher très rapidement entre mes différent
 
 Pendant longtemps, j'ai utilisé Git exclusivement en ligne de commande. Puis j'ai découvert [Lazygit](https://github.com/jesseduffield/lazygit), et je n'en suis jamais revenu.
 
-Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup plus facilement d'avoir une bonne hygiène sur mon historique Git. Bon nombre de commandes avancées sont rendues très accessibles, sous condition d'avoir une bonne maitrise des fondamentaux de Git. Je garde donc en permanence une fenêtre ouverte avec Lazygit pour contrôler finement mes pushs et commits.
+Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup plus facilement d'avoir une bonne hygiène sur mon historique Git. Bon nombre de commandes avancées sont rendues très accessibles, à condition d'avoir une bonne maîtrise des fondamentaux de Git. Je garde donc en permanence une fenêtre ouverte avec Lazygit pour contrôler finement mes pushs et commits.
 
 ![Ma configuration lazygit](./img/lazygit.png)
 
@@ -67,7 +67,7 @@ Pour s'assurer que Claude prenne bien en compte les dernières versions des API 
 
 Chaque article est un simple fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins.
 
-J'ai également ajouté une commande custom Claude pour vérifier l'orthographe et la grammaire pour un article donné.
+J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
 
 ![Exemple Markdown](./img/markdown.png)
 
