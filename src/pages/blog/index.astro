@@ -54,7 +54,7 @@ const remainingPosts = posts.slice(2);
                   />
                 )}
                 <div class="flex flex-col flex-1 p-5">
-                  <time class="text-xs text-gray-600 mb-2">
+                  <time class="text-xs text-gray-400 mb-2">
                     {post.data.date.toLocaleDateString('fr-FR', {
                       year: 'numeric',
                       month: 'short',
@@ -64,7 +64,7 @@ const remainingPosts = posts.slice(2);
                   <h2 class="text-base font-semibold text-white group-hover:text-indigo-300 transition-colors mb-1">
                     {post.data.title}
                   </h2>
-                  <p class="text-sm text-gray-500 line-clamp-2 flex-1">{post.data.description}</p>
+                  <p class="text-sm text-gray-300 line-clamp-2 flex-1">{post.data.description}</p>
                   {post.data.tags.length > 0 && (
                     <div class="flex flex-wrap gap-1.5 mt-3">
                       {post.data.tags.map((tag) => (
@@ -106,8 +106,8 @@ const remainingPosts = posts.slice(2);
                   <h2 class="text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors mb-1 truncate">
                     {post.data.title}
                   </h2>
-                  <p class="text-xs text-gray-500 line-clamp-1 mb-2">{post.data.description}</p>
-                  <time class="text-xs text-gray-600 mb-2">
+                  <p class="text-xs text-gray-300 line-clamp-1 mb-2">{post.data.description}</p>
+                  <time class="text-xs text-gray-400 mb-2">
                     {post.data.date.toLocaleDateString('fr-FR', {
                       year: 'numeric',
                       month: 'short',

@@ -71,14 +71,14 @@
   }
 
   .prose-custom a {
-    color: #6366f1;
+    color: #818cf8;
     text-decoration: underline;
     text-decoration-color: transparent;
     transition: text-decoration-color 0.2s;
   }
 
   .prose-custom a:hover {
-    text-decoration-color: #6366f1;
+    text-decoration-color: #818cf8;
   }
 
   .prose-custom code {
