@@ -59,6 +59,8 @@ Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup
 
 N'ayant que des talents limités de designers, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompts relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
 
+Pour s'assurer que Claude prenne bien en compte les dernières versions des API Astro, je le configure avec le [serveur MCP](https://docs.astro.build/fr/guides/build-with-ai/#serveur-mcp-dastro-docs) fourni par Astro.
+
 ![Exemple Claude code](./img/claude-code.png)
 
 ## L'écriture du contenu : Markdown dans Neovim
