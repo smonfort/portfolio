@@ -6,6 +6,9 @@ import { Image } from 'astro:assets';
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+
+const featuredPosts = posts.slice(0, 2);
+const remainingPosts = posts.slice(2);
 ---
 
 <Layout
@@ -28,52 +31,103 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
           <p>Aucun article publié pour l'instant.</p>
         </div>
       ) : (
-        <div class="grid gap-6 sm:grid-cols-2">
-          {posts.map((post) => (
-            <a
-              href={`/blog/${post.id}`}
-              class="group flex flex-col rounded-xl border border-white/5 overflow-hidden hover:border-indigo-500/20 transition-colors"
-            >
-              {post.data.image ? (
-                <Image
-                  src={post.data.image}
-                  alt={post.data.title}
-                  width={600}
-                  height={160}
-                  class="w-full h-40 object-cover"
-                />
-              ) : (
-                <img
-                  src="/images/default-cover.svg"
-                  alt={post.data.title}
-                  class="w-full h-40 object-cover"
-                />
-              )}
-              <div class="flex flex-col flex-1 p-5">
-                <time class="text-xs text-gray-600 mb-2">
-                  {post.data.date.toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </time>
-                <h2 class="text-base font-semibold text-white group-hover:text-indigo-300 transition-colors mb-1">
-                  {post.data.title}
-                </h2>
-                <p class="text-sm text-gray-500 line-clamp-2 flex-1">{post.data.description}</p>
-                {post.data.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5 mt-3">
-                    {post.data.tags.map((tag) => (
-                      <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+        <>
+          <div class="grid gap-6 sm:grid-cols-2 mb-6">
+            {featuredPosts.map((post) => (
+              <a
+                href={`/blog/${post.id}`}
+                class="group flex flex-col rounded-xl border border-white/5 overflow-hidden hover:border-indigo-500/20 transition-colors"
+              >
+                {post.data.image ? (
+                  <Image
+                    src={post.data.image}
+                    alt={post.data.title}
+                    width={600}
+                    height={160}
+                    class="w-full h-40 object-cover"
+                  />
+                ) : (
+                  <img
+                    src="/images/default-cover.svg"
+                    alt={post.data.title}
+                    class="w-full h-40 object-cover"
+                  />
                 )}
-              </div>
-            </a>
-          ))}
-        </div>
+                <div class="flex flex-col flex-1 p-5">
+                  <time class="text-xs text-gray-600 mb-2">
+                    {post.data.date.toLocaleDateString('fr-FR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <h2 class="text-base font-semibold text-white group-hover:text-indigo-300 transition-colors mb-1">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-sm text-gray-500 line-clamp-2 flex-1">{post.data.description}</p>
+                  {post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5 mt-3">
+                      {post.data.tags.map((tag) => (
+                        <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div class="flex flex-col gap-3">
+            {remainingPosts.map((post) => (
+              <a
+                href={`/blog/${post.id}`}
+                class="group flex flex-row items-stretch rounded-xl border border-white/5 overflow-hidden hover:border-indigo-500/20 transition-colors"
+              >
+                <div class="w-28 shrink-0 relative mr-4">
+                  {post.data.image ? (
+                    <Image
+                      src={post.data.image}
+                      alt={post.data.title}
+                      width={112}
+                      height={160}
+                      class="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src="/images/default-cover.svg"
+                      alt={post.data.title}
+                      class="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div class="flex flex-col flex-1 justify-center py-3 pr-5 min-w-0">
+                  <h2 class="text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors mb-1 truncate">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-xs text-gray-500 line-clamp-1 mb-2">{post.data.description}</p>
+                  <time class="text-xs text-gray-600 mb-2">
+                    {post.data.date.toLocaleDateString('fr-FR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  {post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1">
+                      {post.data.tags.map((tag) => (
+                        <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </>
       )
     }
   </div>
