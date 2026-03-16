@@ -72,6 +72,6 @@ Chaque article est un simple fichier Markdown stocké dans le repository Git. Un
 ## Le déploiement : Vercel
 
 Le build se fait avec un simple `pnpm build`, qui génère un site statique dans `dist/`.
-Le déploiement est ensuite géré automatiquement à chaque push sur la branche principale avec Vercel.
+Le déploiement est ensuite géré automatiquement à chaque push sur la branche principale avec [Vercel](https://vercel.com/)
 
 Et voilà!
