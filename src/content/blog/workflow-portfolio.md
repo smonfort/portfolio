@@ -6,13 +6,13 @@ tags: ['Astro', 'Tmux', 'Neovim', 'Lazygit']
 image: './img/neovim.png'
 ---
 
-A l'heure du vibe-coding, construire un portfolio devient une commodité. Je vous explique ici mon workflow de développement pour construire ce site, en mettant en lumière quelques outillages que j'apprécie particulièrement.
+À l'heure du vibe-coding, construire un portfolio devient une commodité. Je vous explique ici mon workflow de développement pour construire ce site, en mettant en lumière quelques outillages que j'apprécie particulièrement.
 
 ## Le choix du framework : Astro
 
 Par le passé, j'ai pu expérimenter un certain nombre de générateurs de sites statiques, dont [Hugo](https://gohugo.io/) et [Gatsby](https://www.gatsbyjs.com/), avec des succès variés.
 
-Désormais, mon choix se retourne par défaut vers [Astro](https://astro.build), que l'on ne présente plus. Ce qui m'a convaincu :
+Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), que l'on ne présente plus. Ce qui m'a convaincu :
 
 - **Zéro JavaScript par défaut** : le HTML est pré-rendu, le JS n'est chargé que là où c'est strictement nécessaire, ce qui assure une performance optimale.
 - **Content Collections** : gestion du contenu en Markdown avec validation de schéma via Zod.
@@ -20,9 +20,9 @@ Désormais, mon choix se retourne par défaut vers [Astro](https://astro.build),
 - **Extensibilité** : intégration fine avec des librairies plus riches comme React ou Vue pour des cas d'usage plus avancés, catalogue de plugins relativement riche, etc.
 - **Static first** : un déploiement facile à mettre en place, une surface d'attaque réduite au maximum
 
-## L'environnement de travail : le terminal!
+## L'environnement de travail : le terminal !
 
-Je travaille sur MacBook avec une utilisation intensive et quasi exclusive du terminal depuis de nombreuses années maintenant.
+Je travaille sur un MacBook avec une utilisation intensive et quasi exclusive du terminal depuis de nombreuses années maintenant.
 
 Assez naturellement, [Neovim](https://neovim.io/) est progressivement devenu mon éditeur principal, en remplacement de VSCode et IntelliJ. Même si la courbe d'apprentissage est assez rude, c'est un investissement que je ne regrette en rien aujourd'hui. Plus précisément, une bonne maitrise des [VIM motions](https://vim.rtorr.com/) offre un gain de productivité significatif. L'utilisation exclusive du clavier permet également de limiter les sources de friction dans mon workflow, ce qui limite la fatigue.
 
@@ -57,7 +57,7 @@ Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup
 
 ## Le squelette visuel : Claude Code
 
-N'ayant que des talents limités de designers, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompts relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
+N'ayant que des talents limités de designer, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompts relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
 
 Pour s'assurer que Claude prenne bien en compte les dernières versions des API Astro, je le configure avec le [serveur MCP](https://docs.astro.build/fr/guides/build-with-ai/#serveur-mcp-dastro-docs) fourni par Astro.
 
@@ -67,11 +67,11 @@ Pour s'assurer que Claude prenne bien en compte les dernières versions des API 
 
 Chaque article est un simple fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins.
 
-![Exemple Markdown](./img/mardown.png)
+![Exemple Markdown](./img/markdown.png)
 
 ## Le déploiement : Vercel
 
 Le build se fait avec un simple `pnpm build`, qui génère un site statique dans `dist/`.
-Le déploiement est ensuite géré automatiquement à chaque push sur la branche principale avec [Vercel](https://vercel.com/)
+Le déploiement est ensuite géré automatiquement à chaque push sur la branche principale avec [Vercel](https://vercel.com/).
 
-Et voilà!
+Et voilà !
