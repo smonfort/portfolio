@@ -673,7 +673,7 @@ const experiences = [
                   />
                 )}
                 <div class="flex flex-col flex-1 p-5">
-                  <time class="text-xs text-gray-600 mb-2">
+                  <time class="text-xs text-gray-400 mb-2">
                     {post.data.date.toLocaleDateString('fr-FR', {
                       year: 'numeric',
                       month: 'short',
@@ -683,7 +683,7 @@ const experiences = [
                   <h3 class="text-base font-semibold text-white group-hover:text-indigo-300 transition-colors mb-1">
                     {post.data.title}
                   </h3>
-                  <p class="text-sm text-gray-500 line-clamp-2 flex-1">{post.data.description}</p>
+                  <p class="text-sm text-gray-300 line-clamp-2 flex-1">{post.data.description}</p>
                   {post.data.tags.length > 0 && (
                     <div class="flex flex-wrap gap-1.5 mt-3">
                       {post.data.tags.map((tag) => (
