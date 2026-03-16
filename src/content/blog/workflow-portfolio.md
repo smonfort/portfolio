@@ -30,7 +30,7 @@ Certains disposent d'une configuration Neovim très avancée, je préfère garde
 
 ![Ma configuration tmux](./img/neovim.png)
 
-[Tmuxinator](https://github.com/tmuxinator/tmuxinator) complète le tout en me permettant de définir mes sessions de travail dans un fichier de configuration YAML. L'outil me permet de switcher rapidement entre mes différentes sessions de travail et de retrouver une configuration adaptée pour chacun des projets. Voici un exemple minimaliste ci-dessous adapté pour mes besoins pour la construction de ce portfolio.
+[Tmuxinator](https://github.com/tmuxinator/tmuxinator) complète le tout en me permettant de définir mes sessions de travail dans un fichier de configuration YAML. L'outil me permet de switcher rapidement entre mes différentes sessions de travail et de retrouver une configuration adaptée pour chacun des projets. Voici un exemple minimaliste ci-dessous adapté à mes besoins pour la construction de ce portfolio.
 
 ```yml
 name: portfolio
@@ -66,6 +66,8 @@ Pour s'assurer que Claude prenne bien en compte les dernières versions des API 
 ## L'écriture du contenu : Markdown dans Neovim
 
 Chaque article est un simple fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins.
+
+J'ai également ajouté une commande custom Claude pour vérifier l'orthographe et la grammaire pour un article donné.
 
 ![Exemple Markdown](./img/markdown.png)
 
