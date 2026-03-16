@@ -6,9 +6,10 @@ interface Props {
   description?: string;
   date: Date;
   tags?: string[];
+  image?: string;
 }
 
-const { title, description, date, tags = [] } = Astro.props;
+const { title, description, date, tags = [], image } = Astro.props;
 const formattedDate = date.toLocaleDateString('fr-FR', {
   year: 'numeric',
   month: 'long',
@@ -19,7 +20,7 @@ const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${
 ---
 
 <Layout title={`${title} — Blog`} description={description}>
-  <article class="max-w-2xl mx-auto px-6 py-20">
+  <article class="max-w-3xl mx-auto px-6 py-20">
     <a
       href="/blog"
       class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-indigo-400 transition-colors mb-10 group"

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0"/>
+    </linearGradient>
+    <radialGradient id="radial" cx="30%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <rect width="1200" height="400" fill="url(#radial)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#6366f1" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="80" x2="1200" y2="80"/>
+    <line x1="0" y1="160" x2="1200" y2="160"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="320" x2="1200" y2="320"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="800" y1="0" x2="800" y2="400"/>
+    <line x1="1000" y1="0" x2="1000" y2="400"/>
+  </g>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="4" height="400" fill="#6366f1" opacity="0.6"/>
+
+  <!-- Decorative circle -->
+  <circle cx="950" cy="200" r="180" fill="none" stroke="#6366f1" stroke-opacity="0.08" stroke-width="1"/>
+  <circle cx="950" cy="200" r="120" fill="none" stroke="#6366f1" stroke-opacity="0.06" stroke-width="1"/>
+  <circle cx="950" cy="200" r="60" fill="none" stroke="#6366f1" stroke-opacity="0.1" stroke-width="1"/>
+  <circle cx="950" cy="200" r="6" fill="#6366f1" opacity="0.3"/>
+
+  <!-- monfort.pro label -->
+  <text x="60" y="220" font-family="monospace" font-size="13" fill="#6366f1" opacity="0.5" letter-spacing="3">monfort.pro</text>
+</svg>
