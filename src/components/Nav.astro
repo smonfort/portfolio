@@ -10,29 +10,34 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+<header
+  class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl"
+>
   <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-bold text-lg tracking-tight text-white hover:text-indigo-400 transition-colors">
+    <a
+      href="/"
+      class="font-bold text-lg tracking-tight text-white hover:text-indigo-400 transition-colors"
+    >
       <span class="text-gradient">Stéphane Monfort</span>
     </a>
 
     <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-8">
-      {navLinks.map(({ href, label }) => (
-        <li>
-          <a
-            href={href}
-            class:list={[
-              'text-sm font-medium transition-colors',
-              currentPath === href
-                ? 'text-indigo-400'
-                : 'text-gray-400 hover:text-white',
-            ]}
-          >
-            {label}
-          </a>
-        </li>
-      ))}
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'text-sm font-medium transition-colors',
+                currentPath === href ? 'text-indigo-400' : 'text-gray-400 hover:text-white',
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <!-- Mobile menu button -->
@@ -42,24 +47,46 @@ const currentPath = Astro.url.pathname;
       aria-label="Ouvrir le menu"
     >
       <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
-      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <svg
+        id="icon-close"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-black/90 backdrop-blur-xl">
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-white/5 bg-black/90 backdrop-blur-xl"
+  >
     <ul class="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-4">
-      {navLinks.map(({ href, label }) => (
-        <li>
-          <a href={href} class="text-sm font-medium text-gray-400 hover:text-white transition-colors block py-1">
-            {label}
-          </a>
-        </li>
-      ))}
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class="text-sm font-medium text-gray-400 hover:text-white transition-colors block py-1"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </header>

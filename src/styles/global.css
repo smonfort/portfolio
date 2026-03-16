@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @layer base {
   :root {
@@ -14,7 +14,7 @@
 
   body {
     font-family:
-      "Inter",
+      'Inter',
       system-ui,
       -apple-system,
       sans-serif;
@@ -40,7 +40,7 @@
     background-clip: text;
   }
 
-.prose-custom {
+  .prose-custom {
     color: #d1d5db;
     line-height: 1.75;
   }
