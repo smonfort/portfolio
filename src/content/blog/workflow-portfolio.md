@@ -47,7 +47,7 @@ Une popup me permet facilement de switcher très rapidement entre mes différent
 
 ![Popup tmux](./img/popup-tmux.png)
 
-## La gestion du code : Lazygit
+## Le suivi du code source : Lazygit
 
 Pendant longtemps, j'ai utilisé Git exclusivement en ligne de commande. Puis j'ai découvert [Lazygit](https://github.com/jesseduffield/lazygit), et je n'en suis jamais revenu.
 
@@ -57,7 +57,7 @@ Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup
 
 ## Le squelette visuel : Claude Code
 
-N'ayant que des talents limités de designers, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompt relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
+N'ayant que des talents limités de designers, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompts relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
 
 ![Exemple Claude code](./img/claude-code.png)
 
