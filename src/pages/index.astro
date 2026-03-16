@@ -228,9 +228,24 @@ const certifications = [
     name: 'AWS Certified Solutions Architect – Associate',
     issuer: 'Amazon Web Services',
     icon: '☁️',
+    iconUrl:
+      'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
     link: 'https://www.credly.com/badges/aa0dde9d-3422-4f16-8be8-352c315a5328/linked_in_profile',
   },
-  { name: 'TOGAF 9.1 Expert', issuer: 'The Open Group', icon: '🏛️', link: null },
+  {
+    name: 'TOGAF 9.1 Expert',
+    issuer: 'The Open Group',
+    icon: '🏛️',
+    iconUrl: '/logos/open-group.png',
+    link: null,
+  },
+  {
+    name: 'Claude Code in Actions',
+    issuer: 'Anthropic',
+    icon: '🤖',
+    iconUrl: 'https://cdn.simpleicons.org/anthropic/a5b4fc',
+    link: 'https://verify.skilljar.com/c/ryfgo2hwz8ap',
+  },
 ];
 
 const experiences = [
@@ -384,7 +399,7 @@ const experiences = [
               { value: '18+', emoji: '🗓️', label: "années d'expérience" },
               { value: '45+', emoji: '👥', label: 'ETP managés' },
               { value: '8+', emoji: '☁️', label: "années d'expérience sur AWS" },
-              { value: '2', emoji: '🏆', label: 'certifications' },
+              { value: '3', emoji: '🏆', label: 'certifications' },
               { value: '50+', emoji: '🚀', label: 'projets livrés' },
               { value: '100%', emoji: '🔥', label: 'passionné' },
             ].map(({ value, emoji, label }) => (
@@ -481,7 +496,7 @@ const experiences = [
       </div>
       <div class="grid sm:grid-cols-2 gap-4">
         {
-          certifications.map(({ name, issuer, icon, link }) =>
+          certifications.map(({ name, issuer, icon, iconUrl, link }) =>
             link ? (
               <a
                 href={link}
@@ -489,7 +504,11 @@ const experiences = [
                 rel="noopener"
                 class="flex items-center gap-4 bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:border-amber-500/30 transition-colors group"
               >
-                <span class="text-2xl">{icon}</span>
+                {iconUrl ? (
+                  <img src={iconUrl} alt={name} class="w-7 h-7 flex-shrink-0" loading="lazy" />
+                ) : (
+                  <span class="text-2xl">{icon}</span>
+                )}
                 <div class="flex-1">
                   <p class="text-sm font-semibold text-white group-hover:text-amber-400 transition-colors">
                     {name}
@@ -511,7 +530,11 @@ const experiences = [
               </a>
             ) : (
               <div class="flex items-center gap-4 bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors">
-                <span class="text-2xl">{icon}</span>
+                {iconUrl ? (
+                  <img src={iconUrl} alt={name} class="w-7 h-7 flex-shrink-0" loading="lazy" />
+                ) : (
+                  <span class="text-2xl">{icon}</span>
+                )}
                 <div>
                   <p class="text-sm font-semibold text-white">{name}</p>
                 </div>
