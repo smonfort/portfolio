@@ -323,7 +323,7 @@ const experiences = [
       <h1
         class="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-4 min-h-[7.5rem] sm:min-h-0"
       >
-        <span id="typewriter"></span><span
+        <span id="typewriter">Stéphane Monfort</span><span
           id="cursor"
           class="inline-block w-[3px] h-[0.85em] bg-white align-middle ml-1"></span>
         <style>
@@ -755,6 +755,8 @@ const experiences = [
     const el = document.getElementById('typewriter');
     const cursor = document.getElementById('cursor');
     let i = 0;
+
+    if (el) el.textContent = '';
 
     function type() {
       if (!el) return;
