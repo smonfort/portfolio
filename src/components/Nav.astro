@@ -45,8 +45,17 @@ const currentPath = Astro.url.pathname;
       id="menu-btn"
       class="md:hidden text-gray-400 hover:text-white transition-colors"
       aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
     >
-      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg
+        id="icon-open"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -59,6 +68,7 @@ const currentPath = Astro.url.pathname;
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
+        aria-hidden="true"
       >
         <path
           stroke-linecap="round"
@@ -98,6 +108,9 @@ const currentPath = Astro.url.pathname;
   const iconClose = document.getElementById('icon-close');
 
   btn?.addEventListener('click', () => {
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!isExpanded));
+    btn.setAttribute('aria-label', isExpanded ? 'Ouvrir le menu' : 'Fermer le menu');
     menu?.classList.toggle('hidden');
     iconOpen?.classList.toggle('hidden');
     iconClose?.classList.toggle('hidden');
@@ -106,6 +119,8 @@ const currentPath = Astro.url.pathname;
   // Close menu on link click
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
+      btn?.setAttribute('aria-expanded', 'false');
+      btn?.setAttribute('aria-label', 'Ouvrir le menu');
       menu.classList.add('hidden');
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');

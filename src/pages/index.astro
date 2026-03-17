@@ -368,7 +368,8 @@ const experiences = [
       >
         <span id="typewriter">Stéphane Monfort</span><span
           id="cursor"
-          class="inline-block w-[3px] h-[0.85em] bg-white align-middle ml-1"></span>
+          class="inline-block w-[3px] h-[0.85em] bg-white align-middle ml-1"
+          aria-hidden="true"></span>
         <style>
           @keyframes blink {
             0%,
@@ -484,6 +485,7 @@ const experiences = [
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                       set:html={categorySvg}
                     />
                   )}
@@ -517,6 +519,7 @@ const experiences = [
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                         set:html={item.svg}
                       />
                     )}
@@ -546,7 +549,8 @@ const experiences = [
               <a
                 href={link}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
+                aria-label={`${name} (ouvre dans un nouvel onglet)`}
                 class="flex items-center gap-4 bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:border-amber-500/30 transition-colors group"
               >
                 {iconUrl ? (
@@ -564,6 +568,7 @@ const experiences = [
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     stroke-linecap="round"
@@ -718,7 +723,7 @@ const experiences = [
                   />
                 )}
                 <div class="flex flex-col flex-1 p-5">
-                  <time class="text-xs text-gray-400 mb-2">
+                  <time class="text-xs text-gray-400 mb-2" datetime={post.data.date.toISOString()}>
                     {post.data.date.toLocaleDateString('fr-FR', {
                       year: 'numeric',
                       month: 'short',
@@ -766,7 +771,13 @@ const experiences = [
           href="mailto:stephane@monfort.pro?subject=Prise%20de%20contact"
           class="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl transition-colors"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -779,10 +790,10 @@ const experiences = [
         <a
           href="https://linkedin.com/in/smonfort"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-medium rounded-xl border border-white/10 transition-colors"
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
             ></path>
