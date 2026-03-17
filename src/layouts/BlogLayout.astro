@@ -83,7 +83,7 @@ const blogPostingSchema = JSON.stringify({
         )
       }
       <div class="mt-6 pt-6 border-t border-white/5 flex items-center justify-between gap-4">
-        <time class="text-sm text-gray-300">{formattedDate}</time>
+        <time class="text-sm text-gray-300" datetime={date.toISOString()}>{formattedDate}</time>
         <a
           href={linkedInShareUrl}
           target="_blank"

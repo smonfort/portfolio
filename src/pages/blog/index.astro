@@ -54,7 +54,7 @@ const remainingPosts = posts.slice(2);
                   />
                 )}
                 <div class="flex flex-col flex-1 p-5">
-                  <time class="text-xs text-gray-400 mb-2">
+                  <time class="text-xs text-gray-400 mb-2" datetime={post.data.date.toISOString()}>
                     {post.data.date.toLocaleDateString('fr-FR', {
                       year: 'numeric',
                       month: 'short',
@@ -107,7 +107,7 @@ const remainingPosts = posts.slice(2);
                     {post.data.title}
                   </h2>
                   <p class="text-xs text-gray-300 line-clamp-1 mb-2">{post.data.description}</p>
-                  <time class="text-xs text-gray-400 mb-2">
+                  <time class="text-xs text-gray-400 mb-2" datetime={post.data.date.toISOString()}>
                     {post.data.date.toLocaleDateString('fr-FR', {
                       year: 'numeric',
                       month: 'short',
