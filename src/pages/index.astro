@@ -340,7 +340,7 @@ const experiences = [
   title="Stéphane Monfort — CTO & Architecte Cloud Senior Freelance"
   description="CTO et Architecte Cloud Senior freelance, certifié AWS et TOGAF. 18 ans d'expérience en architecture de solutions et tech leadership."
 >
-  <script type="application/ld+json" set:html={personSchema} slot="head" />
+  <Fragment slot="head" set:html={`<script type="application/ld+json">${personSchema}</script>`} />
   <!-- Hero -->
   <section class="min-h-screen flex items-center justify-center px-6 pt-16">
     <div class="max-w-3xl text-center">
