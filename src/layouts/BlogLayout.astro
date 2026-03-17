@@ -17,9 +17,35 @@ const formattedDate = date.toLocaleDateString('fr-FR', {
 });
 const pageUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://www.monfort.pro').toString();
 const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(pageUrl)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(description ?? '')}`;
+
+const blogPostingSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: description,
+  datePublished: date.toISOString(),
+  url: pageUrl,
+  inLanguage: 'fr-FR',
+  author: {
+    '@type': 'Person',
+    '@id': 'https://www.monfort.pro/#person',
+    name: 'Stéphane Monfort',
+    url: 'https://www.monfort.pro',
+  },
+  publisher: {
+    '@type': 'Person',
+    '@id': 'https://www.monfort.pro/#person',
+    name: 'Stéphane Monfort',
+  },
+  ...(image && { image: new URL(image, Astro.site ?? 'https://www.monfort.pro').toString() }),
+});
 ---
 
 <Layout title={`${title} — Blog`} description={description} image={image} ogType="article">
+  <Fragment
+    slot="head"
+    set:html={`<script type="application/ld+json">${blogPostingSchema}</script>`}
+  />
   <article class="max-w-3xl mx-auto px-6 py-20">
     <a
       href="/blog"
