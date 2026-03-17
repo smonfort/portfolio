@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = 'Stéphane Monfort — CTO & Architecte Cloud Senior freelance, certifié AWS et TOGAF.',
+  description = "CTO freelance & architecte cloud senior avec 18 ans d'expérience, certifié AWS et TOGAF. J'accompagne vos équipes tech sur leurs projets de transformation.",
   image,
   ogType = 'website',
 } = Astro.props;
@@ -39,6 +39,7 @@ const ogImage = image ? new URL(image, Astro.site).toString() : undefined;
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
