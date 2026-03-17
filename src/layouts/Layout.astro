@@ -7,12 +7,19 @@ import Analytics from '@vercel/analytics/astro';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  ogType?: string;
 }
 
 const {
   title,
   description = 'Stéphane Monfort — CTO & Architecte Cloud Senior freelance, certifié AWS et TOGAF.',
+  image,
+  ogType = 'website',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = image ? new URL(image, Astro.site).toString() : undefined;
 ---
 
 <!doctype html>
@@ -21,7 +28,17 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Stéphane Monfort" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
