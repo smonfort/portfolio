@@ -24,6 +24,7 @@ const blogPostingSchema = JSON.stringify({
   headline: title,
   description: description,
   datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
   url: pageUrl,
   inLanguage: 'fr-FR',
   author: {
@@ -87,7 +88,7 @@ const blogPostingSchema = JSON.stringify({
         <a
           href={linkedInShareUrl}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="inline-flex items-center rounded-md overflow-hidden bg-[#0a66c2] hover:bg-[#004182] transition-colors"
         >
           <span class="flex items-center justify-center px-3 py-2 border-r border-[#004182]/40">
