@@ -61,13 +61,19 @@ N'ayant que des talents limités de designer, Claude Code m'a accompagné dans l
 
 Pour s'assurer que Claude prenne bien en compte les dernières versions des API Astro, je le configure avec le [serveur MCP](https://docs.astro.build/fr/guides/build-with-ai/#serveur-mcp-dastro-docs) fourni par Astro.
 
+J'utilise aussi les skills suivants pour vérifier la qualité des développements :
+
+- [seo-audit](https://skills.sh/coreyhaines31/marketingskills/seo-audit) pour réaliser un audit SEO flash du site déployé, pour m'assurer que l'ensemble des bonnes pratiques est respecté.
+- [web-accessibility](https://skills.sh/supercent-io/skills-template/web-accessibility) pour contrôler l'accessibilité numérique
+- [core-web-vitals](https://skills.sh/addyosmani/web-quality-skills/core-web-vitals) pour l'analyse des performances du site avec Lighthouse
+
 ![Exemple Claude code](./img/claude-code.png)
 
 ## L'écriture du contenu : Markdown dans Neovim
 
 Chaque article est un simple fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins.
 
-J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné. J'utilise aussi le skill [seo-audit](https://skills.sh/coreyhaines31/marketingskills/seo-audit) pour réaliser un audit SEO flash du site déployé, pour m'assurer que l'ensemble des bonnes pratiques est respecté.
+J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
 
 ![Exemple Markdown](./img/markdown.png)
 
