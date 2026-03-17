@@ -41,7 +41,12 @@ const blogPostingSchema = JSON.stringify({
 });
 ---
 
-<Layout title={`${title} — Blog`} description={description} image={image} ogType="article">
+<Layout
+  title={`${title} | Stéphane Monfort`}
+  description={description}
+  image={image}
+  ogType="article"
+>
   <Fragment
     slot="head"
     set:html={`<script type="application/ld+json">${blogPostingSchema}</script>`}
