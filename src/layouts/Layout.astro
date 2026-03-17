@@ -13,6 +13,42 @@ const {
   title,
   description = 'Stéphane Monfort — CTO & Architecte Cloud Senior freelance, certifié AWS et TOGAF.',
 } = Astro.props;
+
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Stéphane Monfort',
+  jobTitle: 'CTO & Architecte Cloud Senior Freelance',
+  url: 'https://www.monfort.pro',
+  email: 'stephane@monfort.pro',
+  sameAs: ['https://linkedin.com/in/smonfort'],
+  knowsAbout: [
+    'Cloud Architecture',
+    'AWS',
+    'Kubernetes',
+    'Tech Leadership',
+    'DevOps',
+    'Software Architecture',
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'AWS Certified Solutions Architect – Associate',
+      credentialCategory: 'Professional Certification',
+      recognizedBy: { '@type': 'Organization', name: 'Amazon Web Services' },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'TOGAF 9.1 Expert',
+      credentialCategory: 'Professional Certification',
+      recognizedBy: { '@type': 'Organization', name: 'The Open Group' },
+    },
+  ],
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'École Centrale de Lyon',
+  },
+});
 ---
 
 <!doctype html>
@@ -38,7 +74,7 @@ const {
       />
     </noscript>
     <title>{title}</title>
-    <slot name="head" />
+    <script type="application/ld+json" set:html={personSchema} />
     <Analytics />
   </head>
   <body class="min-h-screen flex flex-col">
