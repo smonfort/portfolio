@@ -271,7 +271,6 @@ const certifications = [
   {
     name: 'AWS Certified Solutions Architect – Associate',
     issuer: 'Amazon Web Services',
-    icon: '☁️',
     iconUrl:
       'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
     link: 'https://www.credly.com/badges/aa0dde9d-3422-4f16-8be8-352c315a5328/linked_in_profile',
@@ -279,14 +278,12 @@ const certifications = [
   {
     name: 'TOGAF 9.1 Expert',
     issuer: 'The Open Group',
-    icon: '🏛️',
     iconUrl: '/logos/open-group.png',
     link: null,
   },
   {
     name: 'Claude Code in Actions',
     issuer: 'Anthropic',
-    icon: '🤖',
     iconUrl: 'https://cdn.simpleicons.org/anthropic/a5b4fc',
     link: 'https://verify.skilljar.com/c/ryfgo2hwz8ap',
   },
@@ -551,7 +548,7 @@ const experiences: Array<{
       </div>
       <div class="grid sm:grid-cols-2 gap-4">
         {
-          certifications.map(({ name, icon, iconUrl, link }) =>
+          certifications.map(({ name, iconUrl, link }) =>
             link ? (
               <a
                 href={link}
@@ -560,18 +557,15 @@ const experiences: Array<{
                 aria-label={`${name} (ouvre dans un nouvel onglet)`}
                 class="flex items-center gap-4 bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:border-amber-500/30 transition-colors group"
               >
-                {iconUrl ? (
-                  <img
-                    src={iconUrl}
-                    alt={name}
-                    width="28"
-                    height="28"
-                    class="w-7 h-7 flex-shrink-0"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="text-2xl">{icon}</span>
-                )}
+                <img
+                  src={iconUrl}
+                  alt={name}
+                  width="28"
+                  height="28"
+                  class="w-7 h-7 flex-shrink-0"
+                  loading="lazy"
+                />
+
                 <div class="flex-1">
                   <p class="text-sm font-semibold text-white group-hover:text-amber-400 transition-colors">
                     {name}
@@ -594,18 +588,14 @@ const experiences: Array<{
               </a>
             ) : (
               <div class="flex items-center gap-4 bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors">
-                {iconUrl ? (
-                  <img
-                    src={iconUrl}
-                    alt={name}
-                    width="28"
-                    height="28"
-                    class="w-7 h-7 flex-shrink-0"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="text-2xl">{icon}</span>
-                )}
+                <img
+                  src={iconUrl}
+                  alt={name}
+                  width="28"
+                  height="28"
+                  class="w-7 h-7 flex-shrink-0"
+                  loading="lazy"
+                />
                 <div>
                   <p class="text-sm font-semibold text-white">{name}</p>
                 </div>
