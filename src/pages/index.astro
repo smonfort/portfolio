@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
+type Logo = { type: 'icon'; url: string } | { type: 'initials'; bg: string; text: string };
+
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
@@ -290,7 +292,14 @@ const certifications = [
   },
 ];
 
-const experiences = [
+const experiences: Array<{
+  title: string;
+  company: string;
+  logo: Logo;
+  period: string;
+  bullets: string[];
+  tags: string[];
+}> = [
   {
     title: 'Chief Technical Officer',
     company: 'Crédit Agricole Conseil et Développement Digital',
@@ -542,7 +551,7 @@ const experiences = [
       </div>
       <div class="grid sm:grid-cols-2 gap-4">
         {
-          certifications.map(({ name, issuer, icon, iconUrl, link }) =>
+          certifications.map(({ name, icon, iconUrl, link }) =>
             link ? (
               <a
                 href={link}

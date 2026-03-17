@@ -9,6 +9,15 @@
             "command": "jq -r '.tool_input.file_path' | xargs pnpm dlx prettier --write"
           }
         ]
+      },
+      {
+        "matcher": "Edit:*.astro|Edit:*.ts",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm tsc --noEmit"
+          }
+        ]
       }
     ]
   }

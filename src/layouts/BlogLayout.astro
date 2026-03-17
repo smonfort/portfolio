@@ -111,13 +111,16 @@ const blogPostingSchema = JSON.stringify({
     </div>
 
     <div class="mt-16 pt-10 border-t border-white/5">
-      <script
-        src="https://utteranc.es/client.js"
-        repo="smonfort/portfolio"
-        issue-term="pathname"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async></script>
+      <script is:inline>
+        const s = document.createElement('script');
+        s.src = 'https://utteranc.es/client.js';
+        s.setAttribute('repo', 'smonfort/portfolio');
+        s.setAttribute('issue-term', 'pathname');
+        s.setAttribute('theme', 'github-dark');
+        s.setAttribute('crossorigin', 'anonymous');
+        s.async = true;
+        document.currentScript.parentElement.appendChild(s);
+      </script>
     </div>
   </article>
 </Layout>
