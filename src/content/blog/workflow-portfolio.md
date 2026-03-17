@@ -26,7 +26,7 @@ Je travaille sur un MacBook avec une utilisation intensive et quasi exclusive du
 
 Assez naturellement, [Neovim](https://neovim.io/) est progressivement devenu mon éditeur principal, en remplacement de VSCode et IntelliJ. Même si la courbe d'apprentissage est assez rude, c'est un investissement que je ne regrette en rien aujourd'hui. Plus précisément, une bonne maîtrise des [VIM motions](https://vim.rtorr.com/) offre un gain de productivité significatif. L'utilisation exclusive du clavier permet également de limiter les sources de friction dans mon workflow, ce qui limite la fatigue.
 
-Certains disposent d'une configuration Neovim très avancée, je préfère garder une approche assez minimaliste. Les curieux pourront le vérifier en consultant mes [dotfiles](https://github.com/smonfort/dotfiles). Plutôt que de complexifier ma configuration Neovim, je préfère m'appuyer sur [Tmux](https://github.com/tmux/tmux/wiki) pour gérer plusieurs fenêtres dans une même session : serveur en mode développement, éditeur de texte, terminal libre pour les commandes ponctuelles, fenêtre dédiée pour Claude Code, etc. La navigation au clavier entre les panneaux et les fenêtres est particulièrement rapide et agréable, une fois la gymnastique mentale bien assimilée.
+Certains disposent d'une configuration Neovim très avancée ; je préfère garder une approche assez minimaliste. Les curieux pourront le vérifier en consultant mes [dotfiles](https://github.com/smonfort/dotfiles). Plutôt que de complexifier ma configuration Neovim, je préfère m'appuyer sur [Tmux](https://github.com/tmux/tmux/wiki) pour gérer plusieurs fenêtres dans une même session : serveur en mode développement, éditeur de texte, terminal libre pour les commandes ponctuelles, fenêtre dédiée pour Claude Code, etc. La navigation au clavier entre les panneaux et les fenêtres est particulièrement rapide et agréable, une fois la gymnastique mentale bien assimilée.
 
 ![Ma configuration tmux](./img/neovim.png)
 
@@ -67,7 +67,7 @@ Pour s'assurer que Claude prenne bien en compte les dernières versions des API 
 
 Chaque article est un simple fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins.
 
-J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
+J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné. J'utilise aussi le skill [seo-audit](https://skills.sh/coreyhaines31/marketingskills/seo-audit) pour réaliser un audit SEO flash du site déployé, pour m'assurer que l'ensemble des bonnes pratiques est respecté.
 
 ![Exemple Markdown](./img/markdown.png)
 
