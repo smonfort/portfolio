@@ -43,4 +43,9 @@ Blog posts live in `src/content/blog/*.md`. The schema is defined in `src/conten
 
 Pre-commit hook (Husky + lint-staged) runs Prettier on staged `*.{js,ts,astro,css,md,json}` files.
 
+**Always use TypeScript path aliases for imports** — never relative paths when an alias covers the target:
+
+- `@components/*` → `src/components/*`
+- `@layouts/*` → `src/layouts/*`
+
 **The project must always typecheck without errors.** Run `pnpm astro check` to verify. Any code change must preserve a clean TypeScript compilation.
