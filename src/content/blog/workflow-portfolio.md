@@ -78,7 +78,7 @@ Un hook se charge également de vérifier que la transpilation Typescript ne gé
 
 ## Le contenu éditorial : Markdown dans Neovim
 
-Chaque article est un fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins. En commlément, le plugin [zen-mode](https://github.com/folke/zen-mode.nvim) permet d'avoir une interface épurée pour être pleinement concentré sur le contenu, sans distraction.
+Chaque article est un fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins. En complément, le plugin [zen-mode](https://github.com/folke/zen-mode.nvim) permet d'avoir une interface épurée pour être pleinement concentré sur le contenu, sans distraction.
 
 J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
 
