@@ -42,3 +42,5 @@ Blog posts live in `src/content/blog/*.md`. The schema is defined in `src/conten
 ### Code quality
 
 Pre-commit hook (Husky + lint-staged) runs Prettier on staged `*.{js,ts,astro,css,md,json}` files.
+
+**The project must always typecheck without errors.** Run `pnpm astro check` to verify. Any code change must preserve a clean TypeScript compilation.
