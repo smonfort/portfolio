@@ -64,7 +64,7 @@ const ogImage = new URL(image ?? '/images/og-default.svg', Astro.site).toString(
     <slot name="head" />
     <Analytics />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="flex min-h-screen flex-col">
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
     <Nav />
     <main id="main-content" class="flex-1">
