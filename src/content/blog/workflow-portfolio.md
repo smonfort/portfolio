@@ -60,7 +60,7 @@ Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup
 
 ![Ma configuration lazygit](./img/lazygit.png)
 
-## L'interface graphique : Claude Code
+## La construction de l'interface graphique : Claude Code
 
 N'ayant que des talents limités de designer, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompts relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
 
@@ -76,9 +76,9 @@ J'utilise aussi les skills suivants pour vérifier la qualité des développemen
 
 Un hook se charge également de vérifier que la transpilation Typescript ne génère pas d'erreur.
 
-## L'écriture du contenu : Markdown dans Neovim
+## Le contenu éditorial : Markdown dans Neovim
 
-Chaque article est un simple fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins.
+Chaque article est un fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins. En commlément, le plugin [zen-mode](https://github.com/folke/zen-mode.nvim) permet d'avoir une interface épurée pour être pleinement concentré sur le contenu, sans distraction.
 
 J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
 
