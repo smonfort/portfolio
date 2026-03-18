@@ -90,6 +90,7 @@ const blogPostingSchema = JSON.stringify({
           href={linkedInShareUrl}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`Partager "${title}" sur LinkedIn (ouvre dans un nouvel onglet)`}
           class="inline-flex items-center overflow-hidden rounded-md bg-[#0a66c2] transition-colors hover:bg-[#004182]"
         >
           <span class="flex items-center justify-center border-r border-[#004182]/40 px-3 py-2">
@@ -110,7 +111,8 @@ const blogPostingSchema = JSON.stringify({
       <slot />
     </div>
 
-    <div class="mt-16 border-t border-white/5 pt-10">
+    <section aria-label="Commentaires" class="mt-16 border-t border-white/5 pt-10">
+      <h2 class="sr-only">Commentaires</h2>
       <script is:inline>
         const s = document.createElement('script');
         s.src = 'https://utteranc.es/client.js';
@@ -121,6 +123,6 @@ const blogPostingSchema = JSON.stringify({
         s.async = true;
         document.currentScript.parentElement.appendChild(s);
       </script>
-    </div>
+    </section>
   </article>
 </Layout>
