@@ -7,6 +7,7 @@ import Experience from '@components/homepage/Experience.astro';
 import BlogPreview from '@components/homepage/BlogPreview.astro';
 import Contact from '@components/homepage/Contact.astro';
 
+const siteUrl = Astro.site!;
 const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -14,10 +15,10 @@ const personSchema = JSON.stringify({
   dateModified: new Date().toISOString(),
   mainEntity: {
     '@type': 'Person',
-    '@id': 'https://www.monfort.pro/#person',
+    '@id': new URL('#person', siteUrl).toString(),
     name: 'Stéphane Monfort',
     jobTitle: 'CTO & Architecte Cloud Senior Freelance',
-    url: 'https://www.monfort.pro',
+    url: siteUrl.href,
     email: 'stephane@monfort.pro',
     sameAs: ['https://www.linkedin.com/in/smonfort'],
     knowsAbout: [
