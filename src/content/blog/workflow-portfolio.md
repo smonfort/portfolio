@@ -30,7 +30,12 @@ Certains disposent d'une configuration Neovim très avancée ; je préfère gard
 
 ![Ma configuration tmux](./img/neovim.png)
 
-[Tmuxinator](https://github.com/tmuxinator/tmuxinator) complète le tout en me permettant de définir mes sessions de travail dans un fichier de configuration YAML. L'outil me permet de switcher rapidement entre mes différentes sessions de travail et de retrouver une configuration adaptée pour chacun des projets. Voici un exemple minimaliste ci-dessous adapté à mes besoins pour la construction de ce portfolio.
+[Tmuxinator](https://github.com/tmuxinator/tmuxinator) complète le tout en me permettant de définir mes sessions de travail dans un fichier de configuration YAML. L'outil me permet de switcher rapidement entre mes différentes sessions de travail et de retrouver une configuration adaptée pour chacun des projets. Voici un exemple minimaliste ci-dessous adapté à mes besoins pour la construction de ce portfolio, avec une session qui ouvre quatre fênetres :
+
+- Neovim ouvert sur le répertoire du portfolio
+- une session Claude Code
+- le serveur Astro en mode développement
+- Lazygit pour le suivi du code source
 
 ```yml
 name: portfolio
@@ -51,13 +56,15 @@ Une popup me permet facilement de switcher très rapidement entre mes différent
 
 Pendant longtemps, j'ai utilisé Git exclusivement en ligne de commande. Puis j'ai découvert [Lazygit](https://github.com/jesseduffield/lazygit), et je n'en suis jamais revenu.
 
-Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup plus facilement d'avoir une bonne hygiène sur mon historique Git. Bon nombre de commandes avancées sont rendues très accessibles, à condition d'avoir une bonne maîtrise des fondamentaux de Git. Je garde donc en permanence une fenêtre ouverte avec Lazygit pour contrôler finement mes pushs et commits.
+Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup plus facilement d'avoir une bonne hygiène sur mon historique Git. Bon nombre de commandes avancées sont rendues très accessibles, à condition d'avoir une bonne maîtrise des fondamentaux de Git. Je garde donc en permanence une fenêtre ouverte avec Lazygit pour contrôler finement mes stagings, commits et pushs.
 
 ![Ma configuration lazygit](./img/lazygit.png)
 
-## Le squelette visuel : Claude Code
+## L'interface graphique : Claude Code
 
 N'ayant que des talents limités de designer, Claude Code m'a accompagné dans la construction des différentes pages. De manière progressive, à l'aide d'une série de prompts relativement simples et de demandes de corrections ciblées, je suis parvenu à un rendu visuel qui me convenait tout à fait. Par exemple, ci-dessous, j'indique vouloir une image de mise en avant pour chacun des articles. Rien de plus simple, Claude s'en charge pour moi.
+
+![Exemple Claude code](./img/claude-code.png)
 
 Pour s'assurer que Claude prenne bien en compte les dernières versions des API Astro, je le configure avec le [serveur MCP](https://docs.astro.build/fr/guides/build-with-ai/#serveur-mcp-dastro-docs) fourni par Astro.
 
@@ -67,7 +74,7 @@ J'utilise aussi les skills suivants pour vérifier la qualité des développemen
 - [web-accessibility](https://skills.sh/supercent-io/skills-template/web-accessibility) pour contrôler l'accessibilité numérique
 - [core-web-vitals](https://skills.sh/addyosmani/web-quality-skills/core-web-vitals) pour l'analyse des performances du site avec Lighthouse
 
-![Exemple Claude code](./img/claude-code.png)
+Un hook se charge également de vérifier que la transpilation Typescript ne génère pas d'erreur.
 
 ## L'écriture du contenu : Markdown dans Neovim
 
