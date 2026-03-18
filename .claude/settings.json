@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pnpm tsc --noEmit"
+            "command": "pnpm astro check"
           }
         ]
       }
