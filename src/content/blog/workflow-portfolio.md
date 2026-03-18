@@ -48,7 +48,7 @@ windows:
   - lazygit: lazygit
 ```
 
-Une popup me permet facilement de switcher très rapidement entre mes différentes sessions Tmux, à l'aide du fuzzy finder [fzf](https://github.com/junegunn/fzf).
+Une popup me permet de switcher très rapidement entre mes différentes sessions Tmux, à l'aide du fuzzy finder [fzf](https://github.com/junegunn/fzf).
 
 ![Popup tmux](./img/popup-tmux.png)
 
