@@ -90,6 +90,7 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-size: 1.875rem;
+    scroll-margin-top: 5rem;
   }
 
   .prose-custom h3 {
@@ -97,6 +98,7 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    scroll-margin-top: 5rem;
   }
 
   .prose-custom a {

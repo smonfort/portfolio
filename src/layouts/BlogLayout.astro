@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import TableOfContents from '@components/TableOfContents.astro';
 
 interface Props {
   title: string;
@@ -8,9 +9,10 @@ interface Props {
   updatedDate?: Date;
   tags?: string[];
   image?: string;
+  headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, date, updatedDate, tags = [], image } = Astro.props;
+const { title, description, date, updatedDate, tags = [], image, headings = [] } = Astro.props;
 const siteUrl = Astro.site!;
 const personId = new URL('#person', siteUrl).toString();
 const formattedDate = date.toLocaleDateString('fr-FR', {
@@ -80,77 +82,88 @@ const blogPostingSchema = JSON.stringify({
     slot="head"
     set:html={`<script type="application/ld+json">${blogPostingSchema}</script><script type="application/ld+json">${breadcrumbSchema}</script>`}
   />
-  <article class="mx-auto max-w-3xl px-6 py-20">
-    <a
-      href="/blog"
-      class="group mb-10 inline-flex items-center gap-2 text-sm font-semibold text-gray-300 transition-colors hover:text-indigo-400"
-    >
-      <svg
-        class="h-4 w-4 transition-transform group-hover:-translate-x-1"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
-        ></path>
-      </svg>
-      Voir tous les articles
-    </a>
-
-    <header class="mb-12">
-      <h1 class="mb-4 text-4xl leading-tight font-bold text-white sm:text-5xl">{title}</h1>
-      {description && <p class="mb-4 text-lg text-gray-400">{description}</p>}
-      {
-        tags.length > 0 && (
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span class="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )
-      }
-      <div class="mt-6 flex items-center justify-between gap-4 border-t border-white/5 pt-6">
-        <time class="text-sm text-gray-300" datetime={date.toISOString()}>{formattedDate}</time>
+  <div class="mx-auto max-w-screen-xl px-6 py-20">
+    <div class="xl:flex xl:items-start xl:justify-center xl:gap-12">
+      <article class="mx-auto w-full max-w-3xl xl:mx-0 xl:max-w-3xl xl:min-w-0 xl:flex-1">
         <a
-          href={linkedInShareUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Partager "${title}" sur LinkedIn (ouvre dans un nouvel onglet)`}
-          class="inline-flex items-center overflow-hidden rounded-md bg-[#0a66c2] transition-colors hover:bg-[#004182]"
+          href="/blog"
+          class="group mb-10 inline-flex items-center gap-2 text-sm font-semibold text-gray-300 transition-colors hover:text-indigo-400"
         >
-          <span class="flex items-center justify-center border-r border-[#004182]/40 px-3 py-2">
-            <svg class="h-5 w-5" fill="white" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-              ></path>
-            </svg>
-          </span>
-          <span class="px-4 py-2 text-sm font-bold tracking-wide text-white uppercase"
-            >Partager</span
+          <svg
+            class="h-4 w-4 transition-transform group-hover:-translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
           >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Voir tous les articles
         </a>
-      </div>
-    </header>
 
-    <div class="prose-custom">
-      <slot />
+        <header class="mb-12">
+          <h1 class="mb-4 text-4xl leading-tight font-bold text-white sm:text-5xl">{title}</h1>
+          {description && <p class="mb-4 text-lg text-gray-400">{description}</p>}
+          {
+            tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span class="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+          <div class="mt-6 flex items-center justify-between gap-4 border-t border-white/5 pt-6">
+            <time class="text-sm text-gray-300" datetime={date.toISOString()}>{formattedDate}</time>
+            <a
+              href={linkedInShareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Partager "${title}" sur LinkedIn (ouvre dans un nouvel onglet)`}
+              class="inline-flex items-center overflow-hidden rounded-md bg-[#0a66c2] transition-colors hover:bg-[#004182]"
+            >
+              <span class="flex items-center justify-center border-r border-[#004182]/40 px-3 py-2">
+                <svg class="h-5 w-5" fill="white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  ></path>
+                </svg>
+              </span>
+              <span class="px-4 py-2 text-sm font-bold tracking-wide text-white uppercase"
+                >Partager</span
+              >
+            </a>
+          </div>
+        </header>
+
+        <div class="prose-custom">
+          <slot />
+        </div>
+
+        <section aria-label="Commentaires" class="mt-16 border-t border-white/5 pt-10">
+          <h2 class="sr-only">Commentaires</h2>
+          <script is:inline>
+            const s = document.createElement('script');
+            s.src = 'https://utteranc.es/client.js';
+            s.setAttribute('repo', 'smonfort/portfolio');
+            s.setAttribute('issue-term', 'pathname');
+            s.setAttribute('theme', 'github-dark');
+            s.setAttribute('crossorigin', 'anonymous');
+            s.async = true;
+            document.currentScript.parentElement.appendChild(s);
+          </script>
+        </section>
+      </article>
+
+      <aside class="sticky top-40 hidden w-72 shrink-0 self-start xl:block">
+        <TableOfContents headings={headings} />
+      </aside>
     </div>
-
-    <section aria-label="Commentaires" class="mt-16 border-t border-white/5 pt-10">
-      <h2 class="sr-only">Commentaires</h2>
-      <script is:inline>
-        const s = document.createElement('script');
-        s.src = 'https://utteranc.es/client.js';
-        s.setAttribute('repo', 'smonfort/portfolio');
-        s.setAttribute('issue-term', 'pathname');
-        s.setAttribute('theme', 'github-dark');
-        s.setAttribute('crossorigin', 'anonymous');
-        s.async = true;
-        document.currentScript.parentElement.appendChild(s);
-      </script>
-    </section>
-  </article>
+  </div>
 </Layout>

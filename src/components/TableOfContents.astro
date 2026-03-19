@@ -1,0 +1,77 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+  toc.length > 1 && (
+    <nav aria-label="Table des matières">
+      <p class="mb-3 text-xs font-semibold tracking-widest text-gray-400 uppercase">Sommaire</p>
+      <ol class="space-y-2">
+        {toc.map((heading) => (
+          <li>
+            <a
+              href={`#${heading.slug}`}
+              data-toc-slug={heading.slug}
+              data-toc-depth={heading.depth}
+              class:list={[
+                'flex items-start gap-2 text-sm transition-colors duration-150 hover:text-indigo-400',
+                heading.depth === 3 ? 'pl-3 text-gray-500' : 'text-gray-400',
+              ]}
+            >
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-50" />
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-toc-slug]');
+  if (links.length > 0) {
+    const slugs = Array.from(links).map((l) => l.dataset.tocSlug!);
+    const targets = slugs
+      .map((slug) => document.getElementById(slug))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const activate = (activeSlug: string) => {
+      links.forEach((link) => {
+        const isActive = link.dataset.tocSlug === activeSlug;
+        const depth = parseInt(link.dataset.tocDepth ?? '2');
+        if (isActive) {
+          link.classList.add('text-indigo-400');
+          link.classList.remove('text-gray-400', 'text-gray-500');
+        } else {
+          link.classList.remove('text-indigo-400');
+          link.classList.add(depth === 3 ? 'text-gray-500' : 'text-gray-400');
+        }
+      });
+    };
+
+    const onScroll = () => {
+      let activeSlug = slugs[0];
+      for (const target of targets) {
+        if (target.getBoundingClientRect().top <= 100) {
+          activeSlug = target.id;
+        }
+      }
+      activate(activeSlug);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
