@@ -12,6 +12,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const wordCount = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const readingTime = Math.max(1, Math.round(wordCount / 200));
 ---
 
 <BlogLayout
@@ -22,6 +24,7 @@ const { Content, headings } = await render(post);
   tags={post.data.tags}
   image={post.data.image?.src}
   headings={headings}
+  readingTime={readingTime}
 >
   <Content />
 </BlogLayout>
