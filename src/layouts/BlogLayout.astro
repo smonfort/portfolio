@@ -98,8 +98,10 @@ const blogPostingSchema = JSON.stringify({
     set:html={`<script type="application/ld+json">${blogPostingSchema}</script><script type="application/ld+json">${breadcrumbSchema}</script>`}
   />
   <div class="mx-auto max-w-screen-xl px-6 py-20">
-    <div class="xl:flex xl:items-start xl:justify-center xl:gap-12">
-      <article class="mx-auto w-full max-w-3xl xl:mx-0 xl:max-w-3xl xl:min-w-0 xl:flex-1">
+    <div
+      class="xl:grid xl:grid-cols-[minmax(0,_48rem)_18rem] xl:items-start xl:justify-center xl:gap-12"
+    >
+      <article class="mx-auto w-full max-w-3xl xl:mx-0">
         <a
           href="/blog"
           class="group mb-10 inline-flex items-center gap-2 text-sm font-semibold text-gray-300 transition-colors hover:text-indigo-400"
