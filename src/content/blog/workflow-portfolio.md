@@ -10,9 +10,9 @@ image: './img/neovim.png'
 
 ## Le choix du framework : Astro
 
-Par le passé, j'ai pu expérimenter un certain nombre de générateurs de sites statiques, dont [Hugo](https://gohugo.io/) et [Gatsby](https://www.gatsbyjs.com/), avec des succès variés.
+Par le passé, j'ai pu expérimenter un certain nombre de générateurs de sites statiques, dont [Hugo](https://gohugo.io/) et [Gatsby](https://www.gatsbyjs.com/), avec des succès variés. Hugo est rapidement limité pour créer des designs évolués, Gatsby semble en fin de vie depuis son rachat par Netlify en 2023 ...
 
-Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), que l'on ne présente plus. Ce qui m'a convaincu :
+Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), que l'on ne présente plus. Je l'ai déjà mis en place avec succès sur quelques sites grands publics dans mes expériences passées, avec des atouts indéniables :
 
 - **Zéro JavaScript par défaut** : le HTML est pré-rendu, le JS n'est chargé que là où c'est strictement nécessaire, ce qui assure une performance optimale.
 - **Content Collections** : gestion du contenu en Markdown avec validation de schéma via Zod.
@@ -22,7 +22,7 @@ Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), q
 
 ## L'environnement de travail : le terminal !
 
-Je travaille sur un MacBook avec une utilisation intensive et quasi exclusive du terminal depuis de nombreuses années maintenant.
+Je travaille sur un MacBook Pro avec une utilisation intensive et quasi exclusive du terminal depuis de nombreuses années maintenant.
 
 Assez naturellement, [Neovim](https://neovim.io/) est progressivement devenu mon éditeur principal, en remplacement de VSCode et IntelliJ. Même si la courbe d'apprentissage est assez rude, c'est un investissement que je ne regrette en rien aujourd'hui. Plus précisément, une bonne maîtrise des [VIM motions](https://vim.rtorr.com/) offre un gain de productivité significatif. L'utilisation exclusive du clavier permet également de limiter les sources de friction dans mon workflow, ce qui limite la fatigue.
 
