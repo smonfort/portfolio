@@ -14,12 +14,15 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [sitemap({
-    serialize(item) {
-      item.lastmod = new Date().toISOString();
-      return item;
-    },
-  }), mdx()],
+  integrations: [
+    sitemap({
+      serialize(item) {
+        item.lastmod = item.lastmod ?? new Date().toISOString();
+        return item;
+      },
+    }),
+    mdx(),
+  ],
   markdown: {
     rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
   },
