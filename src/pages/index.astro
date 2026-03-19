@@ -17,10 +17,11 @@ const personSchema = JSON.stringify({
     '@type': 'Person',
     '@id': new URL('#person', siteUrl).toString(),
     name: 'Stéphane Monfort',
+    image: 'https://avatars.githubusercontent.com/u/9880399?v=4',
     jobTitle: 'CTO & Architecte Cloud Senior Freelance',
     url: siteUrl.href,
     email: 'stephane@monfort.pro',
-    sameAs: ['https://www.linkedin.com/in/smonfort'],
+    sameAs: ['https://www.linkedin.com/in/smonfort', 'https://github.com/smonfort'],
     knowsAbout: [
       'Cloud Architecture',
       'AWS',
@@ -54,6 +55,7 @@ const personSchema = JSON.stringify({
 <Layout
   title="Stéphane Monfort — CTO & Architecte Cloud Senior Freelance"
   description="CTO et Architecte Cloud Senior freelance, certifié AWS et TOGAF. 18 ans d'expérience en architecture de solutions et tech leadership."
+  image="/images/og-default.png"
 >
   <Fragment slot="head" set:html={`<script type="application/ld+json">${personSchema}</script>`} />
   <Hero />
