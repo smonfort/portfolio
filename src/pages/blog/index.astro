@@ -63,6 +63,7 @@ const remainingPosts = posts.slice(2);
                     src="/images/default-cover.svg"
                     alt={post.data.title}
                     class="h-40 w-full object-cover"
+                    loading="lazy"
                   />
                 )}
                 <div class="flex flex-1 flex-col p-5">
@@ -120,6 +121,7 @@ const remainingPosts = posts.slice(2);
                       src="/images/default-cover.svg"
                       alt={post.data.title}
                       class="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
                     />
                   )}
                 </div>
