@@ -4,7 +4,7 @@ description: 'Le MIT propose gratuitement un cours sur les outils du quotidien d
 date: 2026-03-19
 slug: 'missing-semester-mit'
 tags: ['Outils', 'Terminal', 'Git', 'Productivité', 'Formation']
-image: './img/missing-semester-mit.jpg'
+image: './img/missing-semester-mit.png'
 ---
 
 Les cursus en informatique forment des ingénieurs capables de concevoir des algorithmes complexes, de modéliser des architectures distribuées ou de raisonner sur la théorie des langages. Mais ils passent systématiquement à côté d'un sujet pourtant fondamental : la maîtrise des outils du quotidien.
