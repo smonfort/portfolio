@@ -112,6 +112,7 @@ const remainingPosts = posts.slice(2);
                           alt={post.data.title}
                           width={112}
                           height={processedHeight}
+                          loading="lazy"
                           class={`absolute inset-0 h-full w-full ${isLandscape ? 'object-cover' : 'object-contain'}`}
                         />
                       );

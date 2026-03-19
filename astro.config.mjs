@@ -22,7 +22,7 @@ export default defineConfig({
         return item;
       },
     }),
-    expressiveCode(),
+    expressiveCode({ themes: ['github-dark-default'] }),
     mdx(),
   ],
   markdown: {

@@ -43,6 +43,7 @@ const posts = (await getCollection('blog'))
                         alt={post.data.title}
                         width={600}
                         height={processedHeight}
+                        loading="lazy"
                         class={`h-40 w-full ${isLandscape ? 'object-cover' : 'object-contain'}`}
                       />
                     </div>

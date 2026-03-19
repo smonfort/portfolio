@@ -71,7 +71,6 @@ Le `README.md` du repository git contient toutes les instructions pour lancer le
 J'intègre ci-dessous le web-component généré à partir du modèle d'architecture LikeC4. Par exemple, pour intégrer ce web-component dans une page Astro.
 
 ```astro title="article.mdx"
-L'architecture applicative est décrite ci-dessous.
 <script is:inline src="/scripts/likec4-mcp-demo.js"></script>
 <likec4-mcp-demo-view view-id="index"> </likec4-mcp-demo-view>
 ```
@@ -94,13 +93,13 @@ La CLI LikeC4 propose nativement de lancer un serveur MCP pour accéder au réf�
 
 Faisons un premier test depuis notre session Claude avec un prompt minimaliste pour découvrir l'architecture.
 
-```
- Decris moi l'architecture applicative du projet SaaS
+```ansi title="claude"
+> Décris moi l'architecture applicative du projet SaaS
 ```
 
 Voici la réponse de l'agent qui confirme sa bonne compréhension de l'architecture.
 
-```sh
+```ansi title="claude" wrap
 ⏺ Voici l'architecture applicative du projet SaaS, modélisée dans architecture.c4 :
 
   ---
@@ -164,9 +163,8 @@ Voici la réponse de l'agent qui confirme sa bonne compréhension de l'architect
 
 L'architecture étant définie comme du code, il est aisé d'utiliser un agent pour la faire évoluer. Par exemple, imaginons que nous souhaitons rajouter un back-office sur notre système. Tentons de faire évoluer l'architecture avec le prompt ci-dessous.
 
-```
-Rajoute un backoffice d'administration de la plateforme uniquement accédé par des super-utilisateurs internes. Ce back-office s'appuie sur l'annuaire d'entreprise Entra ID.
- Le backoffice dispose d'un front en Angular et d'un back en Spring Boot. Il s'appuie sur l'unique base de données de production.
+```ansi title="claude" wrap
+> Rajoute un backoffice d'administration de la plateforme uniquement accédé par des super-utilisateurs internes. Ce back-office s'appuie sur l'annuaire d'entreprise Entra ID. Le backoffice dispose d'un front en Angular et d'un back en Spring Boot. Il s'appuie sur l'unique base de données de production.
 ```
 
 Après quelques instants de réflexion, Claude me propose une mise à jour tout à fait cohérente du fichier `architecture.c4` avec les ajouts suivants.
