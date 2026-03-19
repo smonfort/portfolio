@@ -19,7 +19,7 @@ LikeC4 s'en inspire directement, mais pousse la logique plus loin : là où Stru
 
 Un modèle LikeC4 se définit dans des fichiers `.c4` avec une syntaxe déclarative relativement simple à appréhender :
 
-```hcl
+```hcl title="architecture.c4"
 
 specification {
   element actor
@@ -70,7 +70,8 @@ Le `README.md` du repository git contient toutes les instructions pour lancer le
 
 J'intègre ci-dessous le web-component généré à partir du modèle d'architecture LikeC4. Par exemple, pour intégrer ce web-component dans une page Astro.
 
-```astro
+```astro title="article.mdx"
+L'architecture applicative est décrite ci-dessous.
 <script is:inline src="/scripts/likec4-mcp-demo.js"></script>
 <likec4-mcp-demo-view view-id="index"> </likec4-mcp-demo-view>
 ```

@@ -38,7 +38,7 @@ Certains disposent d'une configuration Neovim très avancée ; je préfère gard
 - le serveur Astro en mode développement
 - Lazygit pour le suivi du code source
 
-```yml
+```yml title="portfolio.yml"
 name: portfolio
 root: ~/git/github/smonfort/portfolio/
 
