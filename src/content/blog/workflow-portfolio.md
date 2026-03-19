@@ -3,6 +3,7 @@ title: 'Mon workflow pour construire ce portfolio'
 description: "Je vous explique la façon dont j'ai créé ce portfolio et vous dévoile certains de mes outils préférés"
 date: 2026-03-14
 tags: ['Astro', 'Tmux', 'Neovim', 'Lazygit', 'Claude code']
+slug: 'workflow-agentic-portfolio'
 image: './img/neovim.png'
 ---
 
