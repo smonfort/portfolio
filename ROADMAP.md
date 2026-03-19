@@ -7,7 +7,7 @@
 - [x] **Page 404 personnalisée** — sans `src/pages/404.astro`, les visiteurs tombent sur une page générique Vercel
 - [x] **RSS Feed** — ajouter `src/pages/rss.xml.ts` pour l'indexation dans les agrégateurs
 - [x] **Table des matières** — sommaire ancré en sticky à droite pour les longs articles
-- [ ] **Navigation entre articles** — liens précédent / suivant dans `BlogLayout`
+- [x] **Navigation entre articles** — liens précédent / suivant dans `BlogLayout`
 
 ## SEO & discoverabilité
 

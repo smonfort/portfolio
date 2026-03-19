@@ -11,6 +11,8 @@ interface Props {
   image?: string;
   headings?: { depth: number; slug: string; text: string }[];
   readingTime?: number;
+  prevPost?: { slug: string; title: string };
+  nextPost?: { slug: string; title: string };
 }
 
 const {
@@ -22,6 +24,8 @@ const {
   image,
   headings = [],
   readingTime,
+  prevPost,
+  nextPost,
 } = Astro.props;
 const siteUrl = Astro.site!;
 const personId = new URL('#person', siteUrl).toString();
@@ -170,7 +174,72 @@ const blogPostingSchema = JSON.stringify({
           <slot />
         </div>
 
-        <section aria-label="Commentaires" class="mt-16 border-t border-white/5 pt-10">
+        {
+          (prevPost || nextPost) && (
+            <nav aria-label="Navigation entre articles" class="mt-12">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {prevPost ? (
+                  <a
+                    href={`/blog/${prevPost.slug}`}
+                    class="group flex flex-col gap-1 rounded-lg border border-white/10 bg-white/5 p-4 transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5"
+                  >
+                    <span class="flex items-center gap-1 text-xs text-gray-500">
+                      <svg
+                        class="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                      Article précédent
+                    </span>
+                    <span class="line-clamp-2 text-sm font-medium text-gray-200 transition-colors group-hover:text-indigo-400">
+                      {prevPost.title}
+                    </span>
+                  </a>
+                ) : (
+                  <div />
+                )}
+                {nextPost && (
+                  <a
+                    href={`/blog/${nextPost.slug}`}
+                    class="group flex flex-col gap-1 rounded-lg border border-white/10 bg-white/5 p-4 text-right transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5 sm:items-end"
+                  >
+                    <span class="flex items-center justify-end gap-1 text-xs text-gray-500">
+                      Article suivant
+                      <svg
+                        class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
+                    <span class="line-clamp-2 text-sm font-medium text-gray-200 transition-colors group-hover:text-indigo-400">
+                      {nextPost.title}
+                    </span>
+                  </a>
+                )}
+              </div>
+            </nav>
+          )
+        }
+
+        <section aria-label="Commentaires" class="mt-8">
           <h2 class="sr-only">Commentaires</h2>
           <script is:inline>
             const s = document.createElement('script');
