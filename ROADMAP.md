@@ -13,7 +13,7 @@
 
 - [ ] **Pages par tag** — `/blog/tags/[tag].astro` pour rendre les tags cliquables et filtrables
 - [x] **Temps de lecture estimé** — calculé au build (mots / 200), affiché sur la card et en haut d'article
-- [ ] **Meta description différenciée** — chaque page devrait avoir sa propre description (blog index notamment)
+- [x] **Meta description différenciée** — chaque page devrait avoir sa propre description (blog index notamment)
 
 ## UX & confort de lecture
 
