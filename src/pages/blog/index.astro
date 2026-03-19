@@ -98,7 +98,7 @@ const remainingPosts = posts.slice(2);
                 href={`/blog/${post.id}`}
                 class="group flex flex-row items-stretch overflow-hidden rounded-xl border border-white/5 transition-colors hover:border-indigo-500/20"
               >
-                <div class="relative mr-4 w-28 shrink-0 overflow-hidden bg-gray-950">
+                <div class="relative mr-4 hidden w-28 shrink-0 overflow-hidden bg-gray-950 sm:block">
                   {post.data.image ? (
                     (() => {
                       const img = post.data.image;
@@ -127,7 +127,7 @@ const remainingPosts = posts.slice(2);
                   )}
                 </div>
                 <div class="flex min-w-0 flex-1 flex-col justify-center py-3 pr-5">
-                  <h2 class="mb-1 truncate text-sm font-semibold text-white transition-colors group-hover:text-indigo-300">
+                  <h2 class="mb-1 text-sm font-semibold text-white transition-colors group-hover:text-indigo-300 sm:truncate">
                     {post.data.title}
                   </h2>
                   <p class="mb-2 line-clamp-1 text-xs text-gray-300">{post.data.description}</p>
