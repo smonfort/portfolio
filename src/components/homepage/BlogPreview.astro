@@ -30,13 +30,24 @@ const posts = (await getCollection('blog'))
               class="group flex flex-col overflow-hidden rounded-xl border border-white/5 transition-colors hover:border-indigo-500/20"
             >
               {post.data.image ? (
-                <Image
-                  src={post.data.image}
-                  alt={post.data.title}
-                  width={600}
-                  height={160}
-                  class="h-40 w-full object-cover"
-                />
+                (() => {
+                  const img = post.data.image;
+                  const isLandscape = img.width > img.height;
+                  const processedHeight = isLandscape
+                    ? 160
+                    : Math.round((600 * img.height) / img.width);
+                  return (
+                    <div class="flex h-40 w-full items-center justify-center overflow-hidden bg-gray-950">
+                      <Image
+                        src={img}
+                        alt={post.data.title}
+                        width={600}
+                        height={processedHeight}
+                        class={`h-40 w-full ${isLandscape ? 'object-cover' : 'object-contain'}`}
+                      />
+                    </div>
+                  );
+                })()
               ) : (
                 <img
                   src="/images/default-cover.svg"
