@@ -17,7 +17,7 @@
 
 ## UX & confort de lecture
 
-- [ ] **Bouton "retour en haut"** — bouton `↑` fixe en bas à droite sur les pages longues
+- [x] **Bouton "retour en haut"** — bouton `↑` fixe en bas à droite sur les pages longues
 - [ ] **Syntaxe colorée** — configurer Shiki (intégré à Astro) pour les blocs de code dans les articles
 - [ ] **Pagination** sur `/blog/` quand le nombre d'articles grandira
 
