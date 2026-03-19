@@ -178,6 +178,7 @@ const blogPostingSchema = JSON.stringify({
                   ></path>
                 </svg>
               </a>
+              <div aria-live="polite" aria-atomic="true" class="sr-only" id="copy-feedback"></div>
               <button
                 data-copy-url={pageUrl}
                 aria-label="Copier le lien de l'article"
@@ -219,11 +220,14 @@ const blogPostingSchema = JSON.stringify({
                   await navigator.clipboard.writeText(url);
                   const copyIcon = btn.querySelector('.copy-icon');
                   const checkIcon = btn.querySelector('.check-icon');
+                  const feedback = document.getElementById('copy-feedback');
                   copyIcon.classList.add('hidden');
                   checkIcon.classList.remove('hidden');
+                  if (feedback) feedback.textContent = 'Lien copié dans le presse-papiers';
                   setTimeout(() => {
                     copyIcon.classList.remove('hidden');
                     checkIcon.classList.add('hidden');
+                    if (feedback) feedback.textContent = '';
                   }, 2000);
                 });
               });

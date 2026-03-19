@@ -54,9 +54,11 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
         if (isActive) {
           link.classList.add('text-indigo-400');
           link.classList.remove('text-gray-400', 'text-gray-500');
+          link.setAttribute('aria-current', 'true');
         } else {
           link.classList.remove('text-indigo-400');
           link.classList.add(depth === 3 ? 'text-gray-500' : 'text-gray-400');
+          link.removeAttribute('aria-current');
         }
       });
     };

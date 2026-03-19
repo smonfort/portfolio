@@ -16,11 +16,17 @@
     btn.classList.toggle('opacity-0', !visible);
     btn.classList.toggle('translate-y-4', !visible);
     btn.classList.toggle('pointer-events-none', !visible);
+    btn.setAttribute('aria-hidden', String(!visible));
+    btn.tabIndex = visible ? 0 : -1;
   };
+
+  // Initialize state
+  toggle();
 
   window.addEventListener('scroll', toggle, { passive: true });
 
   btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'instant' : 'smooth' });
   });
 </script>

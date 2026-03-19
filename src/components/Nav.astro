@@ -119,14 +119,24 @@ const currentPath = Astro.url.pathname;
     iconClose?.classList.toggle('hidden');
   });
 
+  const closeMenu = () => {
+    btn?.setAttribute('aria-expanded', 'false');
+    btn?.setAttribute('aria-label', 'Ouvrir le menu');
+    menu?.classList.add('hidden');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+  };
+
   // Close menu on link click
   menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      btn?.setAttribute('aria-expanded', 'false');
-      btn?.setAttribute('aria-label', 'Ouvrir le menu');
-      menu.classList.add('hidden');
-      iconOpen?.classList.remove('hidden');
-      iconClose?.classList.add('hidden');
-    });
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      btn?.focus();
+    }
   });
 </script>

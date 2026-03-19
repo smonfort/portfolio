@@ -41,6 +41,17 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
     font-family:
       'Inter',
@@ -157,7 +168,7 @@
   .prose-custom blockquote {
     border-left: 3px solid #6366f1;
     padding-left: 1rem;
-    color: #9ca3af;
+    color: #d1d5db;
     font-style: italic;
   }
 

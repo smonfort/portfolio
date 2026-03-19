@@ -6,8 +6,9 @@
   <div class="max-w-3xl text-center">
     <div
       class="mt-12 mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-400 sm:mt-0"
+      aria-label="Disponible pour de nouvelles missions"
     >
-      <span class="relative flex h-2 w-2">
+      <span class="relative flex h-2 w-2" aria-hidden="true">
         <span
           class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
         ></span>
@@ -15,7 +16,7 @@
           class="relative inline-flex h-2 w-2 rounded-full bg-green-400 transition-colors duration-1000"
         ></span>
       </span>
-      Disponible pour de nouvelles missions 👋
+      <span>Disponible pour de nouvelles missions <span aria-hidden="true">👋</span></span>
     </div>
     <h1 class="mb-4 text-5xl leading-tight font-bold text-white sm:text-6xl md:text-7xl">
       <span id="typewriter">Stéphane Monfort</span>

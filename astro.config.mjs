@@ -26,6 +26,20 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer'],
+          content: {
+            type: 'element',
+            tagName: 'span',
+            properties: { className: ['sr-only'] },
+            children: [{ type: 'text', value: " (s'ouvre dans un nouvel onglet)" }],
+          },
+        },
+      ],
+    ],
   },
 });
