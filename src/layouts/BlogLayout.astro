@@ -21,6 +21,31 @@ const formattedDate = date.toLocaleDateString('fr-FR', {
 const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(pageUrl)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(description ?? '')}`;
 
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Accueil',
+      item: siteUrl.href,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: new URL('/blog/', siteUrl).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: title,
+      item: pageUrl,
+    },
+  ],
+});
+
 const blogPostingSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -53,7 +78,7 @@ const blogPostingSchema = JSON.stringify({
 >
   <Fragment
     slot="head"
-    set:html={`<script type="application/ld+json">${blogPostingSchema}</script>`}
+    set:html={`<script type="application/ld+json">${blogPostingSchema}</script><script type="application/ld+json">${breadcrumbSchema}</script>`}
   />
   <article class="mx-auto max-w-3xl px-6 py-20">
     <a
