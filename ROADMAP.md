@@ -30,4 +30,4 @@
 
 - [x] **Lazy loading** sur les images hero et about
 - [ ] **WebP / formats modernes** via le pipeline `astro:assets` sur toutes les images
-- [ ] **Composant de partage enrichi** — ajouter Twitter/X et "copier le lien" en plus de LinkedIn
+- [x] **Composant de partage enrichi** — ajouter Twitter/X et "copier le lien" en plus de LinkedIn
