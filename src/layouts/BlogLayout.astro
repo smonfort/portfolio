@@ -5,11 +5,12 @@ interface Props {
   title: string;
   description?: string;
   date: Date;
+  updatedDate?: Date;
   tags?: string[];
   image?: string;
 }
 
-const { title, description, date, tags = [], image } = Astro.props;
+const { title, description, date, updatedDate, tags = [], image } = Astro.props;
 const siteUrl = Astro.site!;
 const personId = new URL('#person', siteUrl).toString();
 const formattedDate = date.toLocaleDateString('fr-FR', {
@@ -26,7 +27,7 @@ const blogPostingSchema = JSON.stringify({
   headline: title,
   description: description,
   datePublished: date.toISOString(),
-  dateModified: date.toISOString(),
+  dateModified: (updatedDate ?? date).toISOString(),
   url: pageUrl,
   inLanguage: 'fr-FR',
   author: {
