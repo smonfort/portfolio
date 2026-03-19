@@ -1,0 +1,185 @@
+---
+title: 'LikeC4 : architecture as-code agentique'
+description: 'LikeC4 permet de décrire une architecture logicielle avec un DSL simple, puis de générer automatiquement des diagrammes interactifs à plusieurs niveaux de détail. Une alternative sérieuse aux outils de modélisation traditionnels.'
+date: 2026-03-19
+tags: ['Architecture', 'Documentation', 'Outils', 'Diagrammes', 'as-code']
+slug: 'architecture-as-code-agentic-likec4'
+image: './img/likec4.png'
+---
+
+La documentation d'architecture a mauvaise réputation, et souvent pour de bonnes raisons. Les diagrammes Visio ou Draw.io dérivent rapidement par rapport au code réel. Les wikis accumulent des pages obsolètes que personne ne met à jour. Et quand vient le moment de présenter l'architecture à une nouvelle équipe ou à des parties prenantes, on repart de zéro. L'architecte se réduit souvent à un ensemble de dessins que l'on peut difficilement exploiter programmatiquement.
+
+[LikeC4](https://likec4.dev/) propose une autre approche : décrire l'architecture sous forme de code, versionnable dans Git, à partir duquel des diagrammes interactifs sont générés automatiquement.
+
+## Une inspiration du modèle C4
+
+Le [modèle C4](https://c4model.com/), créé par Simon Brown, a popularisé une approche structurée de la documentation d'architecture en quatre niveaux (Context, Container, Component, Code). [Structurizr](https://structurizr.com/), l'outil de référence créé par Simon Brown lui-même, implémente cette approche avec son propre DSL et permet de générer plusieurs types de vues (contexte, conteneurs, composants, déploiement) à partir d'un modèle unique.
+
+LikeC4 s'en inspire directement, mais pousse la logique plus loin : là où Structurizr impose une taxonomie fixe (Person, SoftwareSystem, Container, Component), LikeC4 permet de définir ses propres types d'éléments dans un bloc `specification`. Le [DSL](https://martinfowler.com/dsl.html) s'adapte ainsi au vocabulaire réel du projet — on peut nommer ses éléments `microservice`, `eventhub`, `team` ou `database` selon ce qui fait sens dans son contexte, plutôt que de forcer chaque concept dans une catégorie prédéfinie.
+
+Un modèle LikeC4 se définit dans des fichiers `.c4` avec une syntaxe déclarative relativement simple à appréhender :
+
+```hcl
+
+specification {
+  element actor
+  element system
+  element component
+}
+
+model {
+  customer = actor 'Customer' {
+    description 'A user of our product'
+  }
+  cloud = system 'Our SaaS' {
+    description 'Our product'
+    ui = component 'Frontend'
+    customer -> ui 'opens in browser'
+    backend = component 'Backend'
+    ui -> backend 'requests via HTTPS'
+  }
+  customer -> cloud 'uses to manage data'
+}
+```
+
+L'outil propose un [LSP](https://fr.wikipedia.org/wiki/Language_Server_Protocol) intégrable dans les principaux IDE pour une expérience d'édition optimale (renommage intelligent, goto definition, etc.).
+
+À partir de ces fichiers, LikeC4 génère des diagrammes interactifs au sein d'une page web : on peut zoomer du contexte global jusqu'aux composants internes d'un système, explorer les relations, et partager une vue interactive avec son équipe.
+
+Pour les architectures les plus complexes, il est possible de définir des vues dynamiques en incluant uniquement les éléments pertinents pour chacune des vues.
+
+## Les points différenciants
+
+- **Versioning natif**. Les fichiers `.c4` vivent dans le dépôt Git, au même titre que le code. Les revues de code architecturales deviennent possibles : on peut voir exactement ce qui a changé, comparer deux versions, et discuter des décisions dans des pull requests.
+
+- **Navigation interactive de qualité**. L'interface graphique générée est remarquablement propre, à mon sens. Le mécanisme de vues permet de naviguer de manière très fluide au sein des différentes zones de l'architecture.
+
+- **Intégration dans la documentation**. LikeC4 s'intègre via un plugin Vite, des composants React, ou des Web Components. Les diagrammes peuvent être embarqués directement dans une documentation Mkdocs, un site Astro, ou n'importe quel outil qui accepte du HTML.
+
+- **Fourniture d'un SDK**. LikeC4 propose un SDK qui permet d'exploiter programmatiquement le modèle d'architecture, afin, par exemple, de produire des exports ad hoc (exemple : listing des flux sous forme de CSV, etc.). Ce SDK permet également, par exemple, de pouvoir _tester_ la documentation de son architecture avec des outils standards comme Jest, pour s'assurer que le modèle répond bien aux standards de l'entreprise. C'est le début de la CI/CD pour l'architecture !
+
+- **Intégration IA**. Le projet expose le modèle d'architecture via un serveur [MCP](https://modelcontextprotocol.io/docs/getting-started/intro), ce qui permet à un agent d'interroger le référentiel d'architecture. Nous reviendrons sur ce dernier point par la suite.
+
+## Projet de démonstration
+
+J'ai mis en place un [projet de démonstration](https://github.com/smonfort/likec4-mcp-demo) qui illustre concrètement l'intégration MCP évoquée plus haut. Il contient un modèle d'architecture d'un SaaS fictif décrit avec LikeC4, configuré pour être interrogé directement depuis Claude Code via le serveur MCP de LikeC4.
+
+Le `README.md` du repository git contient toutes les instructions pour lancer le projet en local.
+
+## Explication de l'architecture
+
+J'intègre ci-dessous le web-component généré à partir du modèle d'architecture LikeC4. Par exemple, pour intégrer ce web-component dans une page Astro.
+
+```astro
+<script is:inline src="/scripts/likec4-mcp-demo.js"></script>
+<likec4-mcp-demo-view view-id="index"> </likec4-mcp-demo-view>
+```
+
+Ce qui donne le rendu suivant. Il est possible de naviguer dans l'architecture en cliquant sur chacun des éléments.
+
+<script is:inline src="/scripts/likec4-mcp-demo.js"></script>
+
+<likec4-mcp-demo-view view-id="index"> </likec4-mcp-demo-view>
+
+J'apprécie particulièrement la possibilité d'afficher dynamiquement les relations (entrantes et sortantes) d'un composant donné. Un exemple ci-dessous avec les relations du composant backend. Ceci permet de vérifier que les responsabilités d'un composant sont correctement définies.
+
+![Liens d'un composant](./img/likec4-relationships.png)
+
+## Interroger l'architecture avec un agent
+
+La CLI LikeC4 propose nativement de lancer un serveur MCP pour accéder au référentiel d'architecture. Le projet d'exemple sur GitHub est pré-configuré avec les commandes et configurations nécessaires.
+
+![likeC4 MCP](./img/likec4-mcp.png)
+
+Faisons un premier test depuis notre session Claude avec un prompt minimaliste pour découvrir l'architecture.
+
+```
+ Decris moi l'architecture applicative du projet SaaS
+```
+
+Voici la réponse de l'agent qui confirme sa bonne compréhension de l'architecture.
+
+```sh
+⏺ Voici l'architecture applicative du projet SaaS, modélisée dans architecture.c4 :
+
+  ---
+  Vue Landscape (contexte global)
+
+  Trois acteurs principaux :
+
+  ┌───────────────────┬─────────────────┬────────────────────────────────┐
+  │      Élément      │      Type       │          Description           │
+  ├───────────────────┼─────────────────┼────────────────────────────────┤
+  │ Customer          │ Acteur          │ L'utilisateur final du produit │
+  ├───────────────────┼─────────────────┼────────────────────────────────┤
+  │ Our SaaS          │ Système         │ Le produit applicatif          │
+  ├───────────────────┼─────────────────┼────────────────────────────────┤
+  │ Identity Provider │ Système externe │ Gestion des identités (Okta)   │
+  └───────────────────┴─────────────────┴────────────────────────────────┘
+
+  Flux :
+  - Le Customer s'authentifie auprès de l'Identity Provider
+  - Le Customer utilise le SaaS
+  - Le SaaS délègue à l'Identity Provider pour la gestion des identités
+
+  ---
+  Vue interne du SaaS
+
+  Le système SaaS est composé de 4 composants :
+
+  ┌─────────────────────────────────┬──────────────┬──────────────────────────────┐
+  │            Composant            │    Techno    │             Rôle             │
+  ├─────────────────────────────────┼──────────────┼──────────────────────────────┤
+  │ Frontend (saas.ui)              │ Next.js      │ Application web (navigateur) │
+  ├─────────────────────────────────┼──────────────┼──────────────────────────────┤
+  │ Mobile App (saas.mobile)        │ React Native │ Application mobile           │
+  ├─────────────────────────────────┼──────────────┼──────────────────────────────┤
+  │ Backend Services (saas.backend) │ NestJS       │ Logique métier, API REST     │
+  ├─────────────────────────────────┼──────────────┼──────────────────────────────┤
+  │ Database (saas.database)        │ PostgreSQL   │ Base de données principale   │
+  └─────────────────────────────────┴──────────────┴──────────────────────────────┘
+
+  Flux de données
+
+  Customer
+    ├─ opens in browser ──────────► Frontend (Next.js)
+    │                                    ├─ fetches via HTTPS ──► Backend (NestJS)
+    │                                    └─ delegates auth ──────► Identity Provider (Okta)
+    │
+    └─ opens application ────────► Mobile App (React)
+                                        ├─ fetches via HTTPS ──► Backend (NestJS)
+                                        └─ delegates auth ──────► Identity Provider (Okta)
+
+  Backend (NestJS)
+    ├─ read/write ───────────────► Database (PostgreSQL)
+    └─ checks user identity ─────► Identity Provider (Okta)
+
+  ---
+  En résumé : architecture classique SaaS à deux clients (web + mobile) qui communiquent via HTTPS avec un backend NestJS, lequel s'appuie sur PostgreSQL pour la persistance
+  et délègue l'authentification à Okta. Les clients délèguent aussi directement l'auth à Okta (flux OAuth/OIDC côté client).
+```
+
+## Faire évoluer l'architecture avec un agent
+
+L'architecture étant définie comme du code, il est aisé d'utiliser un agent pour la faire évoluer. Par exemple, imaginons que nous souhaitons rajouter un back-office sur notre système. Tentons de faire évoluer l'architecture avec le prompt ci-dessous.
+
+```
+Rajoute un backoffice d'administration de la plateforme uniquement accédé par des super-utilisateurs internes. Ce back-office s'appuie sur l'annuaire d'entreprise Entra ID.
+ Le backoffice dispose d'un front en Angular et d'un back en Spring Boot. Il s'appuie sur l'unique base de données de production.
+```
+
+Après quelques instants de réflexion, Claude me propose une mise à jour tout à fait cohérente du fichier `architecture.c4` avec les ajouts suivants.
+
+![backoffice](./img/likec4-backoffice-response.png)
+
+En naviguant sur l'interface graphique, une nouvelle vue dédiée au back-office a bien été créée, conformément à mes directives.
+
+![backoffice schema](./img/likec4-backoffice.png)
+
+## Conclusion
+
+Nous n'avons ici abordé qu'un petit sous-ensemble des fonctionnalités offertes par l'outil, mais nous avons abordé l'essentiel.
+
+L'outil est aujourd'hui mature (2 900+ étoiles sur GitHub, licence MIT) et la syntaxe DSL est agréable à écrire. Depuis quelques mois d'utilisation, je ressens aussi une vraie dynamique sur le projet, avec des évolutions fréquentes, des intégrations de plus en plus nombreuses, et une communauté de plus en plus large.
+
+Sans l'ombre d'un doute, LikeC4 est devenu ma nouvelle référence pour décrire l'architecture de mes projets.
