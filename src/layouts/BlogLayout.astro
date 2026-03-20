@@ -316,16 +316,22 @@ const blogPostingSchema = JSON.stringify({
 
           <section aria-label="Commentaires" class="mt-8" style="min-height: 150px">
             <h2 class="sr-only">Commentaires</h2>
-            <script is:inline>
-              const s = document.createElement('script');
-              s.src = 'https://utteranc.es/client.js';
-              s.setAttribute('repo', 'smonfort/portfolio');
-              s.setAttribute('issue-term', 'pathname');
-              s.setAttribute('theme', 'github-dark');
-              s.setAttribute('crossorigin', 'anonymous');
-              s.async = true;
-              document.currentScript.parentElement.appendChild(s);
-            </script>
+            <script
+              is:inline
+              src="https://giscus.app/client.js"
+              data-repo="smonfort/portfolio"
+              data-repo-id="R_kgDORmIvRA"
+              data-category-id="DIC_kwDORmIvRM4C43fM"
+              data-mapping="pathname"
+              data-strict="0"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="bottom"
+              data-theme="dark"
+              data-lang="fr"
+              data-loading="lazy"
+              crossorigin="anonymous"
+              async></script>
           </section>
         </header>
       </article>
