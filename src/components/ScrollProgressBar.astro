@@ -1,0 +1,25 @@
+<div
+  id="scroll-progress"
+  class="fixed top-0 left-0 z-[60] h-[3px] w-0 bg-gradient-to-r from-indigo-500 to-violet-500"
+  role="progressbar"
+  aria-valuemin={0}
+  aria-valuemax={100}
+  aria-valuenow={0}
+  aria-label="Progression de lecture"
+>
+</div>
+
+<script>
+  const bar = document.getElementById('scroll-progress') as HTMLElement;
+
+  function update() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${pct}%`;
+    bar.setAttribute('aria-valuenow', String(Math.round(pct)));
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+</script>
