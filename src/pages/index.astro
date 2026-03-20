@@ -50,10 +50,24 @@ const personSchema = JSON.stringify({
         recognizedBy: { '@type': 'Organization', name: 'The Open Group' },
       },
     ],
-    alumniOf: {
-      '@type': 'CollegeOrUniversity',
-      name: 'École Centrale de Lyon',
-    },
+    alumniOf: [
+      {
+        '@type': 'CollegeOrUniversity',
+        name: 'École Centrale de Lyon',
+      },
+      {
+        '@type': 'Organization',
+        name: 'IBM',
+      },
+      {
+        '@type': 'Organization',
+        name: 'Sopra Steria',
+      },
+      {
+        '@type': 'Organization',
+        name: 'Crédit Agricole Conseil et Développement Digital',
+      },
+    ],
   },
 });
 ---
