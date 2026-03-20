@@ -22,6 +22,12 @@ const personSchema = JSON.stringify({
     url: siteUrl.href,
     email: 'stephane@monfort.pro',
     sameAs: ['https://www.linkedin.com/in/smonfort', 'https://github.com/smonfort'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Paris',
+      addressRegion: 'Île-de-France',
+      addressCountry: 'FR',
+    },
     knowsAbout: [
       'Cloud Architecture',
       'AWS',
@@ -53,8 +59,8 @@ const personSchema = JSON.stringify({
 ---
 
 <Layout
-  title="Stéphane Monfort — CTO & Architecte Cloud Senior Freelance"
-  description="CTO & Architecte Cloud Senior freelance, certifié AWS et TOGAF. 18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes tech. Disponible pour vos missions de transformation cloud."
+  title="Stéphane Monfort — CTO & Architecte Cloud Senior Freelance à Paris"
+  description="CTO & Architecte Cloud Senior freelance basé à Paris, certifié AWS et TOGAF. 18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes tech. Disponible pour vos missions de transformation cloud en Île-de-France et à distance."
   image="/images/og-default.png"
 >
   <Fragment slot="head" set:html={`<script type="application/ld+json">${personSchema}</script>`} />
