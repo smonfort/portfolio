@@ -123,11 +123,9 @@ const blogPostingSchema = JSON.stringify({
         </a>
 
         <header class="mb-12">
-          <h1 class="mb-4 text-4xl leading-tight font-bold text-white sm:text-5xl">{title}</h1>
-          {description && <p class="mb-4 text-lg text-gray-400">{description}</p>}
           {
             tags.length > 0 && (
-              <div class="flex flex-wrap gap-2">
+              <div class="mb-4 flex flex-wrap gap-2">
                 {tags.map((tag) => (
                   <span class="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400">
                     {tag}
@@ -136,6 +134,8 @@ const blogPostingSchema = JSON.stringify({
               </div>
             )
           }
+          <h1 class="mb-4 text-4xl leading-tight font-bold text-white sm:text-5xl">{title}</h1>
+          {description && <p class="mb-4 text-lg text-gray-400">{description}</p>}
           <div
             class="mt-6 mb-8 flex flex-col gap-3 border-b border-white/5 pb-6 sm:flex-row sm:items-center sm:justify-between"
           >
