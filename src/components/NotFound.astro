@@ -1,0 +1,33 @@
+---
+import { useTranslations, getLangBase } from '@i18n/index';
+import type { Lang } from '@i18n/index';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
+const base = getLangBase(lang);
+---
+
+<section class="flex min-h-screen items-center justify-center px-6 pt-4 text-center">
+  <div class="max-w-3xl pb-16">
+    <h1 class="text-4xl font-bold text-white sm:text-5xl">{t.pages.notFound.heading}</h1>
+    <p class="mx-auto mt-2 max-w-md text-lg text-gray-400">{t.pages.notFound.body}</p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href={`${base}/`}
+        class="w-full rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500 sm:w-auto"
+      >
+        {t.pages.notFound.backHome}
+      </a>
+      <a
+        href={`${base}/blog/`}
+        class="w-full rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
+      >
+        {t.pages.notFound.seeBlog}
+      </a>
+    </div>
+  </div>
+</section>
