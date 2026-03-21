@@ -1,20 +1,10 @@
 ---
 import BlogLayout from '@layouts/BlogLayout.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import { getReadingTime } from '@utils/readingTime';
+import { getBlogStaticPaths } from '@utils/blogPaths';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blogFr', ({ data }) => !data.draft);
-  const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-  return sorted.map((post, index) => ({
-    params: { slug: post.data.slug ?? post.id },
-    props: {
-      post,
-      prevPost: sorted[index + 1] ?? null,
-      nextPost: sorted[index - 1] ?? null,
-    },
-  }));
-}
+export const getStaticPaths = () => getBlogStaticPaths('blogFr', '/blog');
 
 const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await render(post);
@@ -30,12 +20,8 @@ const readingTime = getReadingTime(post.body);
   image={post.data.image?.src}
   headings={headings}
   readingTime={readingTime}
-  prevPost={prevPost
-    ? { href: `/blog/${prevPost.data.slug ?? prevPost.id}`, title: prevPost.data.title }
-    : undefined}
-  nextPost={nextPost
-    ? { href: `/blog/${nextPost.data.slug ?? nextPost.id}`, title: nextPost.data.title }
-    : undefined}
+  prevPost={prevPost}
+  nextPost={nextPost}
 >
   <Content />
 </BlogLayout>
