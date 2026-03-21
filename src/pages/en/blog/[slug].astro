@@ -4,7 +4,9 @@ import { render } from 'astro:content';
 import { getReadingTime } from '@utils/readingTime';
 import { getBlogStaticPaths } from '@utils/blogPaths';
 
-export const getStaticPaths = () => getBlogStaticPaths('blogEn', '/en/blog');
+export async function getStaticPaths() {
+  return getBlogStaticPaths('blogEn', '/en/blog');
+}
 
 const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await render(post);

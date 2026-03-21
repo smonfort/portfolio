@@ -47,6 +47,8 @@ Blog posts are split by locale:
 - `src/content/blog/en/` — English articles
 - `src/content/blog/img/` — Shared images (do **not** duplicate across locale folders)
 
+**Every French article must have an English counterpart** with the same filename and slug. Whenever a French article is created or updated, the English version must be updated accordingly in the same operation.
+
 Two collections are defined in `src/content.config.ts`: `blogFr` and `blogEn`, with identical schemas. Frontmatter fields: `title`, `description`, `date`, `tags[]`, `draft`, `image` (optional, processed by `astro:assets`).
 
 - `z` is imported from `astro:content` (not `astro/zod`)
