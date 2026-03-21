@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date: Date;
+  tags: string[];
+  image?: ImageMetadata;
+  dateLocale?: string;
+}
+
+const { href, title, description, date, tags, image, dateLocale = 'fr-FR' } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex flex-row items-stretch overflow-hidden rounded-xl border border-white/5 transition-colors hover:border-indigo-500/20"
+>
+  <div class="relative mr-4 hidden w-28 shrink-0 overflow-hidden bg-gray-950 sm:block">
+    {
+      image ? (
+        (() => {
+          const isLandscape = image.width > image.height;
+          const processedHeight = isLandscape
+            ? 160
+            : Math.round((112 * image.height) / image.width);
+          return (
+            <Image
+              src={image}
+              alt={title}
+              width={112}
+              height={processedHeight}
+              loading="lazy"
+              class={`absolute inset-0 h-full w-full ${isLandscape ? 'object-cover' : 'object-contain'}`}
+            />
+          );
+        })()
+      ) : (
+        <img
+          src="/images/default-cover.svg"
+          alt={title}
+          class="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
+  <div class="flex min-w-0 flex-1 flex-col justify-center py-3 pr-5 pl-4 sm:pl-0">
+    <h2
+      class="mb-1 text-sm font-semibold text-white transition-colors group-hover:text-indigo-300 sm:truncate"
+    >
+      {title}
+    </h2>
+    <p class="mb-2 line-clamp-1 text-xs text-gray-300">{description}</p>
+    <time class="mb-2 text-xs text-gray-400" datetime={date.toISOString()}>
+      {date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'short', day: 'numeric' })}
+    </time>
+    {
+      tags.length > 0 && (
+        <div class="flex flex-wrap gap-1">
+          {tags.map((tag) => (
+            <span class="rounded bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-400">{tag}</span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</a>

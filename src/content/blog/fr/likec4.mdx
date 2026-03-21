@@ -4,7 +4,7 @@ description: 'LikeC4 permet de décrire une architecture logicielle avec un DSL 
 date: 2026-03-19
 tags: ['Architecture', 'Documentation', 'Outils', 'Diagrammes', 'as-code']
 slug: 'architecture-as-code-agentic-likec4'
-image: './img/likec4.png'
+image: '../img/likec4.png'
 ---
 
 La documentation d'architecture a mauvaise réputation, et souvent pour de bonnes raisons. Les diagrammes Visio ou Draw.io dérivent rapidement par rapport au code réel. Les wikis accumulent des pages obsolètes que personne ne met à jour. Et quand vient le moment de présenter l'architecture à une nouvelle équipe ou à des parties prenantes, on repart de zéro. L'architecte se réduit souvent à un ensemble de dessins que l'on peut difficilement exploiter programmatiquement.
@@ -83,13 +83,13 @@ Ce qui donne le rendu suivant. Il est possible de naviguer dans l'architecture e
 
 J'apprécie particulièrement la possibilité d'afficher dynamiquement les relations (entrantes et sortantes) d'un composant donné. Un exemple ci-dessous avec les relations du composant backend. Ceci permet de vérifier que les responsabilités d'un composant sont correctement définies.
 
-![Liens d'un composant](./img/likec4-relationships.png)
+![Liens d'un composant](../img/likec4-relationships.png)
 
 ## Interroger l'architecture avec un agent
 
 La CLI LikeC4 propose nativement de lancer un serveur MCP pour accéder au référentiel d'architecture. Le projet d'exemple sur GitHub est pré-configuré avec les commandes et configurations nécessaires.
 
-![likeC4 MCP](./img/likec4-mcp.png)
+![likeC4 MCP](../img/likec4-mcp.png)
 
 Faisons un premier test depuis notre session Claude avec un prompt minimaliste pour découvrir l'architecture.
 
@@ -169,11 +169,11 @@ L'architecture étant définie comme du code, il est aisé d'utiliser un agent p
 
 Après quelques instants de réflexion, Claude me propose une mise à jour tout à fait cohérente du fichier `architecture.c4` avec les ajouts suivants.
 
-![backoffice](./img/likec4-backoffice-response.png)
+![backoffice](../img/likec4-backoffice-response.png)
 
 En naviguant sur l'interface graphique, une nouvelle vue dédiée au back-office a bien été créée, conformément à mes directives.
 
-![backoffice schema](./img/likec4-backoffice.png)
+![backoffice schema](../img/likec4-backoffice.png)
 
 ## Conclusion
 

@@ -5,12 +5,14 @@ import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 import ScrollProgressBar from '../components/ScrollProgressBar.astro';
 import Analytics from '@vercel/analytics/astro';
+import { useTranslations, getAltLangPath } from '@i18n/index';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   ogType?: string;
+  lang?: 'fr' | 'en';
 }
 
 const {
@@ -18,24 +20,35 @@ const {
   description = "CTO freelance & architecte cloud senior basé à Paris, avec 18 ans d'expérience, certifié AWS et TOGAF. J'accompagne vos équipes tech sur leurs projets de transformation.",
   image,
   ogType = 'website',
+  lang = 'fr',
 } = Astro.props;
+
+const ogLocale = lang === 'en' ? 'en_US' : 'fr_FR';
+const t = useTranslations(lang);
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = new URL(image ?? '/images/og-default.svg', Astro.site).toString();
+const altPath = getAltLangPath(lang, Astro.url.pathname);
+const altUrl = new URL(altPath, Astro.site).toString();
+const frUrl = lang === 'fr' ? canonicalUrl : altUrl;
+const enUrl = lang === 'en' ? canonicalUrl : altUrl;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="fr" href={frUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={frUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="Stéphane Monfort" />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
@@ -74,8 +87,8 @@ const ogImage = new URL(image ?? '/images/og-default.svg', Astro.site).toString(
   </head>
   <body class="flex min-h-screen flex-col">
     <ScrollProgressBar />
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-    <Nav />
+    <a href="#main-content" class="skip-link">{t.layout.skipToContent}</a>
+    <Nav lang={lang} />
     <main id="main-content" class="flex-1">
       <slot />
     </main>

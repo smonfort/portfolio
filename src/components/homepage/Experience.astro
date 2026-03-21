@@ -1,68 +1,21 @@
 ---
-const experiences: Array<{
-  title: string;
-  company: string;
-  logo: string;
-  period: string;
-  bullets: string[];
-  tags: string[];
-}> = [
-  {
-    title: 'Chief Technical Officer',
-    company: 'Crédit Agricole Conseil et Développement Digital',
-    logo: '/logos/cacd2.png',
-    period: '2018 – 2026',
-    bullets: [
-      'Membre fondateur du comité de direction de la digital factory du Groupe Crédit Agricole S.A.',
-      'Direction du département Technologies : 40 ETP (architectes, développeurs front/back/mobile, QA, DevOps, cybersécurité).',
-      "Définition et mise en œuvre de la stratégie cloud public AWS/Azure : landing zone privative, infrastructure-as-code à l'échelle en Terraform.",
-      "Conception d'architectures cloud native pour Sofinco, LCL, CAA, CASA, CA-Titres, CA-PS, CAL&F, CATE.",
-      'Développement business : avant-vente, cadrage, due diligences — 11,3M€ de CA en 2024.',
-    ],
-    tags: ['Tech management', 'Architecture', 'AWS', 'Kubernetes', 'Cloud Native', 'DevSecOps'],
-  },
-  {
-    title: 'Architecte SI — Manager',
-    company: 'Sopra-Stéria',
-    logo: '/logos/sopra-steria.png',
-    period: '2014 – 2018',
-    bullets: [
-      'Manager au sein de la Business Unit Secteur Public.',
-      'Lead architecte Sopra-Stéria pour la Direction Générale des Finances Publiques.',
-      'Conception from scratch du prélèvement à la source et de la Déclaration Sociale Nominative.',
-      "Amélioration continue de la télédéclaration de l'impôt sur le revenu, en charge du chantier performance.",
-    ],
-    tags: ['Architecture SI', 'Secteur Public', 'Performance', 'Open Source'],
-  },
-  {
-    title: 'Architecte SI',
-    company: 'IBM Global Business Services',
-    logo: '/logos/ibm.png',
-    period: '2008 – 2014',
-    bullets: [
-      "Développeur fullstack puis architecte logiciel au sein de la Division Application Innovation Services d'IBM GBS France.",
-      "Projets de build internationaux dans l'énergie, les médias et la défense.",
-      "Expertise en sécurisation d'architecture SOA et appliance IBM DataPower.",
-      'Graduate Program EMEA — formations internationales sur 12 mois.',
-    ],
-    tags: ['SOA', 'IBM DataPower', 'Architecture logicielle', 'Dev fullstack'],
-  },
-  {
-    title: 'Ingénieur généraliste',
-    company: 'École Centrale de Lyon',
-    logo: '/logos/centrale-lyon.png',
-    period: '2005 – 2008',
-    bullets: ["Formation d'ingénieur généraliste avec spécialisation en systèmes d'information."],
-    tags: ['Ingénierie', 'Informatique', "Systèmes d'information"],
-  },
-];
+import { useTranslations } from '@i18n/index';
+import type { Lang } from '@i18n/index';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
+const { items: experiences, label, heading } = t.experience;
 ---
 
 <section id="experience" class="px-6 py-24">
   <div class="mx-auto max-w-5xl">
     <div class="mb-16 text-center">
-      <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">Références</p>
-      <h2 class="text-3xl font-bold text-white sm:text-4xl">Expériences professionnelles</h2>
+      <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">{label}</p>
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">{heading}</h2>
     </div>
     <div class="relative">
       <!-- Timeline line -->

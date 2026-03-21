@@ -1,294 +1,27 @@
 ---
-const expertises = [
-  {
-    category: 'Leadership',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />',
-    items: [
-      {
-        name: 'Tech leadership',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />',
-      },
-      {
-        name: 'Architecture de solutions',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />',
-      },
-      {
-        name: 'Orientation business',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />',
-      },
-      {
-        name: 'Agilité',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />',
-      },
-      {
-        name: 'Design thinking',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />',
-      },
-      {
-        name: 'Conseil IT',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />',
-      },
-      {
-        name: 'Recrutement',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />',
-      },
-      {
-        name: 'Mentoring',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />',
-      },
-    ],
-  },
-  {
-    category: 'Cloud',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />',
-    items: [
-      {
-        name: 'AWS',
-        iconUrl:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
-      },
-      { name: 'Docker', icon: 'docker' },
-      { name: 'Kubernetes', icon: 'kubernetes' },
-      { name: 'Terraform', icon: 'terraform' },
-      { name: 'Pulumi', icon: 'pulumi' },
-      {
-        name: 'Lambda',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h2l3 6-5 8h3l3.5-5.5L14 19h3L9 5H4z" />',
-      },
-      {
-        name: 'EKS',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />',
-      },
-      {
-        name: 'EC2',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12H3m2 0a9 9 0 1018 0 9 9 0 00-18 0zm7-9v2m0 14v2m7-9h2M3 12h2m12.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M18.364 18.364l-1.414-1.414M7.05 7.05L5.636 5.636" />',
-      },
-      {
-        name: 'ECS',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />',
-      },
-      {
-        name: 'Step Functions',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />',
-      },
-      {
-        name: 'RDS',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7c0-1.657 3.582-3 8-3s8 1.343 8 3v2c0 1.657-3.582 3-8 3s-8-1.343-8-3V7zm0 5c0 1.657 3.582 3 8 3s8-1.343 8-3m-16 5c0 1.657 3.582 3 8 3s8-1.343 8-3v-5" />',
-      },
-      {
-        name: 'S3',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />',
-      },
-      {
-        name: 'SQS',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l-3-3m3 3l3-3" />',
-      },
-      {
-        name: 'Landing zone',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />',
-      },
-      {
-        name: 'FinOps',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />',
-      },
-    ],
-  },
-  {
-    category: 'CI/CD',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />',
-    items: [
-      {
-        name: 'GitOps',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />',
-      },
-      { name: 'GitLab CI', icon: 'gitlab' },
-      { name: 'Argo CD', icon: 'argo' },
-      { name: 'Helm', iconUrl: 'https://cdn.simpleicons.org/helm/ffffff' },
-      {
-        name: 'SonarQube',
-        iconUrl:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sonarqube/sonarqube-original.svg',
-      },
-      { name: 'Harbor', icon: 'harbor' },
-      { name: 'Renovate', icon: 'renovate' },
-      { name: 'n8n', icon: 'n8n' },
-      { name: 'Semantic Release', icon: 'semanticrelease' },
-    ],
-  },
-  {
-    category: 'Sécurité',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
-    items: [
-      {
-        name: 'DevSecOps',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
-      },
-      {
-        name: 'Zero Trust',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />',
-      },
-      { name: 'OWASP', iconUrl: 'https://cdn.simpleicons.org/owasp/ffffff' },
-      { name: 'Vault', iconUrl: 'https://cdn.simpleicons.org/vault/ffffff' },
-      {
-        name: 'Dependency-Track',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
-      },
-      {
-        name: 'Trivy',
-        iconUrl: '/logos/logo-trivy.png',
-      },
-      {
-        name: 'AWS IAM',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />',
-      },
-      {
-        name: 'OIDC',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />',
-      },
-      {
-        name: 'WAF',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />',
-      },
-      { name: 'Wazuh', iconUrl: 'https://wazuh.com/favicon.ico' },
-      {
-        name: 'SAST',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />',
-      },
-      {
-        name: 'DAST',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />',
-      },
-    ],
-  },
-  {
-    category: 'Frontend',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />',
-    items: [
-      { name: 'React', icon: 'react' },
-      { name: 'Next.js', iconUrl: 'https://cdn.simpleicons.org/nextdotjs/ffffff' },
-      { name: 'Vue.js', icon: 'vuedotjs' },
-      {
-        name: 'Nuxt',
-        iconUrl:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg',
-      },
-      { name: 'Astro', icon: 'astro' },
-      { name: 'Tailwind CSS', icon: 'tailwindcss' },
-    ],
-  },
-  {
-    category: 'Backend',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm0 9a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2v-1zm3-6.5h.01M7 15.5h.01" />',
-    items: [
-      { name: 'Spring Boot', icon: 'spring' },
-      { name: 'Node.js', icon: 'nodedotjs' },
-      { name: 'NestJS', icon: 'nestjs' },
-      { name: 'GraphQL', icon: 'graphql' },
-      {
-        name: 'REST API',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />',
-      },
-      { name: 'tRPC', icon: 'trpc' },
-      { name: 'Go', icon: 'go' },
-      { name: 'Keycloak', iconUrl: 'https://cdn.simpleicons.org/keycloak/ffffff' },
-    ],
-  },
-  {
-    category: 'Data & IA',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />',
-    items: [
-      { name: 'PostgreSQL', icon: 'postgresql' },
-      { name: 'MongoDB', icon: 'mongodb' },
-      { name: 'Kafka', iconUrl: 'https://cdn.simpleicons.org/apachekafka/ffffff' },
-      { name: 'ElasticSearch', icon: 'elasticsearch' },
-      {
-        name: 'Redis',
-        iconUrl:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg',
-      },
-      {
-        name: 'DynamoDB',
-        iconUrl:
-          'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dynamodb/dynamodb-original.svg',
-      },
-      { name: 'DatoCMS', icon: 'datocms' },
-      {
-        name: 'Athena',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />',
-      },
-      {
-        name: 'Bedrock',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />',
-      },
-      { name: 'GitHub Copilot', iconUrl: 'https://cdn.simpleicons.org/githubcopilot/ffffff' },
-      { name: 'Claude Code', iconUrl: 'https://cdn.simpleicons.org/anthropic/a5b4fc' },
-    ],
-  },
-  {
-    category: 'Tooling',
-    categorySvg:
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />',
-    items: [
-      { name: 'Git', icon: 'git' },
-      {
-        name: 'Lazygit',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />',
-      },
-      { name: 'GitHub', iconUrl: 'https://cdn.simpleicons.org/github/ffffff' },
-      { name: 'GitLab', icon: 'gitlab' },
-      { name: 'Jira', icon: 'jira' },
-      { name: 'Confluence', icon: 'confluence' },
-      { name: 'Notion', iconUrl: 'https://cdn.simpleicons.org/notion/ffffff' },
-      { name: 'Neovim', icon: 'neovim' },
-      { name: 'Tmux', icon: 'tmux' },
-      {
-        name: 'k9s',
-        svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />',
-      },
-      { name: 'Bruno', icon: 'bruno' },
-    ],
-  },
-];
+import { useTranslations } from '@i18n/index';
+import type { Lang } from '@i18n/index';
+import { expertisesData, certificationsData } from '@data/expertises';
 
-const certifications = [
-  {
-    name: 'AWS Certified Solutions Architect – Associate',
-    issuer: 'Amazon Web Services',
-    iconUrl:
-      'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
-    link: 'https://www.credly.com/badges/aa0dde9d-3422-4f16-8be8-352c315a5328/linked_in_profile',
-  },
-  {
-    name: 'TOGAF 9.1 Expert',
-    issuer: 'The Open Group',
-    iconUrl: '/logos/open-group.png',
-    link: null,
-  },
-  {
-    name: 'Claude Code in Actions',
-    issuer: 'Anthropic',
-    iconUrl: 'https://cdn.simpleicons.org/anthropic/a5b4fc',
-    link: 'https://verify.skilljar.com/c/ryfgo2hwz8ap',
-  },
-];
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="skills" class="px-6 py-24">
   <div class="mx-auto max-w-5xl">
     <div class="mb-16 text-center">
-      <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">Expertise</p>
-      <h2 class="text-3xl font-bold text-white sm:text-4xl">Mes principaux domaines d'expertise</h2>
+      <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+        {t.skills.label}
+      </p>
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">{t.skills.heading}</h2>
     </div>
     <div class="divide-y divide-white/5">
       {
-        expertises.map(({ category, categorySvg, items }) => (
+        expertisesData.map(({ key, categorySvg, items }) => (
           <div class="grid items-start gap-6 py-8 md:grid-cols-4">
             <h3 class="flex justify-center self-center text-center text-lg font-semibold tracking-wider text-indigo-400 uppercase md:justify-end md:text-right">
               <span class="inline-flex items-center gap-2">
@@ -302,7 +35,7 @@ const certifications = [
                     set:html={categorySvg}
                   />
                 )}
-                {category}
+                {t.skills.categories[key as keyof typeof t.skills.categories]}
               </span>
             </h3>
             <div class="flex flex-wrap gap-2 md:col-span-3">
@@ -311,7 +44,7 @@ const certifications = [
                   {item.icon && (
                     <img
                       src={`https://cdn.simpleicons.org/${item.icon}`}
-                      alt={item.name}
+                      alt={t.skills.items[item.key as keyof typeof t.skills.items]}
                       class="h-3.5 w-3.5 flex-shrink-0"
                       loading="lazy"
                       onerror="this.style.display='none'"
@@ -320,7 +53,7 @@ const certifications = [
                   {item.iconUrl && (
                     <img
                       src={item.iconUrl}
-                      alt={item.name}
+                      alt={t.skills.items[item.key as keyof typeof t.skills.items]}
                       class="h-3.5 w-3.5 flex-shrink-0"
                       loading="lazy"
                       onerror="this.style.display='none'"
@@ -339,7 +72,7 @@ const certifications = [
                   {!item.icon && !item.iconUrl && !item.svg && (
                     <span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-500" />
                   )}
-                  {item.name}
+                  {t.skills.items[item.key as keyof typeof t.skills.items]}
                 </span>
               ))}
             </div>
@@ -351,24 +84,25 @@ const certifications = [
     <!-- Certifications -->
     <div class="mt-20 mb-16 text-center">
       <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">
-        Certifications
+        {t.skills.certLabel}
       </p>
-      <h2 class="text-3xl font-bold text-white sm:text-4xl">Certifications professionnelles</h2>
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">{t.skills.certHeading}</h2>
     </div>
     <div class="grid gap-4 sm:grid-cols-2">
       {
-        certifications.map(({ name, iconUrl, link }) =>
-          link ? (
+        certificationsData.map(({ key, iconUrl, link }) => {
+          const cert = t.skills.certifications[key as keyof typeof t.skills.certifications];
+          return link ? (
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${name} (ouvre dans un nouvel onglet)`}
+              aria-label={`${cert.name} ${t.skills.certAriaOpen}`}
               class="group flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.03] p-5 transition-colors hover:border-amber-500/30"
             >
               <img
                 src={iconUrl}
-                alt={name}
+                alt={cert.name}
                 width="28"
                 height="28"
                 class="h-7 w-7 flex-shrink-0"
@@ -376,7 +110,7 @@ const certifications = [
               />
               <div class="flex-1">
                 <p class="text-sm font-semibold text-white transition-colors group-hover:text-amber-400">
-                  {name}
+                  {cert.name}
                 </p>
               </div>
               <svg
@@ -398,18 +132,18 @@ const certifications = [
             <div class="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.03] p-5 transition-colors hover:border-indigo-500/30">
               <img
                 src={iconUrl}
-                alt={name}
+                alt={cert.name}
                 width="28"
                 height="28"
                 class="h-7 w-7 flex-shrink-0"
                 loading="lazy"
               />
               <div>
-                <p class="text-sm font-semibold text-white">{name}</p>
+                <p class="text-sm font-semibold text-white">{cert.name}</p>
               </div>
             </div>
-          )
-        )
+          );
+        })
       }
     </div>
   </div>

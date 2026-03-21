@@ -1,43 +1,33 @@
 ---
+import { useTranslations } from '@i18n/index';
+import type { Lang } from '@i18n/index';
 
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="about" class="px-6 py-24">
   <div class="mx-auto max-w-5xl">
     <div class="grid items-start gap-16 md:grid-cols-2">
       <div>
-        <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">À propos</p>
+        <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+          {t.about.label}
+        </p>
         <h2 class="mb-8 text-3xl leading-tight font-bold text-white sm:text-4xl">
-          Une expertise tech de bout de bout, de la stratégie IT au delivery produit
+          {t.about.heading}
         </h2>
         <div class="space-y-5 leading-relaxed text-gray-400">
-          <p>
-            J'ai construit mon expertise sur ces 18 dernières années, d'architecte logiciel chez IBM
-            à membre du comité de direction de CACD2, la digital factory du Groupe Crédit Agricole
-            SA, où j'ai exercé les fonctions de CTO pendant 7 ans.
-          </p>
-          <p>
-            Ce qui me différencie : un <span class="font-medium text-white"
-              >large spectre d'intervention</span
-            >.
-            <span class="font-medium text-white">Hands-on</span> si nécessaire, je peux définir et mettre
-            en oeuvre des architectures complexes, challenger les choix techniques et co-concevoir une
-            solution avec les équipes. Je dispose également d'une <span
-              class="font-medium text-white">vision stratégique</span
-            > affirmée en veillant à aligner la technologie sur les enjeux business.
-          </p>
+          <p>{t.about.p1}</p>
+          <p set:html={t.about.p2Html} />
         </div>
       </div>
       <div class="grid grid-cols-2 gap-4 md:pt-16">
         {
-          [
-            { value: '18+', emoji: '🗓️', label: "années d'expérience" },
-            { value: '45+', emoji: '👥', label: 'ETP managés' },
-            { value: '8+', emoji: '☁️', label: "années d'expérience sur AWS" },
-            { value: '3', emoji: '🏆', label: 'certifications' },
-            { value: '50+', emoji: '🚀', label: 'projets livrés' },
-            { value: '100%', emoji: '🔥', label: 'passionné' },
-          ].map(({ value, emoji, label }) => (
+          t.about.stats.map(({ value, emoji, label }) => (
             <div class="rounded-2xl border border-white/5 bg-white/[0.03] p-6 text-center transition-colors hover:border-indigo-500/20">
               <div class="mb-1 text-2xl font-bold text-indigo-400">{value}</div>
               <div class="text-sm text-gray-300">

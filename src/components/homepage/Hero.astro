@@ -1,12 +1,20 @@
 ---
+import { useTranslations } from '@i18n/index';
+import type { Lang } from '@i18n/index';
 
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="flex min-h-screen items-center justify-center px-6 pt-16">
   <div class="max-w-3xl text-center">
     <div
       class="mt-12 mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-400 sm:mt-0"
-      aria-label="Disponible pour de nouvelles missions"
+      aria-label={t.hero.available}
     >
       <span class="relative flex h-2 w-2" aria-hidden="true">
         <span
@@ -16,31 +24,29 @@
           class="relative inline-flex h-2 w-2 rounded-full bg-green-400 transition-colors duration-1000"
         ></span>
       </span>
-      <span>Disponible pour de nouvelles missions <span aria-hidden="true">👋</span></span>
+      <span>{t.hero.available} <span aria-hidden="true">👋</span></span>
     </div>
     <h1 class="mb-4 text-5xl leading-tight font-bold text-white sm:text-6xl md:text-7xl">
       <span id="typewriter">Stéphane Monfort</span>
     </h1>
     <p class="mb-6 text-2xl font-semibold sm:text-3xl">
-      <span class="text-gradient">CTO - Architecte cloud sénior</span>
+      <span class="text-gradient">{t.hero.subtitle}</span>
     </p>
     <p class="mx-auto mb-4 max-w-2xl text-lg leading-relaxed text-gray-400 sm:text-xl">
-      18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes techniques.
-      Je vous accompagne pour structurer votre SI, accélérer votre migration cloud et faire grandir
-      vos équipes.
+      {t.hero.description}
     </p>
     <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
       <a
         href="#experience"
         class="w-full rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500 sm:w-auto"
       >
-        Mon parcours
+        {t.hero.cta}
       </a>
       <a
         href="#contact"
         class="w-full rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
       >
-        Me contacter
+        {t.hero.contact}
       </a>
     </div>
   </div>

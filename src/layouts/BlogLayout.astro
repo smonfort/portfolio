@@ -1,6 +1,8 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import TableOfContents from '@components/TableOfContents.astro';
+import { useTranslations, getLangBase } from '@i18n/index';
+import type { Lang } from '@i18n/index';
 
 interface Props {
   title: string;
@@ -11,8 +13,9 @@ interface Props {
   image?: string;
   headings?: { depth: number; slug: string; text: string }[];
   readingTime?: number;
-  prevPost?: { slug: string; title: string };
-  nextPost?: { slug: string; title: string };
+  prevPost?: { href: string; title: string };
+  nextPost?: { href: string; title: string };
+  lang?: Lang;
 }
 
 const {
@@ -26,10 +29,14 @@ const {
   readingTime,
   prevPost,
   nextPost,
+  lang = 'fr',
 } = Astro.props;
+
+const t = useTranslations(lang);
+const base = getLangBase(lang);
 const siteUrl = Astro.site!;
 const personId = new URL('#person', siteUrl).toString();
-const formattedDate = date.toLocaleDateString('fr-FR', {
+const formattedDate = date.toLocaleDateString(t.blogPost.inLanguage, {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -45,14 +52,14 @@ const breadcrumbSchema = JSON.stringify({
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'Accueil',
+      name: t.blogPost.breadcrumb.home,
       item: siteUrl.href,
     },
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'Blog',
-      item: new URL('/blog/', siteUrl).toString(),
+      name: t.blogPost.breadcrumb.blog,
+      item: new URL(`${base}/blog/`, siteUrl).toString(),
     },
     {
       '@type': 'ListItem',
@@ -71,7 +78,7 @@ const blogPostingSchema = JSON.stringify({
   datePublished: date.toISOString(),
   dateModified: (updatedDate ?? date).toISOString(),
   url: pageUrl,
-  inLanguage: 'fr-FR',
+  inLanguage: t.blogPost.inLanguage,
   author: {
     '@type': 'Person',
     '@id': personId,
@@ -92,6 +99,7 @@ const blogPostingSchema = JSON.stringify({
   description={description}
   image={image}
   ogType="article"
+  lang={lang}
 >
   <Fragment
     slot="head"
@@ -103,7 +111,7 @@ const blogPostingSchema = JSON.stringify({
     >
       <article class="mx-auto w-full max-w-3xl xl:mx-0">
         <a
-          href="/blog"
+          href={`${base}/blog`}
           class="group mb-10 inline-flex items-center gap-2 text-sm font-semibold text-gray-300 transition-colors hover:text-indigo-400"
         >
           <svg
@@ -119,7 +127,7 @@ const blogPostingSchema = JSON.stringify({
               stroke-width="2"
               d="M15 19l-7-7 7-7"></path>
           </svg>
-          Voir tous les articles
+          {t.blogPost.backToAll}
         </a>
 
         <header class="mb-12">
@@ -149,7 +157,7 @@ const blogPostingSchema = JSON.stringify({
                     <span aria-hidden="true" class="hidden sm:inline">
                       ·
                     </span>
-                    <span class="hidden sm:inline">{readingTime} min de lecture</span>
+                    <span class="hidden sm:inline">{t.blogPost.readingTime(readingTime)}</span>
                   </>
                 )
               }
@@ -157,16 +165,18 @@ const blogPostingSchema = JSON.stringify({
             <div class="flex items-center justify-between sm:justify-normal sm:gap-2">
               {
                 readingTime && (
-                  <span class="text-sm text-gray-400 sm:hidden">{readingTime} min de lecture</span>
+                  <span class="text-sm text-gray-400 sm:hidden">
+                    {t.blogPost.readingTime(readingTime)}
+                  </span>
                 )
               }
               <div class="flex items-center gap-2">
-                <span class="text-sm text-gray-400">Partager</span>
+                <span class="text-sm text-gray-400">{t.blogPost.share}</span>
                 <a
                   href={linkedInShareUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Partager "${title}" sur LinkedIn (ouvre dans un nouvel onglet)`}
+                  aria-label={t.blogPost.shareLinkedInAriaLabel(title)}
                   class="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 p-2 text-gray-400 transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5 hover:text-indigo-400"
                 >
                   <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -179,7 +189,7 @@ const blogPostingSchema = JSON.stringify({
                   href={twitterShareUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Partager "${title}" sur X/Twitter (ouvre dans un nouvel onglet)`}
+                  aria-label={t.blogPost.shareTwitterAriaLabel(title)}
                   class="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 p-2 text-gray-400 transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5 hover:text-indigo-400"
                 >
                   <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -191,7 +201,8 @@ const blogPostingSchema = JSON.stringify({
                 <div aria-live="polite" aria-atomic="true" class="sr-only" id="copy-feedback"></div>
                 <button
                   data-copy-url={pageUrl}
-                  aria-label="Copier le lien de l'article"
+                  data-copied-label={t.blogPost.copied}
+                  aria-label={t.blogPost.copyLinkAriaLabel}
                   class="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 p-2 text-gray-400 transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5 hover:text-indigo-400"
                 >
                   <svg
@@ -227,13 +238,14 @@ const blogPostingSchema = JSON.stringify({
                 document.querySelectorAll('button[data-copy-url]').forEach((btn) => {
                   btn.addEventListener('click', async () => {
                     const url = btn.getAttribute('data-copy-url');
+                    const copiedLabel = btn.getAttribute('data-copied-label') ?? '';
                     await navigator.clipboard.writeText(url);
                     const copyIcon = btn.querySelector('.copy-icon');
                     const checkIcon = btn.querySelector('.check-icon');
                     const feedback = document.getElementById('copy-feedback');
                     copyIcon.classList.add('hidden');
                     checkIcon.classList.remove('hidden');
-                    if (feedback) feedback.textContent = 'Lien copié dans le presse-papiers';
+                    if (feedback) feedback.textContent = copiedLabel;
                     setTimeout(() => {
                       copyIcon.classList.remove('hidden');
                       checkIcon.classList.add('hidden');
@@ -251,11 +263,11 @@ const blogPostingSchema = JSON.stringify({
 
           {
             (prevPost || nextPost) && (
-              <nav aria-label="Navigation entre articles" class="mt-12">
+              <nav aria-label={t.blogPost.navAriaLabel} class="mt-12">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {prevPost ? (
                     <a
-                      href={`/blog/${prevPost.slug}`}
+                      href={prevPost.href}
                       class="group flex flex-col gap-1 rounded-lg border border-white/10 bg-white/5 p-4 transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5"
                     >
                       <span class="flex items-center gap-1 text-xs text-gray-500">
@@ -273,7 +285,7 @@ const blogPostingSchema = JSON.stringify({
                             d="M15 19l-7-7 7-7"
                           />
                         </svg>
-                        Article précédent
+                        {t.blogPost.prevPost}
                       </span>
                       <span class="line-clamp-2 text-sm font-medium text-gray-200 transition-colors group-hover:text-indigo-400">
                         {prevPost.title}
@@ -284,11 +296,11 @@ const blogPostingSchema = JSON.stringify({
                   )}
                   {nextPost && (
                     <a
-                      href={`/blog/${nextPost.slug}`}
+                      href={nextPost.href}
                       class="group flex flex-col gap-1 rounded-lg border border-white/10 bg-white/5 p-4 text-right transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/5 sm:items-end"
                     >
                       <span class="flex items-center justify-end gap-1 text-xs text-gray-500">
-                        Article suivant
+                        {t.blogPost.nextPost}
                         <svg
                           class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
                           fill="none"
@@ -314,8 +326,8 @@ const blogPostingSchema = JSON.stringify({
             )
           }
 
-          <section aria-label="Commentaires" class="mt-8" style="min-height: 150px">
-            <h2 class="sr-only">Commentaires</h2>
+          <section aria-label={t.blogPost.commentsAriaLabel} class="mt-8" style="min-height: 150px">
+            <h2 class="sr-only">{t.blogPost.commentsHeading}</h2>
             <script
               is:inline
               src="https://giscus.app/client.js"
@@ -328,7 +340,7 @@ const blogPostingSchema = JSON.stringify({
               data-emit-metadata="0"
               data-input-position="bottom"
               data-theme="dark"
-              data-lang="fr"
+              data-lang={t.blogPost.giscusLang}
               data-loading="lazy"
               crossorigin="anonymous"
               async></script>

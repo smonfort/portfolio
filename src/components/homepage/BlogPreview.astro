@@ -1,8 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import { useTranslations, getLangBase } from '@i18n/index';
+import type { Lang } from '@i18n/index';
 
-const posts = (await getCollection('blog'))
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
+const base = getLangBase(lang);
+
+const collection = lang === 'en' ? 'blogEn' : 'blogFr';
+const posts = (await getCollection(collection))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 ---
@@ -13,20 +24,22 @@ const posts = (await getCollection('blog'))
       <div class="mx-auto max-w-5xl">
         <div class="mb-16 flex items-end justify-between">
           <div>
-            <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">Blog</p>
-            <h2 class="text-3xl font-bold text-white sm:text-4xl">Derniers articles</h2>
+            <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+              {t.blog.label}
+            </p>
+            <h2 class="text-3xl font-bold text-white sm:text-4xl">{t.blog.previewHeading}</h2>
           </div>
           <a
-            href="/blog"
+            href={`${base}/blog`}
             class="hidden text-sm text-gray-400 transition-colors hover:text-indigo-400 sm:block"
           >
-            Voir tout →
+            {t.blog.seeAll}
           </a>
         </div>
         <div class="grid gap-6 md:grid-cols-3">
           {posts.map((post) => (
             <a
-              href={`/blog/${post.id}`}
+              href={`${base}/blog/${post.id}`}
               class="group flex flex-col overflow-hidden rounded-xl border border-white/5 transition-colors hover:border-indigo-500/20"
             >
               {post.data.image ? (
@@ -61,7 +74,7 @@ const posts = (await getCollection('blog'))
               )}
               <div class="flex flex-1 flex-col p-5">
                 <time class="mb-2 text-xs text-gray-400" datetime={post.data.date.toISOString()}>
-                  {post.data.date.toLocaleDateString('fr-FR', {
+                  {post.data.date.toLocaleDateString(t.blog.dateLocale, {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -85,8 +98,11 @@ const posts = (await getCollection('blog'))
           ))}
         </div>
         <div class="mt-8 text-center sm:hidden">
-          <a href="/blog" class="text-sm text-gray-400 transition-colors hover:text-indigo-400">
-            Voir tous les articles →
+          <a
+            href={`${base}/blog`}
+            class="text-sm text-gray-400 transition-colors hover:text-indigo-400"
+          >
+            {t.blog.seeAllMobile}
           </a>
         </div>
       </div>

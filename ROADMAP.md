@@ -3,6 +3,7 @@
 ## Contenus
 
 - [ ] **AWS - Vault - Gitlab** — Solution zero trust pour jeton de sécurité
+- [ ] **Gitlab CI - SES - Step function - Update ECS** — Solution CI/CD
 
 ## Site Astro
 

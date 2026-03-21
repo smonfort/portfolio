@@ -3,7 +3,7 @@ import BlogLayout from '@layouts/BlogLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blogFr', ({ data }) => !data.draft);
+  const posts = await getCollection('blogEn', ({ data }) => !data.draft);
   const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   return sorted.map((post, index) => ({
     params: { slug: post.data.slug ?? post.id },
@@ -31,11 +31,12 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
   headings={headings}
   readingTime={readingTime}
   prevPost={prevPost
-    ? { href: `/blog/${prevPost.data.slug ?? prevPost.id}`, title: prevPost.data.title }
+    ? { href: `/en/blog/${prevPost.data.slug ?? prevPost.id}`, title: prevPost.data.title }
     : undefined}
   nextPost={nextPost
-    ? { href: `/blog/${nextPost.data.slug ?? nextPost.id}`, title: nextPost.data.title }
+    ? { href: `/en/blog/${nextPost.data.slug ?? nextPost.id}`, title: nextPost.data.title }
     : undefined}
+  lang="en"
 >
   <Content />
 </BlogLayout>

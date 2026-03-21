@@ -6,23 +6,24 @@ import Skills from '@components/homepage/Skills.astro';
 import Experience from '@components/homepage/Experience.astro';
 import BlogPreview from '@components/homepage/BlogPreview.astro';
 import Contact from '@components/homepage/Contact.astro';
-import { getPersonSchema } from '@data/personSchema';
 import { useTranslations } from '@i18n/index';
+import { getPersonSchema } from '@data/personSchema';
 
-const t = useTranslations('fr');
-const personSchema = getPersonSchema(Astro.site!, 'fr');
+const t = useTranslations('en');
+const personSchema = getPersonSchema(Astro.site!, 'en');
 ---
 
 <Layout
   title={t.pages.home.title}
   description={t.pages.home.description}
   image="/images/og-default.png"
+  lang="en"
 >
   <Fragment slot="head" set:html={`<script type="application/ld+json">${personSchema}</script>`} />
-  <Hero lang="fr" />
-  <About lang="fr" />
-  <Skills lang="fr" />
-  <Experience lang="fr" />
-  <BlogPreview lang="fr" />
-  <Contact lang="fr" />
+  <Hero lang="en" />
+  <About lang="en" />
+  <Skills lang="en" />
+  <Experience lang="en" />
+  <BlogPreview lang="en" />
+  <Contact lang="en" />
 </Layout>
