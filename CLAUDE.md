@@ -88,5 +88,12 @@ Pre-commit hook (Husky + lint-staged) runs Prettier on staged `*.{js,ts,astro,cs
 - `@layouts/*` → `src/layouts/*`
 - `@i18n/*` → `src/i18n/*`
 - `@data/*` → `src/data/*`
+- `@utils/*` → `src/utils/*`
+
+**Avoid duplicating logic between FR and EN versions.** The FR and EN pages are intentionally symmetric — any logic shared between them must be factored out:
+
+- Shared UI → Astro component accepting a `lang?: Lang` prop (e.g. `BlogListing.astro`)
+- Shared computation → utility function in `src/utils/` (e.g. `getReadingTime`)
+- Shared data → `src/data/` (e.g. `expertises.ts`, `personSchema.ts`)
 
 **The project must always typecheck without errors.** Run `pnpm astro check` to verify. Any code change must preserve a clean TypeScript compilation.

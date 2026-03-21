@@ -1,6 +1,7 @@
 ---
 import BlogLayout from '@layouts/BlogLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { getReadingTime } from '@utils/readingTime';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blogEn', ({ data }) => !data.draft);
@@ -17,8 +18,7 @@ export async function getStaticPaths() {
 
 const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await render(post);
-const wordCount = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
-const readingTime = Math.max(1, Math.round(wordCount / 200));
+const readingTime = getReadingTime(post.body);
 ---
 
 <BlogLayout
