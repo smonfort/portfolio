@@ -21,7 +21,7 @@ const t = useTranslations(lang);
     </div>
     <div class="divide-y divide-white/5">
       {
-        expertisesData.map(({ key, categorySvg, items }) => (
+        expertisesData.map(({ label: categoryLabel, categorySvg, items }) => (
           <div class="grid items-start gap-6 py-8 md:grid-cols-4">
             <h3 class="flex justify-center self-center text-center text-lg font-semibold tracking-wider text-indigo-400 uppercase md:justify-end md:text-right">
               <span class="inline-flex items-center gap-2">
@@ -35,7 +35,7 @@ const t = useTranslations(lang);
                     set:html={categorySvg}
                   />
                 )}
-                {t.skills.categories[key as keyof typeof t.skills.categories]}
+                {categoryLabel}
               </span>
             </h3>
             <div class="flex flex-wrap gap-2 md:col-span-3">
@@ -44,7 +44,7 @@ const t = useTranslations(lang);
                   {item.icon && (
                     <img
                       src={`https://cdn.simpleicons.org/${item.icon}`}
-                      alt={t.skills.items[item.key as keyof typeof t.skills.items]}
+                      alt={item.label}
                       class="h-3.5 w-3.5 flex-shrink-0"
                       loading="lazy"
                       onerror="this.style.display='none'"
@@ -53,7 +53,7 @@ const t = useTranslations(lang);
                   {item.iconUrl && (
                     <img
                       src={item.iconUrl}
-                      alt={t.skills.items[item.key as keyof typeof t.skills.items]}
+                      alt={item.label}
                       class="h-3.5 w-3.5 flex-shrink-0"
                       loading="lazy"
                       onerror="this.style.display='none'"
@@ -72,7 +72,7 @@ const t = useTranslations(lang);
                   {!item.icon && !item.iconUrl && !item.svg && (
                     <span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-500" />
                   )}
-                  {t.skills.items[item.key as keyof typeof t.skills.items]}
+                  {item.label}
                 </span>
               ))}
             </div>
@@ -90,19 +90,18 @@ const t = useTranslations(lang);
     </div>
     <div class="grid gap-4 sm:grid-cols-2">
       {
-        certificationsData.map(({ key, iconUrl, link }) => {
-          const cert = t.skills.certifications[key as keyof typeof t.skills.certifications];
+        certificationsData.map(({ name, iconUrl, link }) => {
           return link ? (
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${cert.name} ${t.skills.certAriaOpen}`}
+              aria-label={`${name} ${t.skills.certAriaOpen}`}
               class="group flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.03] p-5 transition-colors hover:border-amber-500/30"
             >
               <img
                 src={iconUrl}
-                alt={cert.name}
+                alt={name}
                 width="28"
                 height="28"
                 class="h-7 w-7 flex-shrink-0"
@@ -110,7 +109,7 @@ const t = useTranslations(lang);
               />
               <div class="flex-1">
                 <p class="text-sm font-semibold text-white transition-colors group-hover:text-amber-400">
-                  {cert.name}
+                  {name}
                 </p>
               </div>
               <svg
@@ -132,14 +131,14 @@ const t = useTranslations(lang);
             <div class="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.03] p-5 transition-colors hover:border-indigo-500/30">
               <img
                 src={iconUrl}
-                alt={cert.name}
+                alt={name}
                 width="28"
                 height="28"
                 class="h-7 w-7 flex-shrink-0"
                 loading="lazy"
               />
               <div>
-                <p class="text-sm font-semibold text-white">{cert.name}</p>
+                <p class="text-sm font-semibold text-white">{name}</p>
               </div>
             </div>
           );
