@@ -83,7 +83,10 @@ A hook also verifies that TypeScript compilation generates no errors.
 
 Each article is a Markdown file stored in the Git repository. A light Neovim configuration provides syntax highlighting adapted to my needs. In addition, the [zen-mode](https://github.com/folke/zen-mode.nvim) plugin provides a clean interface to stay fully focused on the content, without distraction.
 
-I also added a [custom skill](https://code.claude.com/docs/en/skills) for Claude to check spelling and grammar for a given article.
+I also added [custom skills](https://code.claude.com/docs/en/skills) for Claude to:
+
+- check spelling and grammar for a given article
+- ensure the English and French versions of articles stay in sync
 
 ![Markdown example](../img/markdown.png)
 
