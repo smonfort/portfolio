@@ -27,7 +27,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'fr_FR';
 const t = useTranslations(lang);
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = new URL(image ?? '/images/og-default.svg', Astro.site).toString();
+const ogImage = new URL(image ?? '/images/og-default.png', Astro.site).toString();
 const altPath = getAltLangPath(lang, Astro.url.pathname);
 const altUrl = new URL(altPath, Astro.site).toString();
 const frUrl = lang === 'fr' ? canonicalUrl : altUrl;
@@ -52,6 +52,8 @@ const enUrl = lang === 'en' ? canonicalUrl : altUrl;
     <meta property="og:site_name" content="Stéphane Monfort" />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:site" content="@stmonfort" />
+    <meta name="twitter:creator" content="@stmonfort" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
