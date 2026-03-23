@@ -19,6 +19,8 @@ A computer science student spends hundreds of hours using a terminal, a text edi
 
 The result: graduate engineers who can't write a clean shell script, who do `git add .` without thinking, or who freeze at the idea of rebasing a branch. I've seen this personally: a significant number of developers have absolutely no understanding of Git's internal workings, and don't really know what such basic concepts as a commit, a branch, or a tag actually mean.
 
+![I don't understand Git](../img/git-comic.webp)
+
 ## The curriculum
 
 The 2026 program is structured around nine sessions (videos available on [this YouTube playlist](https://www.youtube.com/playlist?list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)):

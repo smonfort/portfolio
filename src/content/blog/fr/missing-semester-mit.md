@@ -19,6 +19,8 @@ Un étudiant en informatique passe des centaines d'heures à utiliser un termina
 
 Le résultat : des ingénieurs diplômés qui ne savent pas écrire un script shell propre, qui font des `git add .` sans réfléchir ou qui se retrouvent tétanisés à l'idée de rebaser une branche. Je l'ai constaté personnellement : un nombre assez important de développeurs ignorent totalement le mode de fonctionnement interne de Git, et ne savent pas réellement ce que recouvrent des concepts aussi simples qu'un commit, une branche ou un tag.
 
+![Je ne comprends pas Git](../img/git-comic.webp)
+
 ## Le programme de formation
 
 Le programme 2026 s'articule autour de neuf séances (vidéos disponibles sur [cette playlist YouTube](https://www.youtube.com/playlist?list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)) :
