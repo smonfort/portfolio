@@ -5,9 +5,10 @@ date: 2026-03-19
 tags: ['Architecture', 'Documentation', 'Outils', 'Diagrammes', 'as-code']
 slug: 'architecture-as-code-agentic-likec4'
 image: '../img/likec4.png'
+lang: 'fr'
 ---
 
-La documentation d'architecture a mauvaise réputation, et souvent pour de bonnes raisons. Les diagrammes Visio ou Draw.io dérivent rapidement par rapport au code réel. Les wikis accumulent des pages obsolètes que personne ne met à jour. Et quand vient le moment de présenter l'architecture à une nouvelle équipe ou à des parties prenantes, on repart de zéro. L'architecte se réduit souvent à un ensemble de dessins que l'on peut difficilement exploiter programmatiquement.
+La documentation d'architecture a mauvaise réputation, et souvent pour de bonnes raisons. Les diagrammes Visio ou Draw.io dérivent rapidement par rapport au code réel. Les wikis accumulent des pages obsolètes que personne ne met à jour. Et quand vient le moment de présenter l'architecture à une nouvelle équipe ou à des parties prenantes, on repart de zéro. L'architecte se réduit fréquemment à un ensemble de dessins que l'on peut difficilement exploiter programmatiquement.
 
 [LikeC4](https://likec4.dev/) propose une autre approche : décrire l'architecture sous forme de code, versionnable dans Git, à partir duquel des diagrammes interactifs sont générés automatiquement.
 
@@ -48,7 +49,7 @@ L'outil propose un [LSP](https://fr.wikipedia.org/wiki/Language_Server_Protocol)
 
 Pour les architectures les plus complexes, il est possible de définir des vues dynamiques en incluant uniquement les éléments pertinents pour chacune des vues.
 
-## Les points différenciants
+## Les points forts
 
 - **Versioning natif**. Les fichiers `.c4` vivent dans le dépôt Git, au même titre que le code. Les revues de code architecturales deviennent possibles : on peut voir exactement ce qui a changé, comparer deux versions, et discuter des décisions dans des pull requests.
 

@@ -21,10 +21,10 @@ The result: graduate engineers who can't write a clean shell script, who do `git
 
 ## The curriculum
 
-The 2026 programme is structured around nine sessions (videos available on [this YouTube playlist](https://www.youtube.com/playlist?list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)):
+The 2026 program is structured around nine sessions (videos available on [this YouTube playlist](https://www.youtube.com/playlist?list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)):
 
 - **[The Shell and Command Line](https://missing.csail.mit.edu/2026/course-shell/)**: navigation, redirection, pipes, Bash scripting. The foundations on which everything else rests.
-- **[The Command-Line Environment](https://missing.csail.mit.edu/2026/command-line-environment/)**: setting up a consistent environment, managing dotfiles, customising the terminal.
+- **[The Command-Line Environment](https://missing.csail.mit.edu/2026/command-line-environment/)**: setting up a consistent environment, managing dotfiles, customizing the terminal.
 - **[Development Environment and Tooling](https://missing.csail.mit.edu/2026/development-environment/)**: editors, LSP, snippets — getting the most out of your development environment.
 - **[Debugging and Profiling](https://missing.csail.mit.edu/2026/debugging-profiling/)**: using the right tools to identify and fix problems, rather than blindly adding `print` statements.
 - **[Version Control with Git](https://missing.csail.mit.edu/2026/version-control/)**: beyond the simple `commit/push`, understanding Git's data model to use it with confidence. A must-watch for anyone still hesitant.
@@ -35,7 +35,7 @@ The 2026 programme is structured around nine sessions (videos available on [this
 
 ## What I like about this approach
 
-The course doesn't try to be exhaustive. It aims to spark a realisation: showing that there is a more efficient, more deliberate way to work with your tools. Once that realisation clicks, everyone can go deeper at their own pace.
+The course doesn't try to be exhaustive. It aims to spark a realization: showing that there is a more efficient, more deliberate way to work with your tools. Once that realization clicks, everyone can go deeper at their own pace.
 
 I also appreciate that the 2026 edition natively integrates _agentic coding_, illustrating it with Claude Code on a few basic use cases. The subject is treated as a skill in its own right, on the same level as Git or the shell.
 
