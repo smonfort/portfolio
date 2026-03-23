@@ -15,7 +15,7 @@ In the age of vibe-coding, building a portfolio has become a commodity. Here I e
 
 In the past, I've experimented with a number of static site generators, including [Hugo](https://gohugo.io/) and [Gatsby](https://www.gatsbyjs.com/), with mixed results. Hugo quickly becomes limiting for creating complex designs, and Gatsby seems to be reaching end-of-life since its acquisition by Netlify in 2023...
 
-These days, my default choice is [Astro](https://astro.build), which needs no introduction. I've already successfully deployed it on several public-facing sites in my past experience, with undeniable advantages:
+These days, my default choice is [Astro](https://astro.build), which needs no introduction. I've already successfully deployed it on several public-facing sites in my experience, with undeniable advantages:
 
 - **Zero JavaScript by default**: HTML is pre-rendered, JS is only loaded where strictly necessary, ensuring optimal performance.
 - **Content Collections**: Markdown content management with schema validation via Zod.
