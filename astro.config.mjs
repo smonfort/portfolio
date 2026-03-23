@@ -24,6 +24,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      filter: (page) => !page.includes('/404'),
       serialize(item) {
         item.lastmod = item.lastmod ?? new Date().toISOString(); // TODO: should read from the frontmatter
         return item;
