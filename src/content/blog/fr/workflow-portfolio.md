@@ -2,19 +2,20 @@
 title: 'Mon workflow agentique pour construire ce portfolio'
 description: "Je vous explique la façon dont j'ai créé ce portfolio et vous dévoile certains de mes outils préférés"
 date: 2026-03-14
-updatedDate: 2026-03-21
+updatedDate: 2026-03-23
 tags: ['Astro', 'Tmux', 'Neovim', 'Lazygit', 'Claude code']
 slug: 'workflow-agentic-portfolio'
 image: '../img/neovim.png'
+lang: 'fr'
 ---
 
-À l'heure du vibe-coding, construire un portfolio devient une commodité. Je vous explique ici mon workflow de développement pour construire ce site, en mettant en lumière quelques outillages que j'apprécie particulièrement.
+À l'heure du vibe coding, construire un portfolio devient une commodité. Je vous explique ici mon workflow de développement pour construire ce site, en mettant en lumière quelques outillages que j'apprécie particulièrement.
 
 ## Le choix du framework : Astro
 
 Par le passé, j'ai pu expérimenter un certain nombre de générateurs de sites statiques, dont [Hugo](https://gohugo.io/) et [Gatsby](https://www.gatsbyjs.com/), avec des succès variés. Hugo est rapidement limité pour créer des designs évolués, Gatsby semble en fin de vie depuis son rachat par Netlify en 2023 ...
 
-Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), que l'on ne présente plus. Je l'ai déjà mis en place avec succès sur quelques sites grands publics dans mes expériences passées, avec des atouts indéniables :
+Désormais, mon choix se tourne par défaut vers [Astro](https://astro.build), que l'on ne présente plus. Je l'ai déjà mis en place avec succès sur quelques sites grand public dans mes expériences passées, avec des atouts indéniables :
 
 - **Zéro JavaScript par défaut** : le HTML est pré-rendu, le JS n'est chargé que là où c'est strictement nécessaire, ce qui assure une performance optimale.
 - **Content Collections** : gestion du contenu en Markdown avec validation de schéma via Zod.
@@ -32,7 +33,7 @@ Certains disposent d'une configuration Neovim très avancée ; je préfère gard
 
 ![Ma configuration tmux](../img/neovim.png)
 
-[Tmuxinator](https://github.com/tmuxinator/tmuxinator) complète le tout en me permettant de définir mes sessions de travail dans un fichier de configuration YAML. L'outil me permet de switcher rapidement entre mes différentes sessions de travail et de retrouver une configuration adaptée pour chacun des projets. Voici un exemple minimaliste ci-dessous adapté à mes besoins pour la construction de ce portfolio, avec une session qui ouvre quatre fênetres :
+[Tmuxinator](https://github.com/tmuxinator/tmuxinator) complète le tout en me permettant de définir mes sessions de travail dans un fichier de configuration YAML. L'outil me permet de switcher rapidement entre mes différentes sessions de travail et de retrouver une configuration adaptée pour chacun des projets. Voici un exemple minimaliste ci-dessous adapté à mes besoins pour la construction de ce portfolio, avec une session qui ouvre quatre fenêtres :
 
 - Neovim ouvert sur le répertoire du portfolio
 - une session Claude Code
@@ -50,7 +51,7 @@ windows:
   - lazygit: lazygit
 ```
 
-Une popup me permet de switcher très rapidement entre mes différentes sessions Tmux, à l'aide du fuzzy finder [fzf](https://github.com/junegunn/fzf).
+Un popup me permet de switcher très rapidement entre mes différentes sessions Tmux, à l'aide du fuzzy finder [fzf](https://github.com/junegunn/fzf).
 
 ![Popup tmux](../img/popup-tmux.png)
 
@@ -58,9 +59,9 @@ Une popup me permet de switcher très rapidement entre mes différentes sessions
 
 Pendant longtemps, j'ai utilisé Git exclusivement en ligne de commande. Puis j'ai découvert [Lazygit](https://github.com/jesseduffield/lazygit), et je n'en suis jamais revenu.
 
-Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup plus facilement d'avoir une bonne hygiène sur mon historique Git. Bon nombre de commandes avancées sont rendues très accessibles, à condition d'avoir une bonne maîtrise des fondamentaux de Git. Je garde donc en permanence une fenêtre ouverte avec Lazygit pour contrôler finement mes stagings, commits et pushs.
+Me sentant à l'aise dans des interfaces de type TUI, Lazygit me permet beaucoup plus facilement d'avoir une bonne hygiène sur mon historique Git. Bon nombre de commandes avancées sont rendues très accessibles, à condition d'avoir une bonne maîtrise des fondamentaux de Git. Je garde donc en permanence une fenêtre ouverte avec Lazygit pour contrôler finement mes stagings, commits et pushes.
 
-![Ma configuration lazygit](../img/lazygit.png)
+![Ma configuration Lazygit](../img/lazygit.png)
 
 ## La construction de l'interface graphique : Claude Code
 
@@ -72,9 +73,9 @@ Pour s'assurer que Claude prenne bien en compte les dernières versions des API 
 
 J'utilise aussi les skills suivants pour vérifier la qualité des développements :
 
-- [seo-audit](https://skills.sh/coreyhaines31/marketingskills/seo-audit) pour réaliser un audit SEO flash du site déployé, pour m'assurer que l'ensemble des bonnes pratiques est respecté.
-- [web-accessibility](https://skills.sh/supercent-io/skills-template/web-accessibility) pour contrôler l'accessibilité numérique
-- [core-web-vitals](https://skills.sh/addyosmani/web-quality-skills/core-web-vitals) pour l'analyse des performances du site avec Lighthouse
+- [Seo-audit](https://skills.sh/coreyhaines31/marketingskills/seo-audit) pour réaliser un audit SEO flash du site déployé pour m'assurer que l'ensemble des bonnes pratiques est respecté.
+- [Web-accessibility](https://skills.sh/supercent-io/skills-template/web-accessibility) pour contrôler l'accessibilité numérique
+- [Core-web-vitals](https://skills.sh/addyosmani/web-quality-skills/core-web-vitals) pour l'analyse des performances du site avec Lighthouse
 
 Un hook se charge également de vérifier que la transpilation Typescript ne génère pas d'erreur.
 
@@ -82,7 +83,7 @@ Un hook se charge également de vérifier que la transpilation Typescript ne gé
 
 Chaque article est un fichier Markdown stocké dans le repository Git. Une légère configuration Neovim permet d'avoir une coloration syntaxique adaptée à mes besoins. En complément, le plugin [zen-mode](https://github.com/folke/zen-mode.nvim) permet d'avoir une interface épurée pour être pleinement concentré sur le contenu, sans distraction.
 
-J'ai également ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
+J'ai aussi ajouté un [skill custom](https://code.claude.com/docs/en/skills) Claude pour vérifier l'orthographe et la grammaire pour un article donné.
 
 ![Exemple Markdown](../img/markdown.png)
 

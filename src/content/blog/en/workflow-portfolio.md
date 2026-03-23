@@ -2,10 +2,11 @@
 title: 'My agentic workflow for building this portfolio'
 description: 'I explain how I built this portfolio and share some of my favourite tools'
 date: 2026-03-14
-updatedDate: 2026-03-21
+updatedDate: 2026-03-23
 tags: ['Astro', 'Tmux', 'Neovim', 'Lazygit', 'Claude code']
 slug: 'workflow-agentic-portfolio'
 image: '../img/neovim.png'
+lang: en-US
 ---
 
 In the age of vibe-coding, building a portfolio has become a commodity. Here I explain my development workflow for building this site, highlighting a few tools I particularly appreciate.

@@ -2,10 +2,11 @@
 title: 'The MIT "Missing Semester": the tools your university never taught you'
 description: 'MIT offers a free course on the everyday tools of the developer. A condensed set of best practices too often overlooked in traditional curricula.'
 date: 2026-03-19
-updatedDate: 2026-03-21
+updatedDate: 2026-03-23
 slug: 'missing-semester-computer-science-mit'
 tags: ['Tools', 'Terminal', 'Git', 'Productivity', 'Learning']
 image: '../img/missing-semester-mit.png'
+lang: en-US
 ---
 
 CS curricula train engineers capable of designing complex algorithms, modelling distributed architectures, or reasoning about language theory. But they systematically miss a topic that is nonetheless fundamental: mastering everyday tools.

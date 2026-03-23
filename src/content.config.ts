@@ -13,6 +13,7 @@ const blogSchema = ({ image }: SchemaContext) =>
     tags: z.array(z.string()).max(5).default([]),
     draft: z.boolean().default(false),
     image: image().optional(),
+    lang: z.string(),
   });
 
 const blogFr = defineCollection({
