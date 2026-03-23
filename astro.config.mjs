@@ -25,7 +25,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       serialize(item) {
-        item.lastmod = item.lastmod ?? new Date().toISOString();
+        item.lastmod = item.lastmod ?? new Date().toISOString(); // TODO: should read from the frontmatter
         return item;
       },
     }),
