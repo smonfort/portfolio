@@ -6,7 +6,7 @@ const en: Translations = {
     ogLocale: 'en_US',
     skipToContent: 'Skip to main content',
     defaultDescription:
-      'Freelance CTO & senior cloud architect based in Paris, with 18 years of experience, AWS and TOGAF certified. I help your tech teams through their transformation projects.',
+      'CTO & senior cloud architect based in Paris, with 18 years of experience, AWS and TOGAF certified. Expertise in complex systems architecture and tech team leadership.',
     rssTitle: 'Stéphane Monfort — Blog',
   },
 
@@ -23,7 +23,7 @@ const en: Translations = {
   },
 
   hero: {
-    available: 'Available for new projects',
+    available: 'Open to new opportunities',
     subtitle: 'CTO - Senior Cloud Architect',
     description:
       '18 years of experience in complex systems architecture and technical team leadership. I help you structure your IT, accelerate your cloud migration and grow your teams.',
@@ -111,9 +111,8 @@ const en: Translations = {
 
   contact: {
     label: 'Contact',
-    heading: "Let's start a project together",
-    description:
-      "Need an interim CTO, a senior cloud architect or an expert eye on your IT? Let's talk.",
+    heading: "Let's work together",
+    description: "Looking for a CTO or a senior cloud architect? Let's talk.",
     emailCta: 'Contact me by email',
     emailSubject: 'Getting%20in%20touch',
     linkedinCta: 'Contact me on LinkedIn',
@@ -152,9 +151,9 @@ const en: Translations = {
 
   pages: {
     home: {
-      title: 'Stéphane Monfort — Freelance CTO & Senior Cloud Architect in Paris',
+      title: 'Stéphane Monfort — CTO & Senior Cloud Architect in Paris',
       description:
-        'Freelance CTO & Senior Cloud Architect based in Paris, AWS and TOGAF certified. 18 years of experience in complex systems architecture and tech team leadership. Available for cloud transformation projects in Île-de-France and remote.',
+        'CTO & Senior Cloud Architect based in Paris, AWS and TOGAF certified. 18 years of experience in complex systems architecture and tech team leadership.',
     },
     blog: {
       title: 'Blog — Cloud, Architecture & Tech Leadership | Stéphane Monfort',

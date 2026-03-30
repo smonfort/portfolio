@@ -4,7 +4,7 @@ const fr = {
     ogLocale: 'fr_FR',
     skipToContent: 'Aller au contenu principal',
     defaultDescription:
-      "CTO freelance & architecte cloud senior basé à Paris, avec 18 ans d'expérience, certifié AWS et TOGAF. J'accompagne vos équipes tech sur leurs projets de transformation.",
+      "CTO & architecte cloud senior basé à Paris, avec 18 ans d'expérience, certifié AWS et TOGAF. Expertise en architecture de systèmes complexes et leadership d'équipes tech.",
     rssTitle: 'Stéphane Monfort — Blog',
   },
 
@@ -21,7 +21,7 @@ const fr = {
   },
 
   hero: {
-    available: 'Disponible pour de nouvelles missions',
+    available: 'Ouvert aux nouvelles opportunités',
     subtitle: 'CTO - Architecte cloud sénior',
     description:
       "18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes techniques. Je vous accompagne pour structurer votre SI, accélérer votre migration cloud et faire grandir vos équipes.",
@@ -111,9 +111,8 @@ const fr = {
 
   contact: {
     label: 'Contact',
-    heading: 'Démarrons une mission ensemble',
-    description:
-      "Besoin d'un CTO de transition, d'un architecte cloud sénior ou d'un regard expert sur votre SI ? Discutons-en.",
+    heading: 'Travaillons ensemble',
+    description: 'Vous cherchez un CTO ou un architecte cloud senior ? Discutons-en.',
     emailCta: 'Me contacter par mail',
     emailSubject: 'Prise%20de%20contact',
     linkedinCta: 'Me contacter sur LinkedIn',
@@ -154,9 +153,9 @@ const fr = {
 
   pages: {
     home: {
-      title: 'Stéphane Monfort — CTO & Architecte Cloud Senior Freelance à Paris',
+      title: 'Stéphane Monfort — CTO & Architecte Cloud Senior à Paris',
       description:
-        "CTO & Architecte Cloud Senior freelance basé à Paris, certifié AWS et TOGAF. 18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes tech. Disponible pour vos missions de transformation cloud en Île-de-France et à distance.",
+        "CTO & Architecte Cloud Senior basé à Paris, certifié AWS et TOGAF. 18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes tech.",
     },
     blog: {
       title: 'Blog — Cloud, Architecture & Leadership Tech | Stéphane Monfort',
