@@ -24,3 +24,7 @@ pnpm-debug.log*
 .idea/
 
 .claude/settings.local.json
+
+# Obsidian vault
+src/content/blog/.obsidian
+src/content/blog/brainstorm
