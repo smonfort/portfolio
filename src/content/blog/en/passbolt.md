@@ -2,14 +2,14 @@
 title: 'Passbolt: managing shared secrets in a team without compromising security'
 description: Shared password management in teams is often handled carelessly. Passbolt provides a simple, serious, and affordable answer.
 date: 2026-04-03
-updatedDate: 2026-04-03
+updatedDate: 2026-04-04
 tags:
   - Security
   - Passbolt
   - DevOps
   - Secrets
   - Passwords
-slug: passbolt-gestion-secrets-equipe
+slug: passbolt-team-secrets
 image: ../img/passbolt.png
 lang: en-US
 ---
