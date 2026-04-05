@@ -2,7 +2,7 @@
 title: 'Le "missing semester" du MIT : les outils que l''université ne t''apprend pas'
 description: 'Le MIT propose gratuitement un cours sur les outils du quotidien du développeur. Un condensé de bonnes pratiques trop souvent ignorées dans les cursus traditionnels.'
 date: 2026-03-19
-updatedDate: 2026-03-23
+updatedDate: 2026-04-05
 slug: 'missing-semester-computer-science-mit'
 tags: ['Outils', 'Terminal', 'Git', 'Productivité', 'Formation']
 image: '../img/missing-semester-mit.png'
@@ -27,13 +27,13 @@ Le programme 2026 s'articule autour de neuf séances (vidéos disponibles sur [c
 
 - **[Le shell et la ligne de commande](https://missing.csail.mit.edu/2026/course-shell/)** : navigation, redirection, pipes, scripting Bash. Les fondations sur lesquelles tout le reste repose.
 - **[L'environnement de ligne de commande](https://missing.csail.mit.edu/2026/command-line-environment/)** : configuration d'un environnement cohérent, gestion des dotfiles, personnalisation du terminal.
-- **[Environnement de développement et outils](https://missing.csail.mit.edu/2026/development-environment/)** : éditeurs, LSP, snippets — tirer le meilleur parti de son environnement de développement.
+- **[Environnement de développement et outils](https://missing.csail.mit.edu/2026/development-environment/)** : éditeurs, LSP, snippets : tirer le meilleur parti de son environnement de développement.
 - **[Débogage et profiling](https://missing.csail.mit.edu/2026/debugging-profiling/)** : utiliser les bons outils pour identifier et corriger les problèmes, plutôt que d'ajouter des `print` à l'aveugle.
 - **[Contrôle de version avec Git](https://missing.csail.mit.edu/2026/version-control/)** : au-delà du simple `commit/push`, comprendre le modèle de données de Git pour l'utiliser avec confiance. À suivre absolument pour ceux qui hésitent encore.
 - **[Packaging et distribution](https://missing.csail.mit.edu/2026/shipping-code/)** : comment conditionner et livrer du code de manière reproductible.
 - **[Agentic coding](https://missing.csail.mit.edu/2026/agentic-coding/)** : l'intégration des outils d'IA dans le workflow de développement, traité comme une compétence à part entière plutôt qu'un gadget.
 - **[Beyond the Code](https://missing.csail.mit.edu/2026/beyond-code/)** : sécurité, vie privée et bonnes pratiques au-delà du code lui-même
-- **[Qualité du code](https://missing.csail.mit.edu/2026/code-quality/)** : linters, formatters, revue de code — les pratiques qui font la différence entre un projet maintenable et un projet qu'on redoute d'ouvrir.
+- **[Qualité du code](https://missing.csail.mit.edu/2026/code-quality/)** : linters, formatters, revue de code : les pratiques qui font la différence entre un projet maintenable et un projet qu'on redoute d'ouvrir.
 
 ## Ce qui me plaît dans cette approche
 

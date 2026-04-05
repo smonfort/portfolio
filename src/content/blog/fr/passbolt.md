@@ -14,7 +14,7 @@ image: ../img/passbolt.png
 lang: fr
 ---
 
-Dans la quasi-totalité des équipes techniques que j'ai côtoyées, la gestion des secrets partagés est un angle mort. Les mots de passe circulent dans des messages Slack ou Teams, sont stockés dans des pages Confluence, dans des fichiers texte déposés sur un lecteur réseau ou sur un espace SharePoint. Aucun contrôle, aucune gouvernance, aucune traçabilité. Et pourtant, personne ne s'en inquiète vraiment — jusqu'au jour où quelqu'un quitte l'entreprise et que personne ne sait plus quels accès il détenait...
+Dans la quasi-totalité des équipes techniques que j'ai côtoyées, la gestion des secrets partagés est un angle mort. Les mots de passe circulent dans des messages Slack ou Teams, sont stockés dans des pages Confluence, dans des fichiers texte déposés sur un lecteur réseau ou sur un espace SharePoint. Aucun contrôle, aucune gouvernance, aucune traçabilité. Et pourtant, personne ne s'en inquiète vraiment, jusqu'au jour où quelqu'un quitte l'entreprise et que personne ne sait plus quels accès il détenait...
 
 ## La règle d'or : privilégier une interconnexion SSO
 

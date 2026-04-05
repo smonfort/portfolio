@@ -2,7 +2,7 @@
 title: 'Passbolt: managing shared secrets in a team without compromising security'
 description: Shared password management in teams is often handled carelessly. Passbolt provides a simple, serious, and affordable answer.
 date: 2026-04-03
-updatedDate: 2026-04-04
+updatedDate: 2026-04-05
 tags:
   - Security
   - Passbolt
@@ -14,7 +14,7 @@ image: ../img/passbolt.png
 lang: en-US
 ---
 
-In nearly every technical team I've worked with, shared secret management is a blind spot. Passwords circulate in Slack or Teams messages, get stored in Confluence pages, in text files dropped on a network drive or a SharePoint. No controls, no governance, no audit trail. And yet, nobody really worries about it — until the day someone leaves the company and nobody knows what access they had...
+In nearly every technical team I've worked with, shared secret management is a blind spot. Passwords circulate in Slack or Teams messages, get stored in Confluence pages, in text files dropped on a network drive or a SharePoint. No controls, no governance, no audit trail. And yet, nobody really worries about it, until the day someone leaves the company and nobody knows what access they had...
 
 ## The golden rule: prioritize SSO integration
 
@@ -26,13 +26,13 @@ The right approach is to configure all applications to delegate user authenticat
 - **Access management**: permissions follow roles defined in the directory, along with any hardening policies (MFA, conditional access, password policies, etc.)
 - **Simplified onboarding and offboarding**: no need to create accounts in each application when a user joins. Disabling an account in the directory automatically revokes all their access across every application.
 
-This is all the more relevant since most modern SaaS tools now support this integration without friction — though it's worth noting that SSO configuration often requires subscribing to an Enterprise-tier plan, which can put smaller organizations on a tight budget at a disadvantage.
+This is all the more relevant since most modern SaaS tools now support this integration without friction, though it's worth noting that SSO configuration often requires subscribing to an Enterprise-tier plan, which can put smaller organizations on a tight budget at a disadvantage.
 
 ## The residual cases where secret sharing is unavoidable
 
 In practice, SSO integration doesn't cover everything. There are always a few situations where a shared secret between users is unavoidable:
 
-- **Local emergency accounts**: if the company's identity provider becomes unavailable, or if the integration between the application and the IdP is misconfigured, you need a way to regain access through a fallback. These emergency accounts must exist, be documented, tracked, and be accessible to several duly authorized trusted individuals — with the associated audit trail.
+- **Local emergency accounts**: if the company's identity provider becomes unavailable, or if the integration between the application and the IdP is misconfigured, you need a way to regain access through a fallback. These emergency accounts must exist, be documented, tracked, and be accessible to several duly authorized trusted individuals, with the associated audit trail.
 - **Legacy tools** that don't support SSO and require a shared generic account, even if this situation is fortunately becoming less and less common.
 
 These are exactly the situations where [Passbolt](https://www.passbolt.com/) stands out as a particularly well-suited solution.

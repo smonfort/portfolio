@@ -2,7 +2,7 @@
 title: 'My agentic workflow for building this portfolio'
 description: 'I explain how I built this portfolio and share some of my favourite tools'
 date: 2026-03-14
-updatedDate: 2026-04-04
+updatedDate: 2026-04-05
 tags: ['Astro', 'Tmux', 'Neovim', 'Lazygit', 'Claude code']
 slug: 'workflow-agentic-portfolio'
 image: '../img/claude-avatar.jpg'
@@ -65,7 +65,7 @@ Being comfortable in TUI-style interfaces, Lazygit makes it much easier for me t
 
 ## Building the UI: Claude Code
 
-Having limited design talent, Claude Code accompanied me in building the various pages. Progressively, through a series of relatively simple prompts and targeted correction requests, I arrived at a visual result that suited me perfectly. For example, below, I ask for a featured image for each article. Nothing simpler — Claude handles it for me.
+Having limited design talent, Claude Code accompanied me in building the various pages. Progressively, through a series of relatively simple prompts and targeted correction requests, I arrived at a visual result that suited me perfectly. For example, below, I ask for a featured image for each article. Nothing simpler: Claude handles it for me.
 
 ![Claude code example](../img/claude-code.png)
 
