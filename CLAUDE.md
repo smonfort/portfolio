@@ -101,3 +101,7 @@ Pre-commit hook (Husky + lint-staged) runs Prettier on staged `*.{js,ts,astro,cs
 - Shared data → `src/data/` (e.g. `expertises.ts`, `personSchema.ts`)
 
 **The project must always typecheck without errors.** Run `pnpm astro check` to verify. Any code change must preserve a clean TypeScript compilation.
+
+### Editorial style
+
+**No em dashes (—) in article content.** Use a colon (`:`) when introducing a list or explanation, and a comma (`,`) for asides or contrasts. This applies to both FR and EN articles.
