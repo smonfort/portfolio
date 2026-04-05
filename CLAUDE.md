@@ -47,10 +47,6 @@ Blog posts are split by locale:
 - `src/content/blog/en/` — English articles
 - `src/content/blog/img/` — Shared images (do **not** duplicate across locale folders)
 
-**Every French article must have an English counterpart** with the same filename and slug. Whenever a French article is created or updated, the English version must be updated accordingly in the same operation.
-
-**The slug must be identical in both languages.** `src/content/blog/fr/<slug>.md` and `src/content/blog/en/<slug>.md` must share the exact same filename. A different slug breaks inter-language navigation and hreflang linking.
-
 Two collections are defined in `src/content.config.ts`: `blogFr` and `blogEn`, with identical schemas. Frontmatter fields: `title`, `description`, `date`, `tags[]`, `draft`, `image` (optional, processed by `astro:assets`).
 
 - `z` is imported from `astro:content` (not `astro/zod`)
@@ -101,7 +97,3 @@ Pre-commit hook (Husky + lint-staged) runs Prettier on staged `*.{js,ts,astro,cs
 - Shared data → `src/data/` (e.g. `expertises.ts`, `personSchema.ts`)
 
 **The project must always typecheck without errors.** Run `pnpm astro check` to verify. Any code change must preserve a clean TypeScript compilation.
-
-### Editorial style
-
-**No em dashes (—) in article content.** Use a colon (`:`) when introducing a list or explanation, and a comma (`,`) for asides or contrasts. This applies to both FR and EN articles.
