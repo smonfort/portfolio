@@ -2,14 +2,14 @@
 title: 'Passbolt : gérer les secrets partagés en équipe sans sacrifier la sécurité'
 description: Le partage de mots de passe en équipe est souvent très mal géré. Passbolt apporte une réponse simple, sérieuse, et abordable.
 date: 2026-04-03
-updatedDate: 2026-04-03
+updatedDate: 2026-04-05
 tags:
   - Sécurité
   - Passbolt
   - DevOps
   - Secrets
   - Passwords
-slug: passbolt-gestion-secrets-equipe
+slug: passbolt-team-secrets
 image: ../img/passbolt.png
 lang: fr
 ---
