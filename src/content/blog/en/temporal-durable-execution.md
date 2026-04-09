@@ -2,7 +2,7 @@
 title: Introduction to Durable Execution with Temporal
 description: Durable execution promises reliable, fault-tolerant program execution. Temporal is its most accomplished implementation — illustrated here with a prototype inspired by a real-world use case.
 date: 2026-04-08
-updatedDate: 2026-04-08
+updatedDate: 2026-04-09
 tags:
   - Workflow
   - Architecture
@@ -46,6 +46,64 @@ The Temporal cluster can be deployed on-premise, in your cloud environment, or v
 
 On the user side, workers execute your workflows and activities under the direction of the Temporal cluster. To start a workflow or query a running one, your application uses the Temporal SDK, which communicates with the cluster over gRPC.
 
+## Developing a workflow
+
+Temporal SDKs make it straightforward to implement complex workflows with a good developer experience.
+
+A Temporal workflow orchestrates activities. An activity is a plain function that performs an action (short- or long-running), typically involving interaction with the outside world — sending emails, making network requests, writing to a database, or calling an API. These operations can fail. When an activity fails, Temporal automatically retries it, letting you focus entirely on business logic. Here's an example activity in TypeScript:
+
+```ts title="greet.ts"
+export async function greet(name: string): Promise<string> {
+  return `Hello, ${name}!`;
+}
+```
+
+Temporal workflows are resilient: they can run for years, even in the face of underlying infrastructure failures. For example, if the application server crashes while a workflow is running, Temporal automatically restarts the workflow by restoring the state prior to the failure, allowing execution to resume without data loss. Below is a minimal workflow that calls the activity defined above:
+
+```ts title="workflow.ts"
+import { proxyActivities } from '@temporalio/workflow';
+// Only import the activity types
+import type * as activities from './activities';
+
+const { greet } = proxyActivities<typeof activities>({
+  startToCloseTimeout: '1 minute',
+});
+
+/** A workflow that simply calls an activity */
+export async function example(name: string): Promise<string> {
+  return await greet(name);
+}
+```
+
+The Temporal SDK lets applications interact with workflows through two fundamental mechanisms:
+
+- **Signals**: send an event to a running workflow — e.g., request a status change or a validation.
+- **Queries**: read the current state of a running workflow without interrupting it — e.g., retrieve a variable computed inside the workflow.
+
+Signals are handled inside the workflow by _handlers_ that can mutate internal state. The example below includes a handler for an approval signal. The workflow waits indefinitely until the signal is received (this logic can be enriched with timeout handling as needed):
+
+```ts title="workflow.ts"
+import * as wf from '@temporalio/workflow';
+
+// 👉 Use the object returned by defineSignal to set the Signal handler in
+// Workflow code, and to send the Signal from Client code.
+export const approve = wf.defineSignal<[ApproveInput]>('approve');
+
+export async function greetingWorkflow(): Promise<string> {
+  let approvedForRelease = false;
+  let approverName: string | undefined;
+
+  wf.setHandler(approve, (input) => {
+    // 👉 A Signal handler mutates the Workflow state but cannot return a value.
+    approvedForRelease = true;
+    approverName = input.name;
+  });
+
+  // Wait indefinitely for the approval signal
+  await condition(() => approvedForRelease);
+}
+```
+
 ## Use case: a loan application
 
 To explore Temporal hands-on, I built a [loan application prototype](https://github.com/smonfort/temporal-funding-demo) in TypeScript. The scenario is deliberately simple, but it illustrates the tool's capabilities well: it's a potentially long-running process that combines automated steps with human approval.
@@ -63,10 +121,7 @@ This kind of process feels like a natural fit for a _durable execution_ design: 
 
 The prototype runs on a Temporal server started in development mode using a `docker-compose` configuration.
 
-A **REST API** built with [Fastify](https://fastify.dev/) handles creating funding requests. Each request starts a workflow using the [Temporal TypeScript SDK](https://docs.temporal.io/develop/typescript). The API interacts with running workflows through Temporal's two fundamental mechanisms:
-
-- **Signals**: to send an event to a running workflow — for example, notifying it that a document has been uploaded or that a human reviewer has approved the request.
-- **Queries**: to read the current state of a workflow without interrupting it — for example, listing requests pending review.
+A **REST API** built with [Fastify](https://fastify.dev/) handles creating funding requests. Each request starts a workflow using the [Temporal TypeScript SDK](https://docs.temporal.io/develop/typescript). The API interacts with running workflows via _signals_ and _queries_.
 
 The API also allows uploading missing documents, listing pending validation requests, and approving or rejecting an application.
 

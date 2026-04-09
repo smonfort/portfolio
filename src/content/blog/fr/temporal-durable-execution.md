@@ -2,7 +2,7 @@
 title: Introduction à la durable execution avec Temporal
 description: La durable execution promet une exécution fiable tolérante aux pannes. Temporal en est l'implémentation la plus aboutie, illustration avec un prototype inspiré d'un cas d'usage réel.
 date: 2026-04-08
-updatedDate: 2026-04-08
+updatedDate: 2026-04-09
 tags:
   - Workflow
   - Architecture
@@ -30,7 +30,7 @@ Concrètement, cela apporte trois choses :
 
 ## Temporal : l'implémentation de référence
 
-Ce concept me rappelle mes expériences avec les solutions de type BPM de la fin des années 2000. L'idée était séduisante sur le papier : modéliser visuellement des processus, orchestrer des tâches humaines et automatisées, gérer les états, etc. Mais les solutions de l'époque étaient lourdes (doux euphémisme!), difficiles à industrialiser, et très loin de la philosophie _as-code_.
+Ce concept me rappelle mes expériences avec les solutions de type BPM de la fin des années 2000. L'idée était séduisante sur le papier : modéliser visuellement des processus, orchestrer des tâches humaines et automatisées, gérer les états, etc. Mais les solutions de l'époque étaient lourdes (doux euphémisme !), difficiles à industrialiser, et très loin de la philosophie _as-code_.
 
 Depuis ce temps, à quelques reprises, j'ai continué à avoir l'intuition qu'une solution de type BPM pourrait répondre aux problématiques métiers de mes clients. J'ai continué à avoir une veille active sur certaines solutions, comme [Activiti](https://www.activiti.org/), mais sans trouver de contexte propice pour les mettre en œuvre à grande échelle.
 
@@ -45,6 +45,64 @@ Dans une vision simplifiée, l'architecture globale de Temporal est divisée en 
 Le cluster Temporal peut être déployé on-premise, sur votre environnement Cloud ou via l'offre Temporal Cloud. Le cluster Temporal se charge de persister les états des workflows et de dispatcher les traitements à exécuter sur les différents workers.
 
 Côté utilisateur, nous retrouvons donc les workers qui exécutent vos workflows et activités sous le pilotage du cluster Temporal. Pour démarrer un workflow ou requêter un workflow en cours, votre application utilise le SDK Temporal qui permet une communication en gRPC avec le cluster Temporal.
+
+## Développement d'un workflow
+
+Les SDK de Temporal permettent simplement d'implémenter des workflows complexes, avec une bonne expérience développeur.
+
+Un workflow Temporal orchestre des activités. Une activité est une simple fonction traditionnelle qui exécute une action (de courte ou de longue durée), impliquant souvent une interaction avec le monde extérieur, comme l'envoi d'e-mails, l'exécution de requêtes réseau, l'écriture dans une base de données ou l'appel d'une API. Ces opérations sont susceptibles d'échouer. En cas d'échec d'une activité, Temporal la relance automatiquement, ce qui permet de se concentrer uniquement sur la logique métier. Un exemple d'activité ci-dessous en Typescript.
+
+```ts title="greet.ts"
+export async function greet(name: string): Promise<string> {
+  return `Hello, ${name}!`;
+}
+```
+
+Les workflows Temporal sont résilients : ils peuvent être actifs pendant des années, même en cas de défaillance de l’infrastructure sous-jacente. Par exemple, si le serveur applicatif connaît une défaillance alors qu'un workflow est en cours d'exécution, Temporal redémarre automatiquement le workflow en restaurant l'état antérieur à la panne, ce qui permet de reprendre l'exécution sans perte de données. Ci-dessous, un exemple minimaliste de workflow qui appelle l'activité écrite précédemment.
+
+```ts title="workflow.ts"
+import { proxyActivities } from '@temporalio/workflow';
+// Only import the activity types
+import type * as activities from './activities';
+
+const { greet } = proxyActivities<typeof activities>({
+  startToCloseTimeout: '1 minute',
+});
+
+/** A workflow that simply calls an activity */
+export async function example(name: string): Promise<string> {
+  return await greet(name);
+}
+```
+
+Le SDK Temporal permet aux applications d'interagir avec les workflows via deux mécanismes fondamentaux :
+
+- **Signals** : pour envoyer un événement à un workflow en cours d'exécution. Par exemple, demander un changement de statut, une validation, etc.
+- **Queries** : pour interroger l'état courant d'un workflow sans l'interrompre. Par exemple, pour extraire une variable ayant été calculée au sein du workflow.
+
+Les _signals_ sont pris en compte au sein du workflow par des _handlers_ qui peuvent modifier l'état interne du workflow. L'exemple suivant comporte un _handler_ qui permet de traiter le signal de validation d'une demande. Dans l'exemple ci-dessous, le workflow attend indéfiniment que le signal soit reçu (logique qui peut être enrichie si besoin avec des notions de timeout).
+
+```ts title="workflow.ts"
+import * as wf from '@temporalio/workflow';
+
+// 👉 Use the object returned by defineSignal to set the Signal handler in
+// Workflow code, and to send the Signal from Client code.
+export const approve = wf.defineSignal<[ApproveInput]>('approve');
+
+export async function greetingWorkflow(): Promise<string> {
+  let approvedForRelease = false;
+  let approverName: string | undefined;
+
+  wf.setHandler(approve, (input) => {
+    // 👉 A Signal handler mutates the Workflow state but cannot return a value.
+    approvedForRelease = true;
+    approverName = input.name;
+  });
+
+  // Wait indefinitely for the approval signal
+  await condition(() => approvedForRelease);
+}
+```
 
 ## Cas d'usage : une demande de financement
 
@@ -63,10 +121,7 @@ Ce type de processus me semble être particulièrement compatible avec un design
 
 Le prototype s'appuie sur un serveur Temporal lancé en mode développement à l'aide d'une configuration `docker-compose`.
 
-Une **API REST** développée en [Fastify](https://fastify.dev/) permet de créer une demande de financement. Cette demande instancie un workflow à l'aide du [SDK TypeScript Temporal](https://docs.temporal.io/develop/typescript). L'API permet d'interagir avec les workflows en cours via les deux mécanismes fondamentaux de Temporal :
-
-- **Signals** : pour envoyer un événement à un workflow en cours d'exécution. Par exemple, signaler qu'une pièce justificative a été ajoutée, ou qu'un validateur humain a approuvé la demande.
-- **Queries** : pour interroger l'état courant d'un workflow sans l'interrompre. Par exemple, lister les demandes en attente de validation.
+Une **API REST** développée en [Fastify](https://fastify.dev/) permet de créer une demande de financement. Cette demande instancie un workflow à l'aide du [SDK TypeScript Temporal](https://docs.temporal.io/develop/typescript). L'API permet d'interagir avec les workflows en cours via des _signals_ et _queries_.
 
 L'API permet également d'uploader les pièces manquantes, de lister les demandes en attente de validation, puis d'approuver ou de refuser une demande.
 
@@ -166,4 +221,4 @@ L'API envoie alors un signal au workflow qui reprend son exécution : les docume
 
 ## Conclusion
 
-Nous n'avons exploré que de manière très superficielle les fonctionnalités de Temporal. L'outil s'impose pour moi comme la solution la plus élégante et moderne que j'ai pu expérimenter pour orchestrer des processus métier durables et fiables. L'approche workflow-as-code est un gain significatif par rapport aux BPM classiques : le code est lisible, testable, et versionnable comme le reste du projet. Je vous invite à tester!
+Nous n'avons exploré que de manière très superficielle les fonctionnalités de Temporal. L'outil s'impose pour moi comme la solution la plus élégante et moderne que j'ai pu expérimenter pour orchestrer des processus métier durables et fiables. L'approche workflow-as-code est un gain significatif par rapport aux BPM classiques : le code est lisible, testable, et versionnable comme le reste du projet. Je vous invite à tester !
