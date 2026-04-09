@@ -124,11 +124,21 @@ const en: Translations = {
     previewHeading: 'Latest articles',
     seeAll: 'See all →',
     seeAllMobile: 'See all articles →',
-    listHeading: 'All articles',
+    listHeading: 'Blog',
     listDescription:
       'Experience reports, experiments and perspectives on cloud, architecture and tech leadership.',
     noArticles: 'No articles published yet.',
     dateLocale: 'en-US',
+    pagination: {
+      prev: 'Previous',
+      next: 'Next',
+      page: (current: number, total: number) => `Page ${current} of ${total}`,
+      ariaLabel: 'Pagination',
+      ariaPrev: 'Previous page',
+      ariaNext: 'Next page',
+      ariaCurrent: (n: number) => `Page ${n}, current page`,
+      ariaPage: (n: number) => `Page ${n}`,
+    },
   },
 
   blogPost: {

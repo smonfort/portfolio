@@ -1,0 +1,25 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BlogListing from '@components/blog/BlogListing.astro';
+import { useTranslations } from '@i18n/index';
+import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions } from 'astro';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = (await getCollection('blogFr', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  );
+  return paginate(posts, { pageSize: 6 });
+}
+
+const t = useTranslations('fr');
+const { page } = Astro.props;
+---
+
+<Layout
+  title={t.pages.blog.title}
+  description={t.pages.blog.description}
+  image="/images/og-default.png"
+>
+  <BlogListing page={page} />
+</Layout>

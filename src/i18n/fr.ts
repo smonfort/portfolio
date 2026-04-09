@@ -124,11 +124,21 @@ const fr = {
     previewHeading: 'Derniers articles',
     seeAll: 'Voir tout →',
     seeAllMobile: 'Voir tous les articles →',
-    listHeading: 'Tous les articles',
+    listHeading: 'Blog',
     listDescription:
       "Retours d'expérience, expérimentations et points de vue sur le cloud, l'architecture et le leadership tech.",
     noArticles: "Aucun article publié pour l'instant.",
     dateLocale: 'fr-FR',
+    pagination: {
+      prev: 'Précédent',
+      next: 'Suivant',
+      page: (current: number, total: number) => `Page ${current} sur ${total}`,
+      ariaLabel: 'Pagination',
+      ariaPrev: 'Page précédente',
+      ariaNext: 'Page suivante',
+      ariaCurrent: (n: number) => `Page ${n}, page courante`,
+      ariaPage: (n: number) => `Page ${n}`,
+    },
   },
 
   blogPost: {

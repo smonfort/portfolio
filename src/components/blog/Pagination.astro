@@ -1,0 +1,129 @@
+---
+import type { Lang } from '@i18n/index';
+import { useTranslations } from '@i18n/index';
+
+interface Props {
+  currentPage: number;
+  lastPage: number;
+  prevUrl: string | undefined;
+  nextUrl: string | undefined;
+  baseUrl: string;
+  lang?: Lang;
+}
+
+const { currentPage, lastPage, prevUrl, nextUrl, baseUrl, lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
+const p = t.blog.pagination;
+
+const pageUrl = (n: number) => (n === 1 ? baseUrl : `${baseUrl}${n}/`);
+const pages = Array.from({ length: lastPage }, (_, i) => i + 1);
+---
+
+<nav aria-label={p.ariaLabel} class="mt-12 flex items-center justify-center gap-2">
+  <!-- Prev -->
+  {
+    prevUrl ? (
+      <a
+        href={prevUrl}
+        aria-label={p.ariaPrev}
+        class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-gray-400 transition-colors hover:border-indigo-500/40 hover:text-indigo-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="h-4 w-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+    ) : (
+      <span
+        aria-disabled="true"
+        class="flex h-9 w-9 cursor-not-allowed items-center justify-center rounded-lg border border-white/5 text-gray-600"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="h-4 w-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </span>
+    )
+  }
+
+  <!-- Page numbers -->
+  {
+    pages.map((n) =>
+      n === currentPage ? (
+        <span
+          aria-label={p.ariaCurrent(n)}
+          aria-current="page"
+          class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500/20 text-sm font-semibold text-indigo-300"
+        >
+          {n}
+        </span>
+      ) : (
+        <a
+          href={pageUrl(n)}
+          aria-label={p.ariaPage(n)}
+          class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-sm text-gray-400 transition-colors hover:border-indigo-500/40 hover:text-indigo-300"
+        >
+          {n}
+        </a>
+      )
+    )
+  }
+
+  <!-- Next -->
+  {
+    nextUrl ? (
+      <a
+        href={nextUrl}
+        aria-label={p.ariaNext}
+        class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-gray-400 transition-colors hover:border-indigo-500/40 hover:text-indigo-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="h-4 w-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+    ) : (
+      <span
+        aria-disabled="true"
+        class="flex h-9 w-9 cursor-not-allowed items-center justify-center rounded-lg border border-white/5 text-gray-600"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="h-4 w-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </span>
+    )
+  }
+</nav>
