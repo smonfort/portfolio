@@ -1,6 +1,5 @@
 ---
 import PostCard from '@components/blog/PostCard.astro';
-import PostListItem from '@components/blog/PostListItem.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations, getLangBase } from '@i18n/index';
 import type { Lang } from '@i18n/index';
@@ -17,12 +16,9 @@ const collection = lang === 'en' ? 'blogEn' : 'blogFr';
 const posts = (await getCollection(collection, ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-
-const featuredPosts = posts.slice(0, 2);
-const remainingPosts = posts.slice(2);
 ---
 
-<div class="mx-auto max-w-3xl px-6 py-20">
+<div class="mx-auto max-w-5xl px-6 py-20">
   <div class="mb-16">
     <p class="mb-4 text-xs font-semibold tracking-widest text-indigo-400 uppercase">
       {t.blog.label}
@@ -37,35 +33,19 @@ const remainingPosts = posts.slice(2);
         <p>{t.blog.noArticles}</p>
       </div>
     ) : (
-      <>
-        <div class="mb-6 grid gap-6 sm:grid-cols-2">
-          {featuredPosts.map((post) => (
-            <PostCard
-              href={`${base}/blog/${post.data.slug ?? post.id}`}
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.date}
-              tags={post.data.tags}
-              image={post.data.image}
-              dateLocale={t.blog.dateLocale}
-            />
-          ))}
-        </div>
-
-        <div class="flex flex-col gap-3">
-          {remainingPosts.map((post) => (
-            <PostListItem
-              href={`${base}/blog/${post.data.slug ?? post.id}`}
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.date}
-              tags={post.data.tags}
-              image={post.data.image}
-              dateLocale={t.blog.dateLocale}
-            />
-          ))}
-        </div>
-      </>
+      <div class="grid gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <PostCard
+            href={`${base}/blog/${post.data.slug ?? post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            tags={post.data.tags}
+            image={post.data.image}
+            dateLocale={t.blog.dateLocale}
+          />
+        ))}
+      </div>
     )
   }
 </div>
