@@ -34,7 +34,7 @@ const posts = page.data;
       <div class="grid gap-6 md:grid-cols-3">
         {posts.map((post) => (
           <PostCard
-            href={`${base}/blog/${post.data.slug ?? post.id}`}
+            href={`${base}/blog/${post.data.slug ?? post.id}/`}
             title={post.data.title}
             description={post.data.description}
             date={post.data.date}
