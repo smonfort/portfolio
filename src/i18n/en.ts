@@ -24,7 +24,7 @@ const en: Translations = {
 
   hero: {
     available: 'Open to new opportunities',
-    subtitle: 'CTO - Senior Cloud Architect',
+    subtitle: 'CTO & Senior Cloud Architect',
     description:
       '18 years of experience in complex systems architecture and technical team leadership. I help you structure your IT, accelerate your cloud migration and grow your teams.',
     cta: 'My experience',
@@ -124,7 +124,7 @@ const en: Translations = {
     previewHeading: 'Latest articles',
     seeAll: 'See all →',
     seeAllMobile: 'See all articles →',
-    listHeading: 'Blog',
+    listHeading: 'Blog: Cloud, Architecture & Leadership',
     listDescription:
       'Experience reports, experiments and perspectives on cloud, architecture and tech leadership.',
     noArticles: 'No articles published yet.',

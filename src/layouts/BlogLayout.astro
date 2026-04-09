@@ -73,6 +73,7 @@ const breadcrumbSchema = JSON.stringify({
 const blogPostingSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
   headline: title,
   description: description,
   datePublished: date.toISOString(),

@@ -22,7 +22,7 @@ const fr = {
 
   hero: {
     available: 'Ouvert aux nouvelles opportunités',
-    subtitle: 'CTO - Architecte cloud sénior',
+    subtitle: 'CTO & Architecte Cloud Senior',
     description:
       "18 ans d'expérience en architecture de systèmes complexes et leadership d'équipes techniques. Je vous accompagne pour structurer votre SI, accélérer votre migration cloud et faire grandir vos équipes.",
     cta: 'Mon parcours',
@@ -124,7 +124,7 @@ const fr = {
     previewHeading: 'Derniers articles',
     seeAll: 'Voir tout →',
     seeAllMobile: 'Voir tous les articles →',
-    listHeading: 'Blog',
+    listHeading: 'Blog : Cloud, Architecture & Leadership',
     listDescription:
       "Retours d'expérience, expérimentations et points de vue sur le cloud, l'architecture et le leadership tech.",
     noArticles: "Aucun article publié pour l'instant.",

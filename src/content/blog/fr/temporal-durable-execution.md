@@ -1,6 +1,6 @@
 ---
 title: Introduction à la durable execution avec Temporal
-description: La durable execution promet une exécution fiable tolérante aux pannes. Temporal en est l'implémentation la plus aboutie, illustration avec un prototype inspiré d'un cas d'usage réel.
+description: La durable execution promet une exécution fiable et tolérante aux pannes. Temporal en est l'implémentation de référence, illustrée avec un prototype réel.
 date: 2026-04-08
 updatedDate: 2026-04-09
 tags:

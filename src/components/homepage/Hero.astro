@@ -26,12 +26,15 @@ const t = useTranslations(lang);
       </span>
       <span>{t.hero.available} <span aria-hidden="true">👋</span></span>
     </div>
-    <h1 class="mb-4 text-5xl leading-tight font-bold text-white sm:text-6xl md:text-7xl">
+    <p
+      class="mb-4 text-5xl leading-tight font-bold text-white sm:text-6xl md:text-7xl"
+      aria-hidden="true"
+    >
       <span id="typewriter">Stéphane Monfort</span>
-    </h1>
-    <p class="mb-6 text-2xl font-semibold sm:text-3xl">
-      <span class="text-gradient">{t.hero.subtitle}</span>
     </p>
+    <h1 class="mb-6 text-2xl font-semibold sm:text-3xl">
+      <span class="text-gradient">{t.hero.subtitle}</span>
+    </h1>
     <p class="mx-auto mb-4 max-w-2xl text-lg leading-relaxed text-gray-400 sm:text-xl">
       {t.hero.description}
     </p>

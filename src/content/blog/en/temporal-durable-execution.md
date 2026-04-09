@@ -1,6 +1,6 @@
 ---
 title: Introduction to Durable Execution with Temporal
-description: Durable execution promises reliable, fault-tolerant program execution. Temporal is its most accomplished implementation — illustrated here with a prototype inspired by a real-world use case.
+description: Durable execution promises reliable, fault-tolerant execution. Temporal is the reference implementation, illustrated with a real-world prototype.
 date: 2026-04-08
 updatedDate: 2026-04-09
 tags:

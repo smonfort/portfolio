@@ -1,8 +1,8 @@
 ---
 title: 'Le "missing semester" du MIT : les outils que l''université ne t''apprend pas'
-description: 'Le MIT propose gratuitement un cours sur les outils du quotidien du développeur. Un condensé de bonnes pratiques trop souvent ignorées dans les cursus traditionnels.'
+description: 'Le MIT propose gratuitement un cours sur les outils du quotidien du développeur : un condensé de bonnes pratiques ignorées dans les cursus traditionnels.'
 date: 2026-03-19
-updatedDate: 2026-04-05
+updatedDate: 2026-04-09
 slug: 'missing-semester-computer-science-mit'
 tags: ['Outils', 'Terminal', 'Git', 'Productivité', 'Formation']
 image: '../img/missing-semester-mit.png'
