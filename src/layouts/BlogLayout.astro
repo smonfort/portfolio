@@ -349,6 +349,19 @@ const blogPostingSchema = JSON.stringify({
       </article>
 
       <aside class="sticky top-40 hidden w-72 shrink-0 self-start xl:block">
+        {
+          image && (
+            <div class="mb-6 overflow-hidden rounded-xl border border-white/10">
+              <img
+                src={image}
+                alt={title}
+                class="h-auto w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )
+        }
         <TableOfContents headings={headings} />
       </aside>
     </div>
