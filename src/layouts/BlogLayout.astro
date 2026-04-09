@@ -53,7 +53,7 @@ const breadcrumbSchema = JSON.stringify({
       '@type': 'ListItem',
       position: 1,
       name: t.blogPost.breadcrumb.home,
-      item: siteUrl.href,
+      item: new URL(base + '/', siteUrl).toString(),
     },
     {
       '@type': 'ListItem',
