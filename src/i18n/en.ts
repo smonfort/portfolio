@@ -42,7 +42,7 @@ const en: Translations = {
       { value: '8+', emoji: '☁️', label: 'years of AWS experience' },
       { value: '3', emoji: '🏆', label: 'certifications' },
       { value: '50+', emoji: '🚀', label: 'projects delivered' },
-      { value: '100%', emoji: '🔥', label: 'passionate' },
+      { value: '100%', emoji: '🎯', label: 'impact-driven' },
     ],
   },
 

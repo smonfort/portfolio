@@ -40,7 +40,7 @@ const fr = {
       { value: '8+', emoji: '☁️', label: "années d'expérience sur AWS" },
       { value: '3', emoji: '🏆', label: 'certifications' },
       { value: '50+', emoji: '🚀', label: 'projets livrés' },
-      { value: '100%', emoji: '🔥', label: 'passionné' },
+      { value: '100%', emoji: '🎯', label: 'orienté impact' },
     ],
   },
 
