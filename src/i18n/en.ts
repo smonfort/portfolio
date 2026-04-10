@@ -113,6 +113,8 @@ const en: Translations = {
     label: 'Contact',
     heading: "Let's work together",
     description: "Looking for a CTO or a senior cloud architect? Let's talk.",
+    headingClosed: 'Get in touch',
+    descriptionClosed: "Feel free to reach out — I'm always happy to connect.",
     emailCta: 'Contact me by email',
     emailSubject: 'Getting%20in%20touch',
     linkedinCta: 'Contact me on LinkedIn',

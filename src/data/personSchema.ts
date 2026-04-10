@@ -15,7 +15,8 @@ export function getPersonSchema(siteUrl: URL, lang: Lang): string {
       '@type': 'Person',
       '@id': new URL('#person', siteUrl).toString(),
       name: 'Stéphane Monfort',
-      image: 'https://avatars.githubusercontent.com/u/9880399?v=4',
+      image:
+        'https://avatars.githubusercontent.com/u/9880399?s=400&u=4e85f13a5855058db4239ec0d8869bd947dd8c6d&v=4',
       jobTitle: jobTitles[lang],
       url: siteUrl.href,
       email: 'stephane@monfort.pro',

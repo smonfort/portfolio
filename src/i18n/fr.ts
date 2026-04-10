@@ -113,6 +113,8 @@ const fr = {
     label: 'Contact',
     heading: 'Travaillons ensemble',
     description: 'Vous cherchez un CTO ou un architecte cloud senior ? Discutons-en.',
+    headingClosed: 'Prenons contact',
+    descriptionClosed: "N'hésitez pas à me contacter, je serai heureux d'échanger avec vous.",
     emailCta: 'Me contacter par mail',
     emailSubject: 'Prise%20de%20contact',
     linkedinCta: 'Me contacter sur LinkedIn',

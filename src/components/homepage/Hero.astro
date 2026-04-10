@@ -3,6 +3,7 @@ import { useTranslations } from '@i18n/index';
 import type { Lang } from '@i18n/index';
 import { Image } from 'astro:assets';
 import photo from '/public/images/photo.png';
+import { siteConfig } from '@data/siteConfig';
 
 interface Props {
   lang?: Lang;
@@ -14,21 +15,23 @@ const t = useTranslations(lang);
 
 <section class="flex min-h-screen items-center justify-center px-6 pt-16">
   <div class="flex w-full max-w-5xl flex-col items-center gap-8">
-    <!-- Badge -->
-    <div
-      class="mt-12 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-400 sm:mt-0"
-      aria-label={t.hero.available}
-    >
-      <span class="relative flex h-2 w-2" aria-hidden="true">
-        <span
-          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
-        ></span>
-        <span
-          class="relative inline-flex h-2 w-2 rounded-full bg-green-400 transition-colors duration-1000"
-        ></span>
-      </span>
-      <span>{t.hero.available} <span aria-hidden="true">👋</span></span>
-    </div>
+    <!-- Badge "Open to work" -->
+    {
+      siteConfig.openToWork && (
+        <div
+          class="mt-12 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-400 sm:mt-0"
+          aria-label={t.hero.available}
+        >
+          <span class="relative flex h-2 w-2" aria-hidden="true">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400 transition-colors duration-1000" />
+          </span>
+          <span>
+            {t.hero.available} <span aria-hidden="true">👋</span>
+          </span>
+        </div>
+      )
+    }
 
     <!-- Two-column row: photo + text -->
     <div class="flex w-full flex-col items-center gap-10 md:flex-row md:gap-16">
