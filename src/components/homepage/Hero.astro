@@ -1,6 +1,8 @@
 ---
 import { useTranslations } from '@i18n/index';
 import type { Lang } from '@i18n/index';
+import { Image } from 'astro:assets';
+import photo from '/public/images/photo.png';
 
 interface Props {
   lang?: Lang;
@@ -11,9 +13,10 @@ const t = useTranslations(lang);
 ---
 
 <section class="flex min-h-screen items-center justify-center px-6 pt-16">
-  <div class="max-w-3xl text-center">
+  <div class="flex w-full max-w-5xl flex-col items-center gap-8">
+    <!-- Badge -->
     <div
-      class="mt-12 mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-400 sm:mt-0"
+      class="mt-12 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-400 sm:mt-0"
       aria-label={t.hero.available}
     >
       <span class="relative flex h-2 w-2" aria-hidden="true">
@@ -26,19 +29,43 @@ const t = useTranslations(lang);
       </span>
       <span>{t.hero.available} <span aria-hidden="true">👋</span></span>
     </div>
-    <p
-      class="mb-4 text-5xl leading-tight font-bold text-white sm:text-6xl md:text-7xl"
-      aria-hidden="true"
-    >
-      <span id="typewriter">Stéphane Monfort</span>
-    </p>
-    <h1 class="mb-6 text-2xl font-semibold sm:text-3xl">
-      <span class="text-gradient">{t.hero.subtitle}</span>
-    </h1>
-    <p class="mx-auto mb-4 max-w-2xl text-lg leading-relaxed text-gray-400 sm:text-xl">
-      {t.hero.description}
-    </p>
-    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+    <!-- Two-column row: photo + text -->
+    <div class="flex w-full flex-col items-center gap-10 md:flex-row md:gap-16">
+      <!-- Photo -->
+      <div class="shrink-0">
+        <div class="relative">
+          <div class="absolute inset-0 rounded-full bg-indigo-500/20 blur-2xl"></div>
+          <Image
+            src={photo}
+            alt="Stéphane Monfort"
+            width={300}
+            height={300}
+            class="relative h-56 w-56 rounded-full object-cover ring-2 ring-indigo-500/30 sm:h-72 sm:w-72"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <!-- Text content -->
+      <div class="flex-1 text-center md:text-left">
+        <p
+          class="mb-4 text-5xl leading-tight font-bold text-white sm:text-6xl md:text-7xl"
+          aria-hidden="true"
+        >
+          <span id="typewriter">Stéphane Monfort</span>
+        </p>
+        <h1 class="mb-6 text-2xl font-semibold sm:text-3xl">
+          <span class="text-gradient">{t.hero.subtitle}</span>
+        </h1>
+        <p class="max-w-xl text-lg leading-relaxed text-gray-400 sm:text-xl">
+          {t.hero.description}
+        </p>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-col items-center gap-4 sm:flex-row">
       <a
         href="#experience"
         class="w-full rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500 sm:w-auto"
