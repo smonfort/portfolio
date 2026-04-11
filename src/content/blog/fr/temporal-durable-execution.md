@@ -2,7 +2,7 @@
 title: Introduction à la durable execution avec Temporal
 description: La durable execution promet une exécution fiable et tolérante aux pannes. Temporal en est l'implémentation de référence, illustrée avec un prototype réel.
 date: 2026-04-08
-updatedDate: 2026-04-09
+updatedDate: 2026-04-11
 tags:
   - Workflow
   - Architecture
@@ -129,7 +129,7 @@ La console d'administration Temporal offre une visibilité complète sur l'exéc
 
 ## Illustration
 
-Testons ensemble ce prototype en commençant par cloner le repository GitHub.
+Testons ensemble ce prototype en commençant par cloner le [repository GitHub](https://github.com/smonfort/temporal-funding-demo).
 
 ```sh
 git clone https://github.com/smonfort/temporal-funding-demo.git
@@ -159,7 +159,7 @@ curl -s -X POST http://localhost:3000/funding-requests \
     "amount": 250,
     "purpose": "Purchase of computer equipment",
     "documents": ["identity", "income_proof", "bank_statement"]
-  }' | jq .
+  }'
 ```
 
 L'API nous retourne une réponse OK avec l'identifiant du workflow créé.
@@ -194,7 +194,7 @@ curl -s -X POST http://localhost:3000/funding-requests \
     "amount": 300,
     "purpose": "Vacations",
     "documents": ["income_proof", "bank_statement"]
-  }' | jq .
+  }'
 ```
 
 La console affiche un nouveau workflow au statut `Running`.
@@ -212,7 +212,7 @@ curl -s -X POST "http://localhost:3000/funding-requests/1f3b60a6-d717-43d5-9815-
   -H "Content-Type: application/json" \
   -d '{
     "documents": ["identity", "income_proof", "bank_statement"]
-  }' | jq .
+  }'
 ```
 
 L'API envoie alors un signal au workflow qui reprend son exécution : les documents sont bien à jour, l'appel fraude est ok, ce qui permet de clôturer automatiquement la demande.
