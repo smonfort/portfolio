@@ -2,7 +2,7 @@
 title: Mon blueprint micro-SaaS 2026
 description: Un guide technique et pragmatique des choix technologiques pour construire et déployer un micro-SaaS en 2026.
 date: 2026-05-27
-updatedDate: 2026-05-27
+updatedDate: 2026-05-28
 tags:
   - SaaS
   - Architecture
@@ -14,30 +14,30 @@ lang: fr
 image: ../img/blueprint.png
 ---
 
-Lancer un micro-SaaS n'a jamais été aussi accessible qu'en 2026. Aujourd'hui, on peut partir de zéro le matin et avoir un produit facturant des clients le soir. Le problème n'est plus de savoir _si_ on peut le faire, mais par où bien commencer pour partir sur des fondations solides : framework, base de données, authentification, paiements, hébergement, IA...
+Lancer un micro-SaaS n'a jamais été aussi accessible qu'en 2026. Aujourd'hui, on peut partir de zéro le matin et avoir un produit facturant des clients le soir. Le problème n'est plus de savoir _si_ on peut le faire, mais par où bien commencer pour construire sur des fondations solides : framework, base de données, authentification, paiements, hébergement, IA...
 
-À l'heure du _vibe coding_, je suis convaincu que les fondamentaux d'architecture logicielle restent plus que jamais valables. Une bonne structure devient même un critère clé pour garantir la pérennité et l'évolutivité d'un produit. Une conception bien pensée, c'est ce qui permet aux agents de produire des résultats cohérents, maitrisés et pérennes.
+À l'heure du _vibe coding_, je suis convaincu que les fondamentaux d'architecture logicielle restent plus que jamais d'actualité. Une bonne structure devient même un critère clé pour garantir la pérennité et l'évolutivité d'un produit. Une conception bien pensée et cohérente, c'est ce qui permet aux agents de produire des résultats maitrisés et pérennes.
 
-Cet article vous présente mon blueprint pour la réalisation d'un micro-SaaS : ma stack de prédilection, pourquoi j'ai fait ces choix, et où j'ai changé d'avis. Ce n'est pas une vérité absolue, c'est un point de vue que je sais hautement subjectif, mais c'est surtout un retour terrain éprouvé sur un micro-SaaS en production.
+Cet article vous présente mon blueprint pour la réalisation d'un micro-SaaS : ma stack de prédilection, pourquoi j'ai fait ces choix, et où j'ai parfois changé d'avis. Ce n'est pas une vérité absolue, c'est un point de vue que je sais hautement subjectif, c'est surtout un retour terrain éprouvé sur un micro-SaaS en production.
 
 ## Framework : Nuxt
 
-J'ai rapidement choisi **[Nuxt 4](https://nuxt.com)**, le meta-framework [Vue](https://vuejs.org). Je l'avais déjà utilisé sur des projets passés avec de très bons retours, ce choix était naturel. J'y vois les intérêts suivants :
+Comme colonne vertébrale, j'ai rapidement choisi **[Nuxt 4](https://nuxt.com)**, le meta-framework [Vue](https://vuejs.org). Je l'avais déjà utilisé sur des projets passés avec de très bons retours, ce choix était naturel. J'y vois les intérêts suivants :
 
 - **Full-stack unifié** : frontend et backend dans le même projet, un typage partagé nativement entre front et back pour une DX optimisée.
-- **Rendering hybride** : vous décidez page par page si elle doit être rendue statiquement (utile pour les landing pages, ou articles de blog) ou dynamiquement. Nuxt pré-génère les routes statiques au build, ce qui renforce les performances et donc le référencement naturel.
-- **Déployable partout** : Nuxt s'appuie sur [Nitro](https://nitro.unjs.io) qui propose des presets pour Node, des environnements serverless ([Lambda](https://aws.amazon.com/lambda), [Vercel](https://vercel.com), [Netlify](https://netlify.com), [Cloudflare Workers](https://workers.cloudflare.com)), ou même [Docker](https://docker.com). Ceci offre une grande souplesse pour les déploiements.
+- **Rendering hybride** : vous décidez page par page si elle doit être rendue statiquement (utile pour les landing pages, ou articles de blog) ou dynamiquement. Nuxt pré-génère les routes statiques au build, ce qui améliore les performances et donc le référencement naturel.
+- **Déployable partout** : Nuxt s'appuie sur [Nitro](https://nitro.unjs.io) qui propose des presets pour Node, des environnements serverless ([Lambda](https://aws.amazon.com/lambda), [Vercel](https://vercel.com), [Netlify](https://netlify.com), [Cloudflare Workers](https://workers.cloudflare.com)), ou même [Docker](https://docker.com). Ceci offre une grande souplesse pour les déploiements qui peut permettre de pivoter rapidement en cas de besoin.
 - **Modules officiels** : une collection assez riche de modules supportés officiellement, dont [Nuxt Content](https://content.nuxt.com) qui permet une édition en markdown des pages de contenu éditorial.
 
-Pourquoi pas [Next.js](https://nextjs.org) ? Très bonne question! Next.js est excellent et a pris une part de marché stupéfiante, mais son relatif lock-in avec Vercel me semble problématique. Dès que vous voulez sortir de leur plateforme, tout peut devenir plus complexe. Avec Nuxt et son moteur Nitro, je préserve un contrôle plus fort et un plus grand sentiment d'indépendance. Je dois cependant reconnaitre que les agents IA ont une meilleure connaissance des codebases Next/React que Nuxt/Vue, mais rien de rédhibitoire.
+Pourquoi pas [Next.js](https://nextjs.org) ? Très bonne question! Next.js est excellent et a pris une part de marché stupéfiante, mais son relatif lock-in avec Vercel me semble problématique. Dès que vous voulez sortir de leur plateforme, tout peut devenir plus complexe. Avec Nuxt et son moteur Nitro, je préserve un contrôle plus fort et un plus grand sentiment d'indépendance. La simplicité de Vue me séduit aussi fortement. Je dois cependant reconnaitre que les agents IA ont une meilleure connaissance des codebases Next/React que Nuxt/Vue, mais rien de rédhibitoire.
 
 ## Architecture : monolithe modulaire
 
 La tentation des micro-services est forte, même si la hype n'est plus aussi forte qu'il y a quelques années. Pour un micro-SaaS qui débute, c'est presque toujours une erreur : la complexité distribuée (réseau, cohérence, observabilité) s'ajoute à la complexité métier, et vous passez rapidement plus de temps à connecter des services qu'à livrer des fonctionnalités essentielles.
 
-J'ai donc opté pour un **monolithe modulaire** : une seule codebase dans un monorepo, un seul déploiement, mais une organisation interne stricte qui garde la possibilité d'extraire des services en tant qu'entités autonomes, si jamais le besoin était avéré.
+J'ai donc opté pour un **monolithe modulaire** : une seule codebase dans un monorepo, un seul déploiement, mais une organisation interne stricte qui garde la possibilité d'extraire des services en tant que projets dédiés, si jamais le besoin était avéré.
 
-En pratique, chaque domaine métier du backend Nuxt est un module autonome :
+En pratique, chaque domaine métier du backend Nuxt est un module autonome, par exemple :
 
 ```
 server/modules/
@@ -76,7 +76,7 @@ server/modules/profile/
 Le principe fondamental de l'architecture hexagonale est simple mais profond : **le `core` ne connait rien de l'infrastructure**. Les entités, ports et use cases n'importent jamais d'adapter, de framework, ou de librairie externe. C'est le rôle des adapters de faire le pont avec le monde extérieur.
 
 - **Les adapters primaires** (dans `adapters/primary/`) sont les points d'entrée qui _conduisent_ l'application : contrôleurs REST, listeners [SQS](https://aws.amazon.com/sqs), commandes CLI... Ils reçoivent des stimuli externes, les traduisent en appels de use cases, et formatent la réponse. Si vous changez de protocole de transport (REST → GraphQL → WebSocket par exemple), seul ce répertoire change, le core reste inchangé. Dans notre cas, les routes d'API Nuxt importent un adapter primaire REST d'un module.
-- **Les adapters secondaires** (dans `adapters/secondary/`) sont les points de sortie _conduits par_ l'application : repositories [Drizzle](https://orm.drizzle.team) pour l'accès à la base de données, clients [Stripe](https://stripe.com), stockage [S3](https://aws.amazon.com/s3), envoi d'emails... Ils implémentent les ports définis dans le core et sont injectés dans la factory du module. Si vous passez de Stripe à PayPal ou de Drizzle à [Prisma](https://prisma.io), seul ce répertoire change. Le coeur métier, une nouvelle fois, reste inchangé.
+- **Les adapters secondaires** (dans `adapters/secondary/`) sont les points de sortie _conduits par_ l'application : repositories [Drizzle](https://orm.drizzle.team) pour l'accès à la base de données, clients [Stripe](https://stripe.com), stockage de type [S3](https://aws.amazon.com/s3), envoi d'emails... Ils implémentent les ports définis dans le core et sont injectés dans la factory du module. Si vous passez de Stripe à PayPal ou de Drizzle à [Prisma](https://prisma.io), seul ce répertoire change. Le coeur métier, une nouvelle fois, reste inchangé.
 
 Les **ports** décrivent le contrat attendu par le domaine sous forme de simple interface.
 
@@ -186,6 +186,20 @@ Ma stack de tests est relativement classique : [vitest](https://vitest.dev) pour
 
 En complément, j'ai remarqué à plusieurs reprises que les guidelines d'architecture pourtant explicitées dans le fichier CLAUDE.md n'étaient parfois pas totalement respectées. J'ai donc ajouté des tests d'architecture avec [ts-arch](https://github.com/ts-arch/ts-arch) qui permettent de renforcer le harnais agentique avec une vérification déterministe de la bonne application des règles d'architecture (dépendances entre modules par exemple). Depuis, mon agent de code produit systématiquement du code conforme à mes recommandations, en se corrigeant de lui-même s'il fait un écart de conduite.
 
+```ts title="tests/arch/hexagonal.test.ts"
+describe('Hexagonal layers', () => {
+  test('core files must not depend on adapters', async () => {
+    const rule = filesOfProject(TSCONFIG)
+      .inFolder('core')
+      .shouldNot()
+      .dependOnFiles()
+      .inFolder('adapters');
+    const violations = await rule.check();
+    expect(violations, fmt(violations as FileDep[])).toHaveLength(0);
+  });
+});
+```
+
 Je complète le workflow avec quelques solutions classiques :
 
 - **[ESLint](https://eslint.org)** + **[Prettier](https://prettier.io)** : formatage automatique
@@ -195,41 +209,41 @@ Je complète le workflow avec quelques solutions classiques :
 
 ## Hébergement : AWS
 
-Par facilité, j'ai commencé en utilisant Vercel comme solution d'hébergement. Vercel reconnait nativement un projet Nuxt sur un repository Github, il le déploie en un clic, imbattable. Ayant une très bonne maitrise d'AWS, j'ai eu malgré tout quelques difficultés à accepter les limitations apportées par Vercel sur ces différents plans.
+Par facilité, j'ai commencé en utilisant Vercel comme solution d'hébergement. Vercel reconnait automatiquement un projet Nuxt sur un repository Github, il le déploie en un clic avec une configuration adaptée, imbattable. Ayant une très bonne maitrise d'AWS, j'ai eu malgré tout quelques difficultés à accepter les limitations apportées par Vercel sur ces différents plans.
 
 Je suis passé rapidement sur un déploiement autogéré sur **AWS** piloté par **[CDK](https://aws.amazon.com/cdk)**, avec une architecture relativement simple :
 
-- **Lambda (Node 24, ARM64)** : pour exécuter le bundle Nitro avec une facturation à l'usage et un free tiers généreux
-- **[CloudFront](https://aws.amazon.com/cloudfront)** : CDN + rewriting d'URL à la volée (via CloudFront Functions)
+- **Lambda** : pour exécuter le bundle Nitro avec une facturation à l'usage et un free tiers généreux
+- **[CloudFront](https://aws.amazon.com/cloudfront)** : CDN + rewriting d'URL à la volée via des CloudFront Functions
 - **S3** : pour le stockage des assets statiques et des backups
-- **SQS** : queue de jobs asynchrones, avec DLQ pour les échecs
-- **[EventBridge](https://aws.amazon.com/eventbridge)** : crons programmés pour les tâches de fond
+- **SQS** : queue de jobs asynchrones
+- **[EventBridge](https://aws.amazon.com/eventbridge)** : crons programmés pour les tâches de fond qui déclenchent des lambdas
 
 ## Misc
 
-Quelques solutions supplémentaires complètent la stack :
+Pour avoir un système totalement fonctionnel, j'ai également utilisé les solutions suivantes :
 
-- **[Dotenvx](https://dotenvx.com)** pour la gestion des secrets : les fichiers d'environnement sont chiffrés ce qui permet de les commiter sur Git. Au déploiement, ces fichiers sont synchronisés vers AWS Secrets Manager pour une lecture au runtime par la fonction Lambda.
+- **[Dotenvx](https://dotenvx.com)** pour la gestion des secrets : les fichiers d'environnement sont chiffrés ce qui permet de les commiter sur Git sans danger. Au déploiement, ces fichiers sont synchronisés vers AWS Secrets Manager pour une lecture au runtime par la fonction Lambda.
 
 - **[Klaro](https://klaro.org)** pour la gestion du consentement et des cookies. Léger, configurable, il s'intègre en quelques lignes et gère le blocage des scripts tiers avant consentement.
 
 - **[Honeybadger](https://honeybadger.io)** pour le suivi d'erreurs, côté client comme côté serveur. Je reçois une notification dès qu'une exception non gérée se produit en production. Simple, efficace, sans les prix délirants des alternatives.
 
-- **[ConfigCat](https://configcat.com)** pour les feature flags. J'y gère l'activation progressive des fonctionnalités, les override de prix Stripe sans déploiement, la configuration à chaud des modèles d'IA utilisés, et les bêta-testeurs. L'intégration [OpenFeature](https://openfeature.dev) permet de changer de fournisseur sans toucher au code.
+- **[ConfigCat](https://configcat.com)** pour les feature flags. J'y gère l'activation progressive des fonctionnalités, la configuration à chaud des modèles d'IA utilisés, et les bêta-testeurs. L'intégration native avec [OpenFeature](https://openfeature.dev) permet de changer de fournisseur sans toucher au code.
 
 ## Conclusion
 
-Ce blueprint n'est pas une vérité absolue et reste une vision très subjective qui est le fruit de mon parcours personnel. Je comprends parfaitement qu'il ne conviendra pas à tous, ce n'est en rien l'objectif!
+Ce blueprint n'est pas une vérité absolue et reste une vision très subjective qui est le fruit de mon parcours personnel sur ces vingt dernières années. Je comprends parfaitement qu'il ne conviendra pas à tous, ce n'est en rien l'objectif!
 
-**TL;DR : la checklist stack**
+**TL;DR : mon blueprint micro-SaaS 2026**
 
-- Framework : Nuxt 4 (full-stack modular monolith, Nitro server)
+- Framework : Nuxt 4, full-stack modular monolith, Nitro server
 - Architecture : modulaire, ports & adapters, Result type, event bus
 - BDD : PostgreSQL + Drizzle ORM
-- Auth : Better Auth (OAuth social)
-- Paiements : Stripe (Checkout + Portal, feature flags)
+- Auth : Better Auth avec OAuth social
+- Paiements : Stripe, Checkout + Portal, feature flags
 - UI : shadcn/vue + Tailwind v4
-- IA : Vercel AI SDK (agents spécialisés, prompts versionnés)
-- Async : Event bus + job queue (SQS en prod)
+- IA : Vercel AI SDK, agents spécialisés, prompts versionnés
+- Async : Event bus + job queue avec SQS
 - Tests : Vitest + Playwright + tsarch
-- Hébergement : AWS CDK, Lambda, CloudFront, SQS
+- Hébergement : AWS CDK, Lambda, CloudFront, SQS, Secrets Manager

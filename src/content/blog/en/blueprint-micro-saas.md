@@ -2,7 +2,7 @@
 title: My micro-SaaS blueprint for 2026
 description: A technical and pragmatic guide to the technology choices for building and deploying a micro-SaaS in 2026.
 date: 2026-05-27
-updatedDate: 2026-05-27
+updatedDate: 2026-05-28
 tags:
   - SaaS
   - Architecture
@@ -14,30 +14,30 @@ lang: en-US
 image: ../img/blueprint.png
 ---
 
-Launching a micro-SaaS has never been more accessible than in 2026. Today, you can start from scratch in the morning and have a product billing customers by evening. The challenge is no longer whether you _can_ do it, but where to begin so you build on solid foundations: framework, database, authentication, payments, hosting, AI...
+Launching a micro-SaaS has never been more accessible than in 2026. Today, you can start from scratch in the morning and have a product billing customers by evening. The challenge is no longer whether you _can_ do it, but where to begin so you can build on solid foundations: framework, database, authentication, payments, hosting, AI...
 
-In the age of _vibe coding_, I'm convinced that software architecture fundamentals are more relevant than ever. A good structure has become a key factor in ensuring a product's longevity and scalability. A well-thought-out design is what allows agents to produce consistent, controlled, and lasting results.
+In the age of _vibe coding_, I'm convinced that software architecture fundamentals are more relevant than ever. A good structure has become a key factor in ensuring a product's longevity and scalability. A well-thought-out, coherent design is what allows agents to produce controlled and lasting results.
 
-This article presents my blueprint for building a micro-SaaS: my preferred stack, why I made these choices, and where I changed my mind. This isn't gospel — it's a highly subjective point of view, and above all, a battle-tested perspective from running a micro-SaaS in production.
+This article presents my blueprint for building a micro-SaaS: my preferred stack, why I made these choices, and where I sometimes changed my mind. This isn't gospel — it's a highly subjective point of view, above all a battle-tested perspective from running a micro-SaaS in production.
 
 ## Framework: Nuxt
 
-I quickly settled on **[Nuxt 4](https://nuxt.com)**, the [Vue](https://vuejs.org) meta-framework. I had already used it on past projects with great results, so the choice came naturally. Here's what I value about it:
+As the backbone of the project, I quickly settled on **[Nuxt 4](https://nuxt.com)**, the [Vue](https://vuejs.org) meta-framework. I had already used it on past projects with great results, so the choice came naturally. Here's what I value about it:
 
 - **Unified full-stack**: frontend and backend in a single project, with native shared typing between client and server for an optimized DX.
 - **Hybrid rendering**: you decide page by page whether it should be rendered statically (great for landing pages or blog posts) or dynamically. Nuxt pre-renders static routes at build time, boosting performance and therefore SEO.
-- **Deploy anywhere**: Nuxt is powered by [Nitro](https://nitro.unjs.io), which provides presets for Node, serverless environments ([Lambda](https://aws.amazon.com/lambda), [Vercel](https://vercel.com), [Netlify](https://netlify.com), [Cloudflare Workers](https://workers.cloudflare.com)), or even [Docker](https://docker.com). This gives you tremendous deployment flexibility.
+- **Deploy anywhere**: Nuxt is powered by [Nitro](https://nitro.unjs.io), which provides presets for Node, serverless environments ([Lambda](https://aws.amazon.com/lambda), [Vercel](https://vercel.com), [Netlify](https://netlify.com), [Cloudflare Workers](https://workers.cloudflare.com)), or even [Docker](https://docker.com). This gives you tremendous deployment flexibility — and lets you pivot quickly if needed.
 - **Official modules**: a rich collection of officially supported modules, including [Nuxt Content](https://content.nuxt.com) which enables markdown-based editing for editorial content pages.
 
-Why not [Next.js](https://nextjs.org)? Great question! Next.js is excellent and has captured a staggering market share, but its relative lock-in with Vercel feels problematic to me. As soon as you want to leave their platform, everything can get more complex. With Nuxt and its Nitro engine, I maintain stronger control and a greater sense of independence. I should admit that AI agents have a better knowledge of Next/React codebases than Nuxt/Vue — but nothing deal-breaking.
+Why not [Next.js](https://nextjs.org)? Great question! Next.js is excellent and has captured a staggering market share, but its relative lock-in with Vercel feels problematic to me. As soon as you want to leave their platform, everything can get more complex. With Nuxt and its Nitro engine, I maintain stronger control and a greater sense of independence. Vue's simplicity is also a strong draw for me. I should admit that AI agents have a better knowledge of Next/React codebases than Nuxt/Vue — but nothing deal-breaking.
 
 ## Architecture: modular monolith
 
 The temptation to go with microservices is real, even if the hype has faded somewhat over the past few years. For an early-stage micro-SaaS, it's almost always a mistake: distributed complexity (networking, consistency, observability) piles on top of business complexity, and you quickly spend more time wiring services together than shipping essential features.
 
-I opted instead for a **modular monolith**: a single codebase in a monorepo, a single deployment, but a strict internal organization that keeps the door open to extracting services as autonomous units if the need ever becomes clear.
+I opted instead for a **modular monolith**: a single codebase in a monorepo, a single deployment, but a strict internal organization that keeps the door open to extracting services as dedicated projects if the need ever becomes clear.
 
-In practice, each business domain in the Nuxt backend is a self-contained module:
+In practice, each business domain in the Nuxt backend is a self-contained module, for example:
 
 ```
 server/modules/
@@ -76,7 +76,7 @@ server/modules/profile/
 The core principle of hexagonal architecture is simple but profound: **the `core` knows nothing about infrastructure**. Entities, ports, and use cases never import an adapter, a framework, or an external library. It's the adapters' job to bridge the gap with the outside world.
 
 - **Primary adapters** (in `adapters/primary/`) are the entry points that _drive_ the application: REST controllers, [SQS](https://aws.amazon.com/sqs) listeners, CLI commands... They receive external stimuli, translate them into use case calls, and format the response. If you change your transport protocol (REST → GraphQL → WebSocket, for example), only this directory changes — the core stays untouched. In our case, Nuxt API routes import a primary REST adapter from a module.
-- **Secondary adapters** (in `adapters/secondary/`) are the output points _driven by_ the application: [Drizzle](https://orm.drizzle.team) repositories for database access, [Stripe](https://stripe.com) clients, [S3](https://aws.amazon.com/s3) storage, email sending... They implement the ports defined in the core and are injected in the module's factory. If you switch from Stripe to PayPal or from Drizzle to [Prisma](https://prisma.io), only this directory changes. The business core, once again, remains untouched.
+- **Secondary adapters** (in `adapters/secondary/`) are the output points _driven by_ the application: [Drizzle](https://orm.drizzle.team) repositories for database access, [Stripe](https://stripe.com) clients, S3-compatible storage ([S3](https://aws.amazon.com/s3)), email sending... They implement the ports defined in the core and are injected in the module's factory. If you switch from Stripe to PayPal or from Drizzle to [Prisma](https://prisma.io), only this directory changes. The business core, once again, remains untouched.
 
 **Ports** describe the contract expected by the domain as a simple interface.
 
@@ -185,6 +185,20 @@ On a solo or small-team project, the temptation to skip tests is real. I don't t
 My testing stack is fairly standard: [vitest](https://vitest.dev) for unit-testing use cases, [playwright](https://playwright.dev) for end-to-end tests on critical user flows.
 
 On top of that, I noticed several times that the architecture guidelines explicitly stated in the CLAUDE.md file were not always fully respected. I therefore added architecture tests with [ts-arch](https://github.com/ts-arch/ts-arch), which reinforce the agentic workflow with a deterministic check that architecture rules are being followed (module dependency boundaries, for example). Since then, my coding agent consistently produces code that matches my guidelines — correcting itself when it strays.
+
+```ts title="server/modules/__tests__/architecture.test.ts"
+describe('Hexagonal layers', () => {
+  test('core files must not depend on adapters', async () => {
+    const rule = filesOfProject(TSCONFIG)
+      .inFolder('core')
+      .shouldNot()
+      .dependOnFiles()
+      .inFolder('adapters');
+    const violations = await rule.check();
+    expect(violations, fmt(violations as FileDep[])).toHaveLength(0);
+  });
+});
+```
 
 I round out the workflow with a few standard tools:
 
