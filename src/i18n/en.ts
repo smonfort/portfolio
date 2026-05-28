@@ -68,7 +68,7 @@ const en: Translations = {
           'Led the Technology department: 40 FTE (architects, front/back/mobile developers, QA, DevOps, cybersecurity).',
           'Defined and implemented the public cloud AWS/Azure strategy: private landing zone, at-scale infrastructure-as-code in Terraform.',
           'Designed cloud-native architectures for Sofinco, LCL, CAA, CASA, CA-Titres, CA-PS, CAL&F, and CATE.',
-          'Business development: pre-sales, scoping, due diligences — €11.3M revenue in 2024.',
+          'Business development: pre-sales, scoping, due diligences — +€11M revenue.',
         ],
         tags: ['Tech management', 'Architecture', 'AWS', 'Kubernetes', 'Cloud Native', 'DevSecOps'],
       },

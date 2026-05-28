@@ -66,7 +66,7 @@ const fr = {
           'Direction du département Technologies : 40 ETP (architectes, développeurs front/back/mobile, QA, DevOps, cybersécurité).',
           "Définition et mise en œuvre de la stratégie cloud public AWS/Azure : landing zone privative, infrastructure-as-code à l'échelle en Terraform.",
           "Conception d'architectures cloud native pour Sofinco, LCL, CAA, CASA, CA-Titres, CA-PS, CAL&F, CATE.",
-          'Développement business : avant-vente, cadrage, due diligences — 11,3M€ de CA en 2024.',
+          'Développement business : avant-vente, cadrage, due diligences — +11M€ de CA.',
         ],
         tags: ['Tech management', 'Architecture', 'AWS', 'Kubernetes', 'Cloud Native', 'DevSecOps'],
       },
