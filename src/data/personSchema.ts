@@ -1,8 +1,8 @@
 import type { Lang } from '@i18n/index';
 
 const jobTitles: Record<Lang, string> = {
-  fr: 'CTO & Architecte Cloud Senior Freelance',
-  en: 'Freelance CTO & Senior Cloud Architect',
+  fr: 'CTO & Architecte Cloud Senior',
+  en: 'CTO & Senior Cloud Architect',
 };
 
 export function getPersonSchema(siteUrl: URL, lang: Lang): string {
